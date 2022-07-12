@@ -1,6 +1,6 @@
 def fibonacciSequencie():
     """
-    This function return tem first 15th terms of the Fibonnaci
+    This function return tem first 15th terms of the Fibonacci
     Sequencie.
     :return:
     """
