@@ -9,6 +9,9 @@ def primo_rapido():
     while cont < n:
         x = int(input())
         for i in range(2, r + 1):
+            if x % 2 == 0 and x > 2:
+                print('Not Prime')
+                break
             if x % i == 0 and i == x:
                 print('Prime')
                 break
