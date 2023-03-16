@@ -34,7 +34,7 @@ def ones(l1):
                     num_1 = int(str_1)
                 print(len(str_1))
                 break
-        except:
+        except EOFError:
             break
     return print(*l2)
 
