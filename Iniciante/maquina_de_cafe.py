@@ -1,10 +1,9 @@
 def maquina_de_cafe():
     """
-    Esta função calcula e retorna um printe do menor tempo que levam os
+    Esta função calcula e retorna um printe do menor tempo que leva os
     funcionários de uma empresa tomar um cafezinho expresso, tendo em
-    consideração que os funcionários levam um minuto para tomar café
-    de um andar para o outro e mais um minuto para retorna ao seu posto
-    de trabalho.
+    consideração que eles levam um minuto para tomar café de um andar
+    para o outro e mais um minuto para retorna ao seu posto de trabalho.
     :return:
     """
     a1 = int(input())
