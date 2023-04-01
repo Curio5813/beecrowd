@@ -10,8 +10,8 @@ def maquina_de_cafe():
     a2 = int(input())
     a3 = int(input())
     b = a1 * 2 + a3 * 2
-    c = a2 * 2 + a3 * 4
-    d = a2 * 2 + a1 * 4
+    c = a2 * 2 + a1 * 4
+    d = a2 * 2 + a3 * 4
     if c >= b and d >= b:
         return print(b)
     elif c <= d:
