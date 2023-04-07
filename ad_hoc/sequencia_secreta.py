@@ -6,8 +6,8 @@ def sequencia_secreta():
     """
     n = int(input())
     # o valor da variável cont começa em 1 para que o código
-    # abaixo funcione, mas o problema terá pelo todas as
-    # sequências correta com valor maior ou igual a 3.
+    # abaixo funcione, mas o problema terá em todas as
+    # sequências secretas um valor maior ou igual a 3.
     l1, k, cont = [], 0, 1
     for i in range(n):
         num = int(input())
