@@ -23,6 +23,7 @@ def main():
             else:
                 qt = 0
             fruta = ''.join(consumo[1::]).strip()
+            print(fruta)
             if fruta in frutas.keys():
                 vitamina += frutas[fruta] * qt
         if vitamina < 110:
