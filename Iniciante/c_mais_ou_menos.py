@@ -1,13 +1,14 @@
 def main():
     """
     Esta função calcula o nivel de absorção de vitamina C através da ingestão de
-    um grupo de 7 alimentos e retorna a quantidade de vitamina C ingerida.
+    um grupo de 7 alimentos e retorna printando a quantidade de vitamina C ingerida
+    e se deve aumentar, diminuir ou manter seu consumo.
     """
     while True:
+        num, fruta, vitamina, l1 = "", "", 0, []
         t = int(input())
         if t == 0:
             break
-        vitamina = 0
         frutas = {'suco de laranja': 120,
                   'morango fresco': 85,
                   'mamao': 85,
@@ -17,15 +18,21 @@ def main():
                   'brocolis': 34
                   }
         for k in range(t):
-            consumo = input().strip()
-            if consumo[0] in "1234567890":
-                qt = int(consumo[0])
-            else:
-                qt = 0
-            fruta = ''.join(consumo[1::]).strip()
-            print(fruta)
+            consumo = input()
+            l1.append(consumo)
+        for i in range(0, len(l1)):
+            for j in range(0, len(l1[i])):
+                if l1[i][j] in "0123456789":
+                    num += l1[i][j]
+                else:
+                    if j == len(l1[i]) - 1:
+                        break
+                    fruta += l1[i][j + 1]
+            qt = int(num)
             if fruta in frutas.keys():
                 vitamina += frutas[fruta] * qt
+            num = ""
+            fruta = ""
         if vitamina < 110:
             print(f'Mais {110 - vitamina} mg')
         elif vitamina > 130:
@@ -36,4 +43,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
