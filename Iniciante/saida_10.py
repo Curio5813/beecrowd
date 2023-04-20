@@ -5,7 +5,7 @@ def saida_10():
     :return:
     """
     l1 = ["A", "B", "C", "D", "E", "D", "C", "B", "A"]
-    s_a = "       "
+    s_a = "        "
     s_f = ""
     str_img = ""
     for i in range(len(l1)):
