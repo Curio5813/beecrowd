@@ -28,6 +28,7 @@ def flores_coloridas():
             raiz = sqrt(p * mult)
             # Enontrar o raio do círculo menor.
             r1 = raiz / p
+            # Calcular a área do círculo menor.
             ac_menor = pi * r1 ** 2
             # Calcular a área do círculo maior, que circunscreve o triângulo
             # dado, tendo como centro do círculo o circuncentro, um dos
@@ -36,8 +37,9 @@ def flores_coloridas():
             rad = acos((b ** 2 + c ** 2 - a ** 2) / (2 * b * c))
             # Abaixo está a formula para encontar o valor do raio do circulo maior.
             r2 = a / (sin(rad) * 2)
-            ac_maior = pi * r2 ** 2 - at
-            print(f"{ac_maior:.4f} {(at - ac_menor):.4f} {ac_menor:.4f}")
+            # Calcular a área do círculo maior.
+            ac_maior = pi * r2 ** 2
+            print(f"{(ac_maior - at):.4f} {(at - ac_menor):.4f} {ac_menor:.4f}")
         except EOFError:
             break
 
