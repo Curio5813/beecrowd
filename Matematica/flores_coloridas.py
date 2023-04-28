@@ -26,6 +26,7 @@ def flores_coloridas():
             ai, bi, ci = (p - a), (p - b), (p - c)
             mult = ai * bi * ci
             raiz = sqrt(p * mult)
+            # Enontrar o raio do círcul menor.
             r1 = raiz / p
             ac_menor = pi * r1 ** 2
             # Calcular a área do círculo maior, que circunscreve o triângulo
