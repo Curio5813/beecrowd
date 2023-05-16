@@ -6,21 +6,31 @@ def sub_prime():
     :return:
     """
     while True:
+        b_reserv, val, b_val, asw = [], [], [], ""
         dados = input().split(" ")
         b, n = int(dados[0]), int(dados[1])
         if b == 0 and n == 0:
             break
-        reservas = input().split(" ")
-        r1, r2, r3 = int(reservas[0]), int(reservas[1]), int(reservas[2])
-        sum_d, sum_v = r1, r3
-        for i in range(0, len(reservas)):
+        reserv = input().split(" ")
+        for i in reserv:
+            b_reserv.append(int(i))
+        for i in range(n):
             val = input().split(" ")
-            d, c, v = int(val[0]), int(val[1]), int(val[2])
-            sum_d += d
-            sum_v += v
-        if sum_d >= sum_v:
+            b_val.append(val)
+        for i in range(0, len(b_val)):
+            for k in range(0, len(b_val[i])):
+                b_val[i][k] = int(b_val[i][k])
+        for i in range(0, len(b_val)):
+            for k in range(0, len(b_val[i])):
+                idx = b_val[i][1] - 1
+                b_reserv[i] -= b_val[i][-1]
+                if i >= len(b_reserv) - 1:
+                    break
+                b_reserv[idx] += b_val[i][-1]
+                break
+        if sum(b_reserv) >= 0:
             print("S")
-        else:
+        elif sum(b_reserv) < 0:
             print("N")
 
 
