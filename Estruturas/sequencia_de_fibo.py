@@ -1,4 +1,5 @@
 import decimal
+import multiprocessing
 
 
 def sequencia_fibo():
