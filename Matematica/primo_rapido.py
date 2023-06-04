@@ -15,7 +15,7 @@ def primo_rapido():
         # o ultimo número que se pode fatorar por um fator primo,
         # caso seja a potencia de uma dado número, ou um número decimal
         # irracional. Que não se pode representá-los por meio de fração
-        # inteiros.
+        # de inteiros.
         div = ceil(sqrt(x))
         for i in range(2, div + 1):
             if x == 2:
