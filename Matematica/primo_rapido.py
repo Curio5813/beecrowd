@@ -1,121 +1,37 @@
-import multiprocessing
-from random import randint
-from datetime import datetime
-
-n = 200
-inicio = datetime.now()
+from math import sqrt, ceil
 
 
-def primo_rapido_25():
-    for i in range(n):
-        x = randint(2, 2 ** 25)
-        for k in range(2, x + 1):
+def primo_rapido():
+    """
+    Esta função calcula e printa "Prime" se o número fornecido pelo
+    usuário é primo, ou caso contrário, "Not Prime".
+    :return:
+    """
+    n = int(input())
+    cont = 0
+    while cont < n:
+        x = int(input())
+        div = ceil(sqrt(x))
+        for i in range(2, div + 1):
             if x == 2:
-                print('Prime')
-                break
-            elif x == 3:
-                print('Prime')
+                print("Prime")
                 break
             elif x % 2 == 0:
-                print('Not Prime')
-                break
-            elif x % k == 0 and k != x:
-                print('Not Prime')
-                break
-            elif x % k == 0 and k == x:
-                print('Prime')
-                break
-
-
-"""
-def primo_rapido_25():
-    for i in range(n):
-        x = randint(2 ** 20, 2 ** 25)
-        for k in range(2, x + 1):
-            if x == 2:
-                print('Prime')
+                print("Not Prime")
                 break
             elif x == 3:
-                print('Prime')
+                print("Prime")
                 break
-            elif x % 2 == 0:
-                print('Not Prime')
+            elif x % i == 0 and i != div:
+                print("Not Prime")
                 break
-            elif x % k == 0 and k != x:
-                print('Not Prime')
+            elif i == div and sqrt(x) != div:
+                print("Prime")
                 break
-            elif x % k == 0 and k == x:
-                print('Prime')
+            elif i == div and sqrt(x) == div:
+                print("Not Prime")
                 break
+        cont += 1
 
 
-
-def primo_rapido_28():
-    for i in range(n):
-        with lock:
-            x = randint(2 ** 25, 2 ** 28)
-            for k in range(2, x + 1):
-                if x == 2:
-                    print('Prime')
-                    break
-                elif x == 3:
-                    print('Prime')
-                    break
-                elif x % 2 == 0:
-                    print('Not Prime')
-                    break
-                elif x % k == 0 and k != x:
-                    print('Not Prime')
-                    break
-
-
-def primo_rapido_31():
-    for i in range(n):
-        with lock:
-            x = randint(2 ** 28, 2 ** 31)
-            for k in range(2, x + 1):
-                if x == 2:
-                    print('Prime')
-                    break
-                elif x == 3:
-                    print('Prime')
-                    break
-                elif x % 2 == 0:
-                    print('Not Prime')
-                    break
-                elif x % k == 0 and k != x:
-                    print('Not Prime')
-                    break
-"""
-
-
-def main():
-    pc1 = multiprocessing.Process(target=primo_rapido_25())
-    # pc2 = multiprocessing.Process(target=primo_rapido_25())
-    # pc3 = multiprocessing.Process(target=primo_rapido_28(), args=lock)
-    # pc4 = multiprocessing.Process(target=primo_rapido_31(), args=lock)
-
-    pc1.start()
-    # pc2.start()
-    # pc3.start()
-    # pc4.start()
-
-    pc1.join()
-    # pc2.join()
-    # pc3.join()
-    # pc4.join()
-
-
-cont = 0
-if __name__ == '__main__':
-    cont += 1
-    if cont < n:
-        primo_rapido_25()
-        # primo_rapido_25()
-        # primo_rapido_28()
-        # primo_rapido_31()
-
-tempo = datetime.now() - inicio
-print(f"Terminou em {tempo.total_seconds():.2f} segundos.")
-
-# Terminou em 21.08 segs
+primo_rapido()
