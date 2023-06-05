@@ -10,14 +10,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Matematica/primo_rapido.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/venv/primo_rapido.csv">
+        <entry key="/Matematica/test.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
