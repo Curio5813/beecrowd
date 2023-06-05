@@ -11,11 +11,6 @@ def primo_rapido():
     cont = 0
     while cont < n:
         x = int(input())
-        # é importante notar que a raíz quadrada de um número é
-        # o ultimo número que se pode fatorar por um fator primo,
-        # caso seja a potencia de uma dado número, ou um número decimal
-        # irracional, que não se pode representá-los por meio de fração
-        # de inteiros.
         div = ceil(sqrt(x))
         for i in range(2, div + 1):
             if x == 2:
