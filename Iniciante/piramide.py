@@ -1,3 +1,5 @@
+
+
 def piramide():
     """
     Esta função calcula e printa o menor valor dos pesos de cada
@@ -5,18 +7,17 @@ def piramide():
     :return:
     """
     n = int(input())
-    l1, l2, soma, m = [], [], [], 1
+    l1, l2, soma, m = [], [], 0, n
     for i in range(0, n):
         l1 = list(map(int, input().split(" ")))
         l2.append(l1)
+    l2.reverse()
     print(l2)
     for k in range(0, len(l2)):
         for j in range(0, len(l2[k])):
-            soma += l2[k][0:m]
-            break
-        m += 1
+            if k == 0:
+                soma = sum(l2[k])
     print(soma)
-    print(sum(soma))
 
 
 piramide()
