@@ -12,6 +12,8 @@ def primo_rapido():
     while cont < n:
         x = int(input())
         div = ceil(sqrt(x))
+        print(sqrt(x))
+        print(div)
         for i in range(2, div + 1):
             if x == 2:
                 print("Prime")
