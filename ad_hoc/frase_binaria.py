@@ -10,12 +10,13 @@ def frase_binaria():
             ascii_str = ""
             for k in range(n):
                 binary = input()
-                for i in range(0, len(binary), 8):
+                for i in range(0, len(binary)):
                     # Convert 8 bits of binary to decimal and then to an ASCII character
                     decimal = int(binary, 2)
                     ascii_char = chr(decimal)
                     # Add ASCII character to the string
                     ascii_str += ascii_char
+                    break
             print(ascii_str)
         except EOFError:
             break
