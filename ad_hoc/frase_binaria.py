@@ -10,7 +10,9 @@ def frase_binaria():
             ascii_str = ""
             for k in range(n):
                 binary = input()
+                # Converter binário para base dez.
                 decimal = int(binary, 2)
+                # Converter numero na base dez em caracteres ASCII.
                 ascii_char = chr(decimal)
                 ascii_str += ascii_char
             print(ascii_str)
