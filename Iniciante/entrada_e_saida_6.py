@@ -1,7 +1,7 @@
 def entrada_e_saida_6():
     """
-    Esta função pega um numero decimal em formato, por exemplo,
-    XXXXXX.YYYY e inverte a saída para YYYY.XXXXXX.
+    Esta função pega um numero decimal com três casa decimais, em formato, por exemplo,
+    XXXXXX.YYY e inverte a saída para YYY.XXXXXX.
     :return:
     """
     num = input().split(".")
