@@ -21,7 +21,7 @@ def ajude_patatatitu():
             exp = input()
             for m in range(0, len(danger)):
                 if len(exp) < len(danger[m]):
-                    print("Abortar")
+                    print("Prossiga")
                     break
                 if danger[m] in exp:
                     div = exp.split(danger[m])
