@@ -8,14 +8,11 @@ def a_lenda_de_flavious_josephus():
     nc = int(input())
     c = 0
     for j in range(nc):
-        num = input().split(" ")
-        num[0] = int(num[0])
-        num[1] = int(num[1])
+        num = list(map(int, input().split(" ")))
         n, a, l2 = num[0], num[1], []
         for i in range(1, n + 1):
             l2.append(i)
         while len(l2) > 1:
-            print(*l2)
             while len(l2) > 1:
                 if a > len(l2):
                     a -= len(l2)
