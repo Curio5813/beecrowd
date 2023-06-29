@@ -5,7 +5,7 @@ from math import sqrt, floor, ceil
 def precisao_do_sensor():
     """
     Esta função calcula a precisão de um sensor, ou mais
-    especificamente, o desvio padrão enorno da média. Tendo
+    especificamente, o desvio padrão entorno da média. Tendo
     como valores de entrada as medidas obitidas e de saída
     o desvio padrão.
     :return:
