@@ -4,7 +4,7 @@ def main():
     sequência, cada número, depois dos 2 primeiros, é igual à soma dos 2 anteriores. Escreva um
     algoritmo que leia um inteiro N (N < 46) e mostre os N primeiros números dessa série.
     """
-    a, b, = 0, 1
+    a, b, = 1, 1
     n = int(input())
     for k in range(1, n + 1):
         print(f'{a}', end=' ')
