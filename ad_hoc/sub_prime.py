@@ -1,37 +1,27 @@
 def sub_prime():
     """
-    Esta função retorna um caracter "S" ou "N". Se sim, "S", o banco
-    será capaz de pagar seus empréstimos, caso contrário, se não, "N",
-    o banco não será capaz de pagar seus empréstimos.
+    Esta função retorna um caracter "S" ou "N". Se sim, "S", o sitema
+    bancário será capaz de pagar seus empréstimos, caso contrário, se
+    não, "N", o sistema bancário não será capaz de pagar seus empréstimos.
     :return:
     """
     while True:
-        b_reserv, val, b_val, asw = [], [], [], ""
-        dados = input().split(" ")
-        b, n = int(dados[0]), int(dados[1])
+        v = input().split(" ")
+        b, n = int(v[0]), int(v[1])
+        print(f"{b} {n}")
         if b == 0 and n == 0:
             break
-        reserv = input().split(" ")
-        for i in reserv:
-            b_reserv.append(int(i))
-        for i in range(n):
-            val = input().split(" ")
-            b_val.append(val)
-        for i in range(0, len(b_val)):
-            for k in range(0, len(b_val[i])):
-                b_val[i][k] = int(b_val[i][k])
-        for i in range(0, len(b_val)):
-            for k in range(0, len(b_val[i])):
-                idx = b_val[i][1] - 1
-                b_reserv[i] -= b_val[i][-1]
-                if i >= len(b_reserv) - 1:
-                    break
-                b_reserv[idx] += b_val[i][-1]
+        resv = list(map(int, input().split(" ")))
+        for i in range(b):
+            divd = list(map(int, input().split(" ")))
+            print(resv)
+            if resv[0] + resv[1] - divd[2] >= 0:
+                resv[0] = resv[0] + resv[1] - divd[2]
+                if i == b - 1:
+                    print("S")
+            else:
+                print("N")
                 break
-        if sum(b_reserv) >= 0:
-            print("S")
-        elif sum(b_reserv) < 0:
-            print("N")
 
 
 sub_prime()
