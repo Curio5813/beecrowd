@@ -8,7 +8,7 @@ def fibonot():
     """
     fibo, fibo_not = [], []
     a, b = 0, 1
-    lim = 10_000
+    lim = 100_000 + 1
     while len(fibo) < lim:
         a, b = b, b + a
         fibo.append(a)
