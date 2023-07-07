@@ -5,7 +5,8 @@ def evitando_chuva():
     o trabalho, se estiver fazendo sol, não compra o guarda-
     chuva nem leva para o trabalho. Caso esteja chovendo e
     não estiver guarda-chuva em casa, ele compra um gurada-
-    chuva. A mesma regra vale quando está no trabalho.
+    chuva, caso tenha, ele não compra e leva o que tem. A
+    mesma regra vale quando está no trabalho.
     :return:
     """
     n = int(input())
