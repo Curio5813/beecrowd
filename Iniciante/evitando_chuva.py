@@ -14,10 +14,7 @@ def evitando_chuva():
     for i in range(n):
         sd, sn = input().split(" ")
         if sd == "sol" and sn == "sol":
-            comp_casa += 0
-            comp_trab += 0
-            g_casa += 0
-            g_trab += 0
+            continue
         elif sd == "chuva" and sn == "chuva":
             if g_casa == 0:
                 comp_casa += 1
@@ -25,10 +22,7 @@ def evitando_chuva():
                 g_casa += 1
                 g_trab += 0
             elif g_casa > 0:
-                comp_casa += 0
-                comp_trab += 0
-                g_casa += 0
-                g_trab += 0
+                continue
         elif sd == "sol" and sn == "chuva":
             if g_trab == 0:
                 comp_casa += 0
