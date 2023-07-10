@@ -21,11 +21,9 @@ def lexico():
     if lex1 < lex2:
         print(a)
         print(b)
-        return
     elif lex1 > lex2:
         print(b)
         print(a)
-        return
     while lex1 == lex2:
         if n >= len(a) - 1 or n >= len(b) - 1:
             if len(a) == len(b):
@@ -34,15 +32,15 @@ def lexico():
                 if lex1 == lex2:
                     print(a)
                     print(b)
-                    return
+                    break
                 elif lex1 < lex2:
                     print(a)
                     print(b)
-                    return
+                    break
                 elif lex1 > lex2:
                     print(b)
                     print(a)
-                    return
+                    break
             elif len(a) < len(b):
                 print(a)
                 print(b)
@@ -57,11 +55,11 @@ def lexico():
         if lex1 < lex2:
             print(a)
             print(b)
-            return
+            break
         elif lex1 > lex2:
             print(b)
             print(a)
-            return
+            break
 
 
 lexico()
