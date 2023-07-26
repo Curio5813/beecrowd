@@ -8,11 +8,12 @@ def fibonot():
     """
     fibo, fibo_not = [], []
     a, b = 0, 1
-    lim = 100_000 + 1
-    while len(fibo) < lim:
+    for i in range(25):
+        if a >= 100_000:
+            break
         a, b = b, b + a
         fibo.append(a)
-    for i in range(1, 10_001):
+    for i in range(1, 100_100):
         if i not in fibo:
             fibo_not.append(i)
     k = int(input())
