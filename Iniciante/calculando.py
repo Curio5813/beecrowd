@@ -4,14 +4,22 @@ def calculando():
     de números dados como parâmetros de entrada.
     :return:
     """
-    m, resul, cont = 1, 0, 0
-    while m != 0:
-        m = int(input())
-        if m == 0:
+    m, i, numeros, num, signal, n = '1', 0, [], "", [], 0
+    while m != '0':
+        m = input()
+        if m == '0':
             break
-        cont += 1
-        exp_postivo = list(map(int, input().split('+')))
-        print(exp_postivo)
+        x = input()
+        for i in range(0, len(x)):
+            if i == len(x) - 1:
+                num += x[i]
+                numeros.append(int(num))
+            if x[i] == '+' or x[i] == '-':
+                numeros.append(int(num))
+                signal.append(x[i])
+                num = ""
+            elif x[i] in "0123456789":
+                num += x[i]
 
 
 calculando()
