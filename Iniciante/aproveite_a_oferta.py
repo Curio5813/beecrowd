@@ -1,13 +1,12 @@
 def aproveite_a_oferta():
     """
-    Um supermercado está fazendo uma promoção de venda de refrigerantes.
-    Se um dia você comprar refrigerantes e levar os cascos vazios no dia
-    seguinte, ela troca cada conjunto de K garrafas vazias  por uma garrafa
-    cheia. Um cliente quer aproveitar ao máximo essa oferta e por isso comprou
-    várias garrafas no primeiro dia da promoção. Agora ele quer saber quantas
-    garrafas terá ao final do segundo dia da promoção, se usá-la ao máximo.
     Esta função calula o numero máximo de garrafas que sobram ao final do
-    segundo dia e printa o resultado.
+    segundo dia de promoção feita por um supermercado e printa o resultado.
+    Após o cliente aproveitar a promoção de venda de refrigerantes. Se um
+    dia você comprar refrigerantes e levar os cascos vazios no dia seguinte,
+    ela troca cada conjunto de K garrafas vazias  por uma garrafa cheia.
+    Um cliente quer aproveitar ao máximo essa oferta e por isso comprou
+    várias garrafas no primeiro dia da promoção.
     :return:
     """
     inteira, resto, soma = 1, 0, 0
