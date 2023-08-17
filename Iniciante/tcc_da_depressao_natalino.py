@@ -1,6 +1,6 @@
 def tcc_da_depressao_natalino():
     """
-    Esta função recebe como entrada um valor E (0 < E < 25) representando o
+    Esta função recebe como entrada um valor E (0 < E < 25), representando o
     dia que foi entregue o tcc pra verificação e um valor D (0 < D < 25) que
     representa a data final pra entregar para verificação. A única possibilidade
     da entrega não ser realizada na data é por falta de orientação da Takanada.
