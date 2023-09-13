@@ -21,7 +21,7 @@ def attack_on_gasparini():
     qt = 0
     for i in titas:
         if i == "P":
-            for k in range(0, len(muros)):
+            for k in range(1, len(muros)):
                 if k == len(muros) - 1:
                     if muros[k] >= p:
                         muros[k] -= p
