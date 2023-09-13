@@ -20,57 +20,45 @@ def attack_on_gasparini():
     p, m, g = map(int, input().split(" "))
     qt = 0
     for i in titas:
-        if i == "P":
-            for k in range(1, len(muros)):
-                if k == len(muros) - 1:
-                    if muros[k] >= p:
-                        muros[k] -= p
-                        break
-                    elif muros[k] < p:
-                        muros.append(x)
-                        muros[k + 1] -= p
-                        qt += 1
-                        break
-                if muros[k] >= p:
+        for k in range(0, len(muros)):
+            muro = x
+            if i == "P":
+                if muros[k] < p:
+                    muros.append(muro)
+                    qt += 1
+                    muros[k + 1] -= p
+                    break
+                elif muros[k] >= p:
                     muros[k] -= p
                     break
-            if len(muros) == 0:
+            elif i == "M":
+                if muros[k] < m:
+                    muros.append(muro)
+                    qt += 1
+                    muros[k + 1] -= m
+                    break
+                elif muros[k] >= m:
+                    muros[k] -= m
+                    break
+            elif i == "G":
+                if muros[k] < g:
+                    muros.append(muro)
+                    qt += 1
+                    muros[k + 1] -= g
+                    break
+                elif muros[k] >= g:
+                    muros[k] -= g
+                    break
+        if len(muros) == 0:
+            if i == "P":
                 muro -= p
                 muros.append(muro)
                 qt += 1
-        elif i == "M":
-            for k in range(0, len(muros)):
-                if k == len(muros) - 1:
-                    if muros[k] >= m:
-                        muros[k] -= m
-                        break
-                    elif muros[k] < m:
-                        muros.append(x)
-                        muros[k + 1] -= m
-                        qt += 1
-                        break
-                if muros[k] >= m:
-                    muros[k] -= m
-                    break
-            if len(muros) == 0:
+            elif i == "M":
                 muro -= m
                 muros.append(muro)
                 qt += 1
-        elif i == "G":
-            for k in range(0, len(muros)):
-                if k == len(muros) - 1:
-                    if muros[k] >= g:
-                        muros[k] -= g
-                        break
-                    elif muros[k] < g:
-                        muros.append(x)
-                        muros[k + 1] -= g
-                        qt += 1
-                        break
-                if muros[k] >= g:
-                    muros[k] -= g
-                    break
-            if len(muros) == 0:
+            elif i == "G":
                 muro -= g
                 muros.append(muro)
                 qt += 1
