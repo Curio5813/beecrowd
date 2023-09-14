@@ -14,29 +14,20 @@ def attack_on_gasparini():
 
     :return:
     """
-    n, x = map(int, input().split(" "))
-    muro, muros = x, []
+    n, muro = map(int, input().split(" "))
+    qt = 0
     titas = input()
     p, m, g = map(int, input().split(" "))
-    for j in range(n):
-        muros.append(x)
+    total = n * muro
     for i in titas:
-        for k in range(0, len(muros)):
-            if i == "P":
-                if muros[k] >= p:
-                    muros[k] -= p
-                    break
-            if i == "M":
-                if muros[k] >= m:
-                    muros[k] -= m
-                    break
-            if i == "G":
-                if muros[k] >= g:
-                    muros[k] -= g
-                    break
-    qt_m = muros.count(muro)
-    qt = n - qt_m
-    print(qt)
+        if i == "P":
+            qt += p
+        if i == "M":
+            qt += m
+        if i == "G":
+            qt += g
+    qt_m = total // qt
+    print(qt_m)
 
 
 attack_on_gasparini()
