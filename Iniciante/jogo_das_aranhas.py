@@ -19,7 +19,7 @@ def jogo_das_aranhas():
     :return:
     """
     n = int(input())
-    aranhas, marrons, vermelhas, aux, k = [], [], [], [], 5
+    aranhas, marrons, vermelhas, aux = [], [], [], []
 
     for i in range(1, n * 2 + 1):
         aranhas.append(i)
@@ -28,7 +28,7 @@ def jogo_das_aranhas():
             vermelhas.append(i)
         if i > n:
             marrons.append(i)
-    for k in range(n + 1, 2_000_000_000 + 1):
+    for k in range(2, 2_000_000_000 + 1):
         j = k
         while True:
             if len(aranhas) == n:
@@ -38,7 +38,7 @@ def jogo_das_aranhas():
                 k += j
             k = k - len(aranhas) - 1
         if aranhas == vermelhas:
-            return print(k)
+            return print(j)
         elif aranhas != vermelhas:
             aranhas = aux
 
