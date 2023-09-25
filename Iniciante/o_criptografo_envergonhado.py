@@ -1,6 +1,3 @@
-from math import floor, sqrt
-
-
 def o_criptografo_envegonhado():
     """
     Está função calcula o menor fator primo entre o produto
@@ -17,6 +14,7 @@ def o_criptografo_envegonhado():
     quebra de linha.
     :return:
     """
+    cont = 0
     while True:
         k, lp = map(int, input().split(" "))
         if k == 0 and lp == 0:
@@ -28,6 +26,9 @@ def o_criptografo_envegonhado():
             elif k % i == 0 and i < lp:
                 print(f"BAD {i}")
                 break
+        cont += 1
+        if cont == 20:
+            break
 
 
 o_criptografo_envegonhado()
