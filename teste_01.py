@@ -1,7 +1,2 @@
-from struct import calcsize
-
-f = "234.1092099"
-
-f = calcsize(f)
-
-print(f)
+for i in range(100, 1, -1):
+    print(i)
