@@ -1,7 +1,7 @@
 def presentes_de_natal():
     """
-    Esta função calcular e printa o valor total dos pares
-    de presentes mais caros e o valor do pares de presentes
+    Esta função calcula e printa o valor total do valor dos
+    pares de presentes mais caros e o valor do pares de presentes
     mais baratos, buscando minimizar a diferença de valor
     entre eles. A entrada consiste em vários casos de teste.
     A primeira linha de um caso de teste possui um inteiro
