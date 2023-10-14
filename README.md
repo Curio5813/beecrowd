@@ -5,7 +5,7 @@
 This project is dedicated to learning programming and logic algorithms by solving computing problems available on the website https://www.beecrowd.com.br
 
 
-![](abelha.png)
+![](beecrowd.png)
 
 
 ## How to use this repository
