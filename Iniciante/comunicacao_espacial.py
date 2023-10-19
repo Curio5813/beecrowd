@@ -19,7 +19,7 @@ def comunicacao_espacial():
             elif dt > 0:
                 dts.append(dt)
             k += 1
-            if k >= len(cod) - 1:
+            if k >= len(cod):
                 k = 0
                 break
         menores.append(min(dts))
