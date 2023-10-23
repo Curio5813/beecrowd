@@ -1,2 +1,4 @@
-for i in range(100, 1, -1):
-    print(i)
+from math import gcd
+
+mdc = gcd(3, 6, 9, 13, 7)
+print(mdc)
