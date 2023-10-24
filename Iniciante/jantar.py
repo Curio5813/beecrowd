@@ -25,21 +25,8 @@ def jantar():
     """
     n, c = map(int, input().split(" "))
     years, meet, menor, bol = [], [], 2009, True
-    for i in range(1948, 2008 + 1):
-        years.append(i)
     for i in range(c):
-        a, b, y = map(int, input().split(" "))
-        meet.append(y)
-    meetings = dict(Counter(meet))
-    for keys, values in meetings.items():
-        if keys < menor:
-            menor = keys
-        if 2 * values / 3 > 2 * n / 3:
-            bol = False
-            print("Impossible")
-            break
-    if bol:
-        print(menor + 1)
+        a, b, y = list(map(int, input().split(" ")))
 
 
 jantar()
