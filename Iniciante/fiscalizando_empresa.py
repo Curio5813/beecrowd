@@ -1,4 +1,4 @@
-from math import floor
+from math import floor, ceil
 
 
 def fiscalizando_empresa():
@@ -52,15 +52,25 @@ def fiscalizando_empresa():
             x, num = [], 0
             x = list(map(int, input().split(" ")))
             x.sort()
-            tam = len(x)
-            k1 = floor(1 * (tam + 1) / 4)
-            k3 = floor(3 * (tam + 1) / 4)
-            print(f"{k1} {k3}")
-            q1 = x[k1]
-            q3 = x[k3]
-            iqr = (q3 - q1)
-            lim_inf = q1 - 0.5 * iqr
-            lim_sup = q3 + 0.5 * iqr
+            tam, k1, k3, q1, q3, iqr, lim_inf, lim_sup = len(x), 0, 0, 0, 0, 0, 0, 0
+            k1 = 1 * (tam + 1) / 4
+            k3 = 3 * (tam + 1) / 4
+            if k1 == int(k1) and k3 == int(k3):
+                k1 = int(k1)
+                k3 = int(k3)
+                q1 = x[k1]
+                q3 = x[k3]
+                iqr = (q3 - q1)
+                lim_inf = q1 - 1.5 * iqr
+                lim_sup = q3 + 1.5 * iqr
+            elif k1 != int(k1) or k3 != int(k3):
+                k1 = ceil(k1)
+                k3 = ceil(k3)
+                q1 = x[k1]
+                q3 = x[k3]
+                iqr = (q3 - q1)
+                lim_inf = q1 - 0.5 * iqr
+                lim_sup = q3 + 0.5 * iqr
             for i in range(0, len(x)):
                 if x[i] < lim_inf or x[i] > lim_sup:
                     num += 1
