@@ -24,11 +24,11 @@ def senhores_da_guerra_galacticos():
         if p[2] - p[0] != 0:
             m = (p[3] - p[1]) / (p[2] - p[0])  # Calcula o coeficiente angular da reta;
             reta.append(m)
-            b = p[1] - m * p[0]  # Calcula o ponto de intersecção da reta ao eixo Y, quando x = 0
-            reta.append(b)       # Caso a reta seja paralela ao eixo x, m = 0 e y = b
-        elif p[2] == 0 and p[0] == 0:   # Caso X1 = 0 e  X2 = 0, a reta será conicidente com o eixo y
-            reta.append(0)
-            reta.append(0)
+            q = p[1] - m * p[0]  # Calcula o ponto de intersecção da reta ao eixo Y, quando x = 0
+            reta.append(q)       # Caso a reta seja paralela ao eixo x, m = 0 e y = b
+        elif p[2] - p[0] == 0:   # Caso X2 - X1 = 0, a reta será perpendicular ao eixo x
+            reta.append(p[0])
+            reta.append(p[0])
         retas.append(reta)
         reta = []
     for i in range(0, len(retas)):
@@ -40,7 +40,7 @@ def senhores_da_guerra_galacticos():
             cont += v
         elif k == v:
             cont += 1
-        elif k != v:
+        elif k != v and k != 1:
             cont += v // k
     linhas = n - cont
     print(linhas)

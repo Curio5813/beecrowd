@@ -1,4 +1,4 @@
-from collections import Counter
+from math import ceil, floor
 
 
 def jantar():
@@ -24,9 +24,28 @@ def jantar():
     :return:
     """
     n, c = map(int, input().split(" "))
-    years, meet, menor, bol = [], [], 2009, True
+    meetings, years, menor, maiores, atual = [], [], [], [], []
     for i in range(c):
-        a, b, y = list(map(int, input().split(" ")))
+        meetings.append(list(map(int, input().split(" "))))
+    for i in range(0, len(meetings)):
+        years.append(meetings[i][2])
+    year = min(years)
+    for i in range(1, n + 1):
+        atual.append(i)
+    for i in range(0, len(meetings)):
+        if meetings[i][2] == year and meetings[i][0] not in menor and meetings[i][1] not in menor:
+            menor.append(meetings[i][0])
+            menor.append(meetings[i][1])
+            if (1/3) * n <= len(menor) <= (2/3) * n:
+                year += 1
+                print(year)
+                break
+            elif len(menor) > (2/3) * n:
+                print("Impossible")
+                break
+        elif meetings[i][2] != year:
+            maiores.append(meetings[i][0])
+            maiores.append(meetings[i][1])
 
 
 jantar()
