@@ -43,6 +43,8 @@ def jantar():
         elif len(menor) > (2/3) * n:
             print("Impossible")
             break
+        if k >= len(meetings) - 1:
+            break
         j += 1
 
 
