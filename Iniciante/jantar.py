@@ -27,8 +27,7 @@ def jantar():
     for i in range(0, len(meetings)):
         if meetings[i][2] not in years:
             years.append(meetings[i][2])
-    years.sort()
-    while j <= len(meetings) - 1:
+    while j <= len(years) - 1:
         while years[j] == meetings[k][2]:
             if meetings[k][0] not in menor:
                 menor.append(meetings[k][0])
@@ -37,13 +36,12 @@ def jantar():
             if k == len(meetings) - 1:
                 break
             k += 1
-        if (1/3) * n <= len(menor) <= (2/3) * n and years[j] <= meetings[k][2]:
+        print(menor)
+        if (1/3) * n <= len(menor) <= (2/3) * n:
             print(years[j] + 1)
             break
         elif len(menor) > (2/3) * n:
             print("Impossible")
-            break
-        if k >= len(meetings) - 1:
             break
         j += 1
 
