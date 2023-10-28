@@ -1,6 +1,3 @@
-from math import ceil, floor
-
-
 def jantar():
     """
     Esta função calcula o menor ano que um grupo de pessoas podem se reunir
@@ -24,28 +21,29 @@ def jantar():
     :return:
     """
     n, c = map(int, input().split(" "))
-    meetings, years, menor, maiores, atual = [], [], [], [], []
+    meetings, years, menor, j, k = [], [], [], 0, 0
     for i in range(c):
         meetings.append(list(map(int, input().split(" "))))
     for i in range(0, len(meetings)):
-        years.append(meetings[i][2])
-    year = min(years)
-    for i in range(1, n + 1):
-        atual.append(i)
-    for i in range(0, len(meetings)):
-        if meetings[i][2] == year and meetings[i][0] not in menor and meetings[i][1] not in menor:
-            menor.append(meetings[i][0])
-            menor.append(meetings[i][1])
-            if (1/3) * n <= len(menor) <= (2/3) * n:
-                year += 1
-                print(year)
+        if meetings[i][2] not in years:
+            years.append(meetings[i][2])
+    years.sort()
+    while j <= len(meetings) - 1:
+        while years[j] == meetings[k][2]:
+            if meetings[k][0] not in menor:
+                menor.append(meetings[k][0])
+            if meetings[k][1] not in menor:
+                menor.append(meetings[k][1])
+            if k == len(meetings) - 1:
                 break
-            elif len(menor) > (2/3) * n:
-                print("Impossible")
-                break
-        elif meetings[i][2] != year:
-            maiores.append(meetings[i][0])
-            maiores.append(meetings[i][1])
+            k += 1
+        if (1/3) * n <= len(menor) <= (2/3) * n and years[j] <= meetings[k][2]:
+            print(years[j] + 1)
+            break
+        elif len(menor) > (2/3) * n:
+            print("Impossible")
+            break
+        j += 1
 
 
 jantar()
