@@ -40,14 +40,12 @@ def cultivando_strings():
             for k in range(0, len(strs)):
                 if strs[i - 1].count(strs[i]) > 0:
                     bol = 1
-                if bol == 1 and strs[k].count(strs[i]) > 0:
+                if bol == 1 and strs[k].count(strs[i]) == 1:
                     tam += 1
-                else:
-                    break
-                cont += 1
             tams.append(tam)
             tam = 0
             bol = 0
+        print(tams)
         print(max(tams))
 
 
