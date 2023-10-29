@@ -34,6 +34,7 @@ def jantar():
             if meetings[k][1] not in menor:
                 menor.append(meetings[k][1])
             if k == len(meetings) - 1:
+                k = 0
                 break
             k += 1
         print(menor)
