@@ -55,9 +55,9 @@ def vampiros():
                 ev1 = 0
                 while tem > 0:
                     tem -= d
-                    ev2 += 1
+                    ev2 -= 1
                     ev1 += 1
-                p1 = (1 - ((p / q) ** ev1)) / (1 - ((p / q) ** (ev1 + ev2)))
+                p1 = (1 - ((p / q) ** ev2)) / (1 - ((p / q) ** (ev1 + ev2)))
         p1 *= 100
         print(f"{(100 - p1):.1f}")
 
