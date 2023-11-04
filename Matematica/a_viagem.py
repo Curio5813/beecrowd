@@ -1,4 +1,5 @@
 from statistics import mean
+from math import floor
 
 
 def a_viagem():
@@ -30,16 +31,19 @@ def a_viagem():
     """
     while True:
         n = int(input())
-        soma, despesa = [], 0
+        soma, despesa, str_despesa = [], 0, ""
         if n == 0:
             break
         for i in range(n):
-            valor = round(float(input()), 3)
+            valor = float(input())
             soma.append(valor)
         soma.sort()
         soma = soma[::-1]
         media = round(mean(soma), 3)
-        print(media)
+        baixo = floor(media)
+        mantissa = round(media - baixo, 3)
+        media += mantissa
+        media = round(media, 2)
         for i in range(0, len(soma)):
             if soma[i] - media > 0:
                 despesa += soma[i] - media
