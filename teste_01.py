@@ -1,4 +1,9 @@
-from math import gcd
+from scipy import integrate
 
-mdc = gcd(3, 6, 9, 13, 7)
-print(mdc)
+
+def funcao_integral(x):
+    return x ** 2
+
+
+resultado = integrate.quad(funcao_integral, 0, 5)
+print(resultado)
