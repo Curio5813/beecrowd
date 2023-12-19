@@ -1,3 +1,6 @@
+import gmpy2
+
+
 def crescimento_das_populacoes_de_bacilos():
     """
     Heinrich Hermann Robert Koch foi um médico alemão que viveu de 1843 a 1910
@@ -30,17 +33,11 @@ def crescimento_das_populacoes_de_bacilos():
     :return:
     """
     a, b, p = 0, 1, 1
-    fibo = []
-    for i in range(500_000):
-        a = b
-        b = p
+    for i in range(0, 1_000_000):
+        a = gmpy2.mpz(b)
+        b = gmpy2.mpz(p)
         p = a + b
-        fibo.append(a)
-
-
-
-
-
+        print(a)
 
 
 crescimento_das_populacoes_de_bacilos()
