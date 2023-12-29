@@ -1,6 +1,3 @@
-import gmpy2
-
-
 def crescimento_das_populacoes_de_bacilos():
     """
     Heinrich Hermann Robert Koch foi um médico alemão que viveu de 1843 a 1910
@@ -25,19 +22,36 @@ def crescimento_das_populacoes_de_bacilos():
     A entrada é composta por diversas instâncias. A primeira linha da entrada contém um
     inteiro T indicando o número de instâncias.
 
-    Cada instância é composta por apenas uma linha que contém um inteiro K (1 ≤ K ≤ 101000000).
+    Cada instância é composta por apenas uma linha que contém um inteiro K (1 ≤ K ≤ 10^1000000).
 
     Saída
     Para cada instância imprima uma linha contendo os três últimos dígitos do número de bacilos
     após K instantes de tempo.
     :return:
     """
-    a, b, p = 0, 1, 1
-    for i in range(0, 1_000_000):
-        a = gmpy2.mpz(b)
-        b = gmpy2.mpz(p)
+    fibo, a, b, p = [], 0, 1, 1
+    for i in range(1_000_000):
+        a = b % 1000
+        b = p
         p = a + b
-        print(a)
+        str_a = str(a)
+        if len(str_a) == 1:
+            str_b = "00" + str_a
+            fibo.append(str_b)
+        elif len(str_a) == 2:
+            str_b = "0" + str_a
+            fibo.append(str_b)
+        elif len(str_a) >= 3:
+            str_b = str_a[-3:]
+            fibo.append(str_b)
+    t = int(input())
+    for i in range(t):
+        n = int(input())
+        if n > 1_000_000:
+            n %= 10_000
+            print(fibo[n - 1])
+        else:
+            print(fibo[n - 1])
 
 
 crescimento_das_populacoes_de_bacilos()
