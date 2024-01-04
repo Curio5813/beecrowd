@@ -46,11 +46,14 @@ def crescimento_das_populacoes_de_bacilos():
             fibo.append(str_b)
     t = int(input())
     for i in range(t):
-        n = int(input())
-        if n > 1_000_000:
-            n %= 10_000
+        n = input()
+        if len(n) >= 7:
+            n = n[-3:]
+            n = int(n)
+            n %= 3_000
             print(fibo[n - 1])
         else:
+            n = int(n)
             print(fibo[n - 1])
 
 
