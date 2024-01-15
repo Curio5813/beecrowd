@@ -23,26 +23,20 @@ def getline_one():
     e de seus amigos, conforme exemplo abaixo.
     :return:
     """
+    media, pessoas = 0, 0
+
     while True:
-        dist, dist_med, cont, tempo = 0, 0, 0, 0
         try:
-            amigo = input()
+            nome = input()
             distancia = int(input())
-            dist += distancia
-            cont += 1
-            while amigo != "":
-                amigo = input()
-                if amigo == "":
-                    print(end="")
-                    print(f"{dist_med:.1f}")
-                    break
-                else:
-                    distancia = int(input())
-                    dist += distancia
-                    cont += 1
-                    dist_med = dist / cont
+            media += distancia
+            pessoas += 1
         except EOFError:
             break
+
+    resultado = media / pessoas
+
+    print(f"{resultado:.1f}")
 
 
 getline_one()
