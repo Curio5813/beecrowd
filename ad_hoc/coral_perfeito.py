@@ -36,52 +36,61 @@ def coral_perfeito():
     while True:
         try:
             n = int(input())
-            compare, cont, j, resp = {()}, 1, -1, 0
+            compare, cont, resp = {()}, 1, 0
             compare.discard(())
             notas = list(map(int, input().split(" ")))
-            for i in range(notas[-1]):
-                if len(set(notas)) == 1:
-                    print(1)
-                    break
-                for k in range(0, len(notas) - 1):
-                    print(len(notas))
-                    print(notas)
-                    print(k, j)
-                    if len(notas) == 3 and notas[0] - notas[1] == 1 and notas[1] - notas[2] == 1:
+            j = len(notas) - 1
+            if sum(notas) % n == 0:
+                for i in range(notas[-1]):
+                    if len(set(notas)) == 1:
                         print(cont)
-                        resp = 1
                         break
-                    elif len(notas) == 4 and notas[0] == notas[1] and notas[2] == notas[3]:
+                    for k in range(0, len(notas) - 1):
+                        if len(notas) == 2 and notas[0] != notas[1] and abs(notas[0] - notas[1]) == 2:
+                            cont += 1
+                            resp = 1
+                            break
+                        elif len(notas) == 3 and notas[1] - notas[0] == 1 and notas[2] - notas[1] == 1:
+                            cont += 1
+                            resp = 1
+                            break
+                        elif len(notas) == 4 and notas[0] == notas[1] and notas[2] == notas[3] \
+                                and notas[2] - notas[1] == 2:
+                            cont += 1
+                            resp = 1
+                            break
+                        elif notas[k] < notas[k + 1]:
+                            while notas[k] < notas[k + 1] and k + 1 < j:
+                                notas[k] += 1
+                                notas[j] -= 1
+                                cont += 1
+                                if len(set(notas)) == 3:
+                                    if (sum(notas) / n) in notas:
+                                        cont = (notas[j] - notas[0]) * 2 + 1
+                                        resp = 2
+                                    break
+                            if resp == 2:
+                                break
+                        elif len(set(notas)) == 2:
+                            for m in range(0, notas[-1]):
+                                for n in range(0, len(notas) - 1):
+                                    if notas[n] > notas[j]:
+                                        break
+                                    if len(set(notas)) == 1:
+                                        resp = 1
+                                        break
+                                    notas[n] += 1
+                                    notas[j] -= 1
+                                    cont += 1
+                                if resp == 1:
+                                    break
+                    if resp == 1:
                         print(cont)
-                        resp = 1
                         break
-                    elif notas[k] == notas[j]:
-                        while notas[k] == notas[j]:
-                            notas.pop(j)
-                            print(notas)
-                            print(k, j)
-                            if k >= len(notas) - 1:
-                                k -= 1
-                                notas.pop(k)
-                        else:
-                            notas.pop(j)
-                            notas[j - 1] += 1
-                            notas[j] -= 1
-                    elif notas[k] < notas[j]:
-                        notas[k] += 1
-                        notas[j] -= 1
-                    cont += 1
-                    compare = set(notas)
-                    if len(compare) == 1:
-                        print(notas)
+                    elif resp == 2:
                         print(cont)
-                if len(compare) == 1 or resp == 1:
-                    print("0k")
-                    break
-                else:
-                    pass
-            if len(compare) > 1:
-                print(notas)
+                        break
+            else:
                 print(-1)
         except EOFError:
             break
