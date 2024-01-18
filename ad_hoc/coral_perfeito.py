@@ -1,3 +1,6 @@
+from time import sleep
+
+
 def coral_perfeito():
     """
     A Maestrina do coral está planejando o espetáculo que apresentará
@@ -41,55 +44,54 @@ def coral_perfeito():
             notas = list(map(int, input().split(" ")))
             j = len(notas) - 1
             if sum(notas) % n == 0:
-                for i in range(notas[-1]):
-                    if len(set(notas)) == 1:
-                        print(cont)
-                        break
-                    for k in range(0, len(notas) - 1):
-                        if len(notas) == 2 and notas[0] != notas[1] and abs(notas[0] - notas[1]) == 2:
-                            cont += 1
-                            resp = 1
-                            break
-                        elif len(notas) == 3 and notas[1] - notas[0] == 1 and notas[2] - notas[1] == 1:
-                            cont += 1
-                            resp = 1
-                            break
-                        elif len(notas) == 4 and notas[0] == notas[1] and notas[2] == notas[3] \
-                                and notas[2] - notas[1] == 2:
-                            cont += 1
-                            resp = 1
-                            break
-                        elif notas[k] < notas[k + 1]:
-                            while notas[k] < notas[k + 1] and k + 1 < j:
-                                notas[k] += 1
-                                notas[j] -= 1
-                                cont += 1
-                                if len(set(notas)) == 3:
-                                    if (sum(notas) / n) in notas:
-                                        cont = (notas[j] - notas[0]) * 2 + 1
-                                        resp = 2
-                                    break
-                            if resp == 2:
-                                break
-                        elif len(set(notas)) == 2:
-                            for m in range(0, notas[-1]):
-                                for n in range(0, len(notas) - 1):
-                                    if notas[n] > notas[j]:
-                                        break
-                                    if len(set(notas)) == 1:
-                                        resp = 1
-                                        break
-                                    notas[n] += 1
+                if len(set(notas)) == 1:
+                    print(cont)
+                    break
+                elif len(notas) == 2 and notas[0] != notas[1] and abs(notas[0] - notas[1]) == 2:
+                    cont += 1
+                    resp = 1
+                elif len(notas) == 3 and notas[1] - notas[0] == 1 and notas[2] - notas[1] == 1:
+                    cont += 1
+                    resp = 1
+                elif len(notas) == 4 and notas[0] == notas[1] and notas[2] == notas[3] \
+                        and notas[2] - notas[1] == 2:
+                    cont += 1
+                    resp = 1
+                else:
+                    for i in range(0, notas[-1]):
+                        for k in range(0, len(notas) - 1):
+                            if notas[k] < notas[k + 1]:
+                                while notas[k] <= notas[j] and k + 1 < j:
+                                    notas[k] += 1
                                     notas[j] -= 1
                                     cont += 1
-                                if resp == 1:
+                                    if len(set(notas)) == 3:
+                                        resp = 2
+                                        break
+                                if resp == 2:
                                     break
-                    if resp == 1:
-                        print(cont)
-                        break
-                    elif resp == 2:
-                        print(cont)
-                        break
+                            elif len(set(notas)) == 3:
+                                for m in range(0, notas[-1]):
+                                    for n in range(0, len(notas) - 1):
+                                        if notas[n] > notas[j]:
+                                            break
+                                        if len(set(notas)) == 1:
+                                            cont += 1
+                                            resp = 1
+                                            break
+                                        notas[n] += 1
+                                        notas[j] -= 1
+                                        cont += 1
+                                    if resp == 1:
+                                        break
+                if resp == 1:
+                    print(cont)
+                    print(notas)
+                elif resp == 2:
+                    print(cont)
+                    print(notas)
+                elif resp == 0:
+                    print("O programa está incorreto!")
             else:
                 print(-1)
         except EOFError:
