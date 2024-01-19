@@ -28,7 +28,8 @@ def coral_perfeito():
     A primeira linha de um caso de teste contém um inteiro N (2 ≤ N ≤ 104) indicando o número
     de integrantes do coral. As notas serão indicadas por números inteiros. A segunda linha
     contém N números inteiros, indicando as notas iniciais (−105 ≤ notai ≤105), onde 0 ≤ i ≤ N−1,
-    que cada integrante deve cantar. As notas são dadas em ordem não decrescente de altura (notai ≤notai+1).
+    que cada integrante deve cantar. As notas são dadas em ordem não decrescente de altura
+    (notai ≤notai+1).
 
     Saída
     Para cada caso de teste imprima uma linha contendo um único número inteiro indicando o número
@@ -39,59 +40,23 @@ def coral_perfeito():
     while True:
         try:
             n = int(input())
-            compare, cont, resp = {()}, 1, 0
-            compare.discard(())
+            cont = 1
             notas = list(map(int, input().split(" ")))
-            j = len(notas) - 1
-            if sum(notas) % n == 0:
-                if len(set(notas)) == 1:
-                    print(cont)
-                    break
-                elif len(notas) == 2 and notas[0] != notas[1] and abs(notas[0] - notas[1]) == 2:
+            k, j = 0, len(notas) - 1
+            soma = sum(notas)
+            unissono = soma // n
+            if soma % n == 0:
+                while len(set(notas)) > 1:
+                    if notas[j] == unissono:
+                        j -= 1
+                    if notas[k] == unissono:
+                        k += 1
+                    if k >= j:
+                        break
+                    notas[k] += 1
+                    notas[j] -= 1
                     cont += 1
-                    resp = 1
-                elif len(notas) == 3 and notas[1] - notas[0] == 1 and notas[2] - notas[1] == 1:
-                    cont += 1
-                    resp = 1
-                elif len(notas) == 4 and notas[0] == notas[1] and notas[2] == notas[3] \
-                        and notas[2] - notas[1] == 2:
-                    cont += 1
-                    resp = 1
-                else:
-                    for i in range(0, notas[-1]):
-                        for k in range(0, len(notas) - 1):
-                            if notas[k] < notas[k + 1]:
-                                while notas[k] <= notas[j] and k + 1 < j:
-                                    notas[k] += 1
-                                    notas[j] -= 1
-                                    cont += 1
-                                    if len(set(notas)) == 3:
-                                        resp = 2
-                                        break
-                                if resp == 2:
-                                    break
-                            elif len(set(notas)) == 3:
-                                for m in range(0, notas[-1]):
-                                    for n in range(0, len(notas) - 1):
-                                        if notas[n] > notas[j]:
-                                            break
-                                        if len(set(notas)) == 1:
-                                            cont += 1
-                                            resp = 1
-                                            break
-                                        notas[n] += 1
-                                        notas[j] -= 1
-                                        cont += 1
-                                    if resp == 1:
-                                        break
-                if resp == 1:
-                    print(cont)
-                    print(notas)
-                elif resp == 2:
-                    print(cont)
-                    print(notas)
-                elif resp == 0:
-                    print("O programa está incorreto!")
+                print(cont)
             else:
                 print(-1)
         except EOFError:
