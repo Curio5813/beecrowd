@@ -1,6 +1,3 @@
-from time import sleep
-
-
 def coral_perfeito():
     """
     A Maestrina do coral está planejando o espetáculo que apresentará
@@ -33,8 +30,8 @@ def coral_perfeito():
 
     Saída
     Para cada caso de teste imprima uma linha contendo um único número inteiro indicando o número
-    mínimo de compassos que a música terá. Se não é possível terminar a música com todos os integrantes
-    cantando a mesma nota, imprima o valor−1.
+    mínimo de compassos que a música terá. Se não é possível terminar a música com todos os
+    integrantes cantando a mesma nota, imprima o valor−1.
     :return:
     """
     while True:
