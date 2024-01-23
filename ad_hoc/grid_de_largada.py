@@ -1,6 +1,3 @@
-from time import sleep
-
-
 def grid_de_largada():
     """
     Na Nlogônia, vai ser realizada a sensacional final mundial da fórmula 17.
@@ -27,23 +24,11 @@ def grid_de_largada():
             n = int(input())
             largada = list(map(int, input().split(" ")))
             chegada = list(map(int, input().split(" ")))
-            for i in range(len(chegada) - 1, -1, -1):
-                saida = largada.index(largada[i])
-                final = chegada.index(largada[i])
-                print(f"{i}: {final} {saida}")
-                sleep(1)
-                if saida > final:
-                    ultrapassagem += saida - final
-                    print(ultrapassagem)
-                    sleep(1)
-                elif saida <= final:
-                    k = i
-                    while k >= 0:
-                        if final < chegada.index(largada[k - 1]):
-                            ultrapassagem += 1
-                            print(ultrapassagem)
-                            sleep(1)
-                        k -= 1
+            for i in range(0, len(chegada)):
+                for k in range(len(chegada) - 1, i, -1):
+                    if largada.index(chegada[i]) > largada.index(chegada[k]) and \
+                            chegada.index(chegada[i]) < chegada.index(chegada[k]):
+                        ultrapassagem += 1
             print(ultrapassagem)
         except EOFError:
             break
