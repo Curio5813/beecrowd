@@ -51,7 +51,7 @@ def estacionamento():
     """
     while True:
         try:
-            lista, situacao, cont, faturamento = [], [], 0, 0
+            lista, situacao, cont1, faturamento = [], [], 0, 0
             dados1 = list(map(int, input().split(" ")))
             c, n = dados1[0], dados1[1]
             tam = c
@@ -70,19 +70,26 @@ def estacionamento():
                     lista.append(p)
                     situacao.append(lista)
                     lista = []
-            for i in range(0, len(situacao)):
+            a = len(situacao)
+            print(a)
+            for i in range(0, a):
+                print(situacao[i])
+                print(cont1)
+                print(a)
                 if len(situacao[i]) == 3 and situacao[i][2] <= tam:
-                    cont += 1
+                    cont1 += 1
                     tam -= situacao[i][2]
-                if tam < 0:
-                    tam += situacao[i][2]
-                    cont -= 1
+                    if tam < 0:
+                        tam += situacao[i][2]
+                        cont1 -= 1
                 if len(situacao[i]) == 2:
                     for j in range(0, i):
-                        if situacao[j][1] == situacao[i][1]:
+                        if situacao[j][0] == "C" and situacao[j][1] == situacao[i][1]:
                             tam += situacao[j][2]
+                            situacao.pop(j)
+                            a -= 1
                             break
-            faturamento = cont * 10
+            faturamento = cont1 * 10
             print(faturamento)
         except EOFError:
             break
