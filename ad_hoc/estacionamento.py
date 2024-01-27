@@ -51,48 +51,60 @@ def estacionamento():
     """
     while True:
         try:
-            lista, situacao, cont1, faturamento = [], [], 0, 0
+            lista, situacao, ferro_velho, bandeira, verdadeiro, cont1, cont2, faturamento = [], [], [], \
+                1, 0, 0, 0, 0
             dados1 = list(map(int, input().split(" ")))
             c, n = dados1[0], dados1[1]
             tam = c
             for i in range(n):
                 dados2 = input().split(" ")
-                if len(dados2) == 3:
-                    s, p, q = dados2[0], int(dados2[1]), int(dados2[2])
-                    lista.append(s)
-                    lista.append(p)
-                    lista.append(q)
-                    situacao.append(lista)
-                    lista = []
-                elif len(dados2) == 2:
-                    s, p = dados2[0], int(dados2[1])
-                    lista.append(s)
-                    lista.append(p)
-                    situacao.append(lista)
-                    lista = []
-            a = len(situacao)
-            print(a)
-            for i in range(0, a):
-                print(situacao[i])
-                print(cont1)
-                print(a)
-                if len(situacao[i]) == 3 and situacao[i][2] <= tam:
-                    cont1 += 1
-                    tam -= situacao[i][2]
-                    if tam < 0:
-                        tam += situacao[i][2]
-                        cont1 -= 1
-                if len(situacao[i]) == 2:
-                    for j in range(0, i):
-                        if situacao[j][0] == "C" and situacao[j][1] == situacao[i][1]:
-                            tam += situacao[j][2]
-                            situacao.pop(j)
-                            a -= 1
-                            break
-            faturamento = cont1 * 10
+                if dados2[0] == "C":
+                    p_e, q = int(dados2[1]), int(dados2[2])
+                    if tam >= q:
+                        cont1 += 1
+                        tam -= q
+                        lista.append("Normal")
+                        lista.append(p_e)
+                        lista.append(q)
+                        situacao.append(lista)
+                        lista = []
+                    elif tam < q:
+                        for j in range(0, len(situacao)):
+                            if p_e == situacao[j][1]:
+                                break
+                            else:
+                                for m in range(0, len(ferro_velho)):
+                                    if p_e == ferro_velho[m][1]:
+                                        verdadeiro = 1
+                                        break
+                        else:
+                            if verdadeiro == 0:
+                                lista.append("Ferro-Velho")
+                                lista.append(p_e)
+                                lista.append(q)
+                                ferro_velho.append(lista)
+                                lista = []
+                if dados2[0] == "S":
+                    p_s = int(dados2[1])
+                    if bandeira == 1:
+                        for j in range(0, len(situacao)):
+                            if situacao[j][1] == p_s:
+                                tam += situacao[j][2]
+                                situacao[j][1] = "nan"
+                                verdadeiro = 1
+                                break
+                    if verdadeiro == 0:
+                        for k in range(0, len(ferro_velho)):
+                            if ferro_velho[k][1] == p_s:
+                                ferro_velho[k][1] = "nan"
+                                cont2 += 1
+                                break
+                    verdadeiro = 0
+            faturamento = (cont1 + cont2) * 10
             print(faturamento)
         except EOFError:
             break
 
 
 estacionamento()
+
