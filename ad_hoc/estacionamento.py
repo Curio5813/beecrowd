@@ -1,6 +1,3 @@
-from time import sleep
-
-
 def estacionamento():
     """
     Um estacionamento utiliza um terreno em que os veículos têm que
@@ -51,8 +48,7 @@ def estacionamento():
     """
     while True:
         try:
-            lista, situacao, ferro_velho, bandeira, verdadeiro, cont1, cont2, faturamento = [], [], [], \
-                1, 0, 0, 0, 0
+            lista, situacao, ferro_velho, verdadeiro, cont, faturamento = [], [], [], 0, 0, 0
             dados1 = list(map(int, input().split(" ")))
             c, n = dados1[0], dados1[1]
             tam = c
@@ -60,8 +56,9 @@ def estacionamento():
                 dados2 = input().split(" ")
                 if dados2[0] == "C":
                     p_e, q = int(dados2[1]), int(dados2[2])
+                    print(tam)
                     if tam >= q:
-                        cont1 += 1
+                        cont += 1
                         tam -= q
                         lista.append("Normal")
                         lista.append(p_e)
@@ -69,42 +66,36 @@ def estacionamento():
                         situacao.append(lista)
                         lista = []
                     elif tam < q:
-                        for j in range(0, len(situacao)):
-                            if p_e == situacao[j][1]:
-                                break
-                            else:
-                                for m in range(0, len(ferro_velho)):
-                                    if p_e == ferro_velho[m][1]:
-                                        verdadeiro = 1
-                                        break
-                        else:
-                            if verdadeiro == 0:
-                                lista.append("Ferro-Velho")
-                                lista.append(p_e)
-                                lista.append(q)
-                                ferro_velho.append(lista)
-                                lista = []
-                if dados2[0] == "S":
-                    p_s = int(dados2[1])
-                    if bandeira == 1:
-                        for j in range(0, len(situacao)):
-                            if situacao[j][1] == p_s:
-                                tam += situacao[j][2]
-                                situacao[j][1] = "nan"
+                        for j in range(0, len(ferro_velho)):
+                            if p_e == ferro_velho[j][1]:
                                 verdadeiro = 1
                                 break
+                        if verdadeiro == 0:
+                            lista.append("Ferro-Velho")
+                            lista.append(p_e)
+                            ferro_velho.append(lista)
+                            lista = []
+                if dados2[0] == "S":
+                    p_s = int(dados2[1])
+                    for j in range(0, len(situacao)):
+                        if situacao[j][1] == p_s:
+                            tam += situacao[j][2]
+                            situacao[j][1] = 0
+                            verdadeiro = 1
+                            break
                     if verdadeiro == 0:
                         for k in range(0, len(ferro_velho)):
                             if ferro_velho[k][1] == p_s:
-                                ferro_velho[k][1] = "nan"
-                                cont2 += 1
+                                ferro_velho[k][1] = 0
+                                cont += 1
                                 break
                     verdadeiro = 0
-            faturamento = (cont1 + cont2) * 10
+            print(situacao)
+            print(ferro_velho)
+            faturamento = cont * 10
             print(faturamento)
         except EOFError:
             break
 
 
 estacionamento()
-
