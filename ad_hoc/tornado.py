@@ -13,8 +13,8 @@ def tornado():
     Mas o pior é que o tornado destruiu várias seções da cerca que rodeava
     a propriedade. A cerca foi muito bem construída, com postes de
     concreto a cada dois metros, e arame farpado encerrando o perímetro
-    de toda a fazenda (o perímetro, em metros, é um número par, o que
-    torna a cerca perfeitamente regular).
+    de toda a fazenda (o perímetro, em metros, é um número par, o que torna
+    a cerca perfeitamente regular).
 
     Agora vários postes estão quebrados ou faltando, e há falhas na cerca.
     Para evitar que o gado fique de fora da propriedade, a cerca deve ser
