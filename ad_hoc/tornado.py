@@ -71,18 +71,8 @@ def tornado():
                 if i == len(reverso) - 1:
                     break
                 if cerca[0] == 0 and cerca[-1] == 0:
-                    if cerca[-2] == 0 and cerca[1] == 0:
-                        cerca[0] = 1
-                        cont += 1
-                    elif cerca[-2] == 1 and cerca[1] == 1:
-                        cerca[0] = 1
-                        cont += 1
-                    elif cerca[-2] == 0 and cerca[1] == 1:
-                        cerca[-1] = 1
-                        cont += 1
-                    elif cerca[-2] == 1 and cerca[1] == 0:
-                        cerca[0] = 1
-                        cont += 1
+                    cerca[0] = 1
+                    cont += 1
                 else:
                     if cerca[i] == 0 and cerca[i + 1] == 0:
                         cerca[i + 1] = 1
@@ -99,18 +89,8 @@ def tornado():
                 if i == len(cerca) - 1:
                     break
                 if cerca[0] == 0 and cerca[-1] == 0:
-                    if cerca[-2] == 0 and cerca[1] == 0:
-                        cerca[-1] = 1
-                        cont += 1
-                    elif cerca[-2] == 1 and cerca[1] == 1:
-                        cerca[0] = 1
-                        cont += 1
-                    elif cerca[-2] == 0 and cerca[1] == 1:
-                        cerca[-1] = 1
-                        cont += 1
-                    elif cerca[-2] == 1 and cerca[1] == 0:
-                        cerca[0] = 1
-                        cont += 1
+                    cerca[-1] = 1
+                    cont += 1
                 else:
                     if cerca[i] == 0 and cerca[i + 1] == 0:
                         cerca[i + 1] = 1
