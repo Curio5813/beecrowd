@@ -70,29 +70,29 @@ def tornado():
             while i < len(reverso):
                 if i == len(reverso) - 1:
                     break
-                if reverso[0] == 0 and reverso[-1] == 0:
-                    if reverso[-2] == 0 and reverso[1] == 0:
-                        reverso[-1] = 1
+                if cerca[0] == 0 and cerca[-1] == 0:
+                    if cerca[-2] == 0 and cerca[1] == 0:
+                        cerca[0] = 1
                         cont += 1
-                    elif reverso[-2] == 1 and reverso[1] == 1:
-                        reverso[0] = 1
+                    elif cerca[-2] == 1 and cerca[1] == 1:
+                        cerca[0] = 1
                         cont += 1
-                    elif reverso[-2] == 0 and reverso[1] == 1:
-                        reverso[-1] = 1
+                    elif cerca[-2] == 0 and cerca[1] == 1:
+                        cerca[-1] = 1
                         cont += 1
-                    elif reverso[-2] == 1 and reverso[1] == 0:
-                        reverso[0] = 1
+                    elif cerca[-2] == 1 and cerca[1] == 0:
+                        cerca[0] = 1
                         cont += 1
                 else:
-                    if reverso[i] == 0 and reverso[i + 1] == 0:
-                        reverso[i + 1] = 1
+                    if cerca[i] == 0 and cerca[i + 1] == 0:
+                        cerca[i + 1] = 1
                         i += 1
                         cont += 1
-                    elif reverso[i] == 0 and reverso[i + 1] == 1:
+                    elif cerca[i] == 0 and cerca[i + 1] == 1:
                         i += 1
-                    elif reverso[i] == 1 and reverso[i + 1] == 0:
+                    elif cerca[i] == 1 and cerca[i + 1] == 0:
                         i += 1
-                    elif reverso[i] == 1 and reverso[i + 1] == 1:
+                    elif cerca[i] == 1 and cerca[i + 1] == 1:
                         i += 1
         if cont2 % 2 == 0:
             while i < len(cerca):
