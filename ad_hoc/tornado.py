@@ -52,57 +52,42 @@ def tornado():
     """
     n = int(input())
     while n != 0:
-        i, cont, cont1, cont2 = 0, 0, 0, 0
+        i, cont1, cont2 = 0, 0, 0
         cerca = list(map(int, input().split(" ")))
-        reverso = cerca.copy()
-        reverso.reverse()
-        for k in range(0, len(cerca)):
+        for k in range(len(cerca) - 1, 0, -1):
             if cerca[k] == 1:
                 break
             if cerca[k] == 0:
                 cont1 += 1
-        for k in range(0, len(reverso)):
-            if reverso[k] == 1:
-                break
-            if reverso[k] == 0:
-                cont2 += 1
-        if cont2 % 2 != 0:
-            while i < len(reverso):
-                if i == len(reverso) - 1:
-                    break
-                if cerca[0] == 0 and cerca[-1] == 0:
-                    cerca[0] = 1
-                    cont += 1
-                else:
-                    if cerca[i] == 0 and cerca[i + 1] == 0:
-                        cerca[i + 1] = 1
-                        i += 1
-                        cont += 1
-                    elif cerca[i] == 0 and cerca[i + 1] == 1:
-                        i += 1
-                    elif cerca[i] == 1 and cerca[i + 1] == 0:
-                        i += 1
-                    elif cerca[i] == 1 and cerca[i + 1] == 1:
-                        i += 1
-        if cont2 % 2 == 0:
+        if cont1 % 2 == 0:
             while i < len(cerca):
                 if i == len(cerca) - 1:
                     break
                 if cerca[0] == 0 and cerca[-1] == 0:
                     cerca[-1] = 1
-                    cont += 1
+                    cont2 += 1
                 else:
                     if cerca[i] == 0 and cerca[i + 1] == 0:
                         cerca[i + 1] = 1
                         i += 1
-                        cont += 1
-                    elif cerca[i] == 0 and cerca[i + 1] == 1:
+                        cont2 += 1
+                    else:
                         i += 1
-                    elif cerca[i] == 1 and cerca[i + 1] == 0:
+        if cont1 % 2 != 0:
+            while i < len(cerca):
+                if i == len(cerca) - 1:
+                    break
+                if cerca[0] == 0 and cerca[-1] == 0:
+                    cerca[0] = 1
+                    cont2 += 1
+                else:
+                    if cerca[i] == 0 and cerca[i + 1] == 0:
+                        cerca[i + 1] = 1
                         i += 1
-                    elif cerca[i] == 1 and cerca[i + 1] == 1:
+                        cont2 += 1
+                    else:
                         i += 1
-        print(cont)
+        print(cont2)
         n = int(input())
 
 
