@@ -37,8 +37,7 @@ def biblioteca_pascal():
     Alumni: os ex-alunos de ambos os sexos de uma determinada escola, faculdade ou universidade.
     :return:
     """
-    entrada = list(map(int, input().split(" ")))
-    n, d = entrada[0], entrada[1]
+    n, d = map(int, input().split(" "))
     jantares, jantares_transposta, cont = [], [], 0
     while n != 0 and d != 0:
         for i in range(d):
@@ -56,8 +55,7 @@ def biblioteca_pascal():
                 cont = 0
         else:
             print("no")
-        entrada = list(map(int, input().split(" ")))
-        n, d = entrada[0], entrada[1]
+        n, d = map(int, input().split(" "))
         jantares, cont = [], 0
 
 
