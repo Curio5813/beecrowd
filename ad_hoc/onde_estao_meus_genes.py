@@ -54,6 +54,7 @@ def onde_estao_meus_genes():
             i -= 1
             genes = genes[0:i] + list(reversed(genes[i:j])) + genes[j:]
         buscas = int(input())
+        print(genes)
         print(f"Genome {caso_teste}")
         for i in range(buscas):
             busca = int(input())
