@@ -20,28 +20,52 @@ def comparacao_de_substring():
             tam, maior = 0, 0
             string1 = input()
             string2 = input()
-            for i in range(0, len(string1)):
-                for k in range(0, len(string2)):
-                    if string1[i] == string2[k]:
-                        a = i
-                        b = k
-                        while string1[a] == string2[b]:
-                            if a >= len(string1) - 1 or b >= len(string2) - 1:
-                                if len(string1) > 1 and len(string2) > 1 and string1[a] == string2[b]:
-                                    tam += 1
-                                    break
-                                else:
-                                    tam += 1
-                                    break
-                            tam += 1
-                            a += 1
-                            b += 1
-                    if tam > maior:
-                        maior = tam
-                        tam = 0
-                        break
-                    else:
-                        tam = 0
+            if len(string1) <= len(string2):
+                for i in range(0, len(string1)):
+                    for k in range(0, len(string2)):
+                        if string1[i] == string2[k]:
+                            a = i
+                            b = k
+                            while string1[a] == string2[b]:
+                                if a >= len(string1) - 1 or b >= len(string2) - 1:
+                                    if len(string1) > 1 and len(string2) > 1 and string1[a] == string2[b]:
+                                        tam += 1
+                                        break
+                                    else:
+                                        tam += 1
+                                        break
+                                tam += 1
+                                a += 1
+                                b += 1
+                        if tam > maior:
+                            maior = tam
+                            tam = 0
+                            break
+                        else:
+                            tam = 0
+            if len(string2) < len(string1):
+                for i in range(0, len(string2)):
+                    for k in range(0, len(string1)):
+                        if string2[i] == string1[k]:
+                            a = i
+                            b = k
+                            while string2[a] == string1[b]:
+                                if a >= len(string2) - 1 or b >= len(string1) - 1:
+                                    if len(string2) > 1 and len(string1) > 1 and string2[a] == string1[b]:
+                                        tam += 1
+                                        break
+                                    else:
+                                        tam += 1
+                                        break
+                                tam += 1
+                                a += 1
+                                b += 1
+                        if tam > maior:
+                            maior = tam
+                            tam = 0
+                            break
+                        else:
+                            tam = 0
             print(maior)
         except EOFError:
             break
