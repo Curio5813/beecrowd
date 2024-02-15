@@ -42,25 +42,43 @@ def loop_musical():
     """
     n = int(input())
     while n != 0:
-        i, picos = 0, 0
-        h_str = input().split(" ")
-        h = [int(pico) for pico in h_str]
+        i, picos = 1, 0
+        h = list(map(int, input().split(" ")))
         while i <= len(h) - 1:
-            if h[i] > h[i + 1]:
-                picos += 1
-                while h[i] > h[i + 1]:
-                    i += 1
-                    if i >= len(h) - 2:
-                        picos += 1
+            if h[i - 1] < h[i]:
+                while h[i - 1] < h[i]:
+                    if i >= len(h) - 1:
                         break
-            elif h[i] < h[i + 1]:
-                picos += 1
-                while h[i] < h[i + 1]:
                     i += 1
-                    if i >= len(h) - 2:
-                        picos += 1
+                else:
+                    picos += 1
+                    i -= 1
+            if h[i - 1] > h[i]:
+                while h[i - 1] > h[i]:
+                    if i >= len(h) - 1:
                         break
-        print(picos)
+                    i += 1
+                else:
+                    picos += 1
+                    i -= 1
+            if i >= len(h) - 1:
+                if len(h) == 2:
+                    picos += 2
+                    break
+                if h[i - 1] < h[i] > h[0]:
+                    picos += 1
+                    if h[0] < h[1]:
+                        picos += 1
+                if h[i - 1] > h[i] < h[0]:
+                    picos += 1
+                    if h[0] > h[1]:
+                        picos += 1
+            i += 1
+        if picos % 2 == 1:
+            picos += 1
+            print(picos)
+        else:
+            print(picos)
         n = int(input())
 
 
