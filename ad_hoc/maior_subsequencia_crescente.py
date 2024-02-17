@@ -53,14 +53,13 @@ def maior_subsequencia_crescente():
             for j in range(m):
                 for k in range(i + 1, n + 1):
                     for p in range(j + 1, m + 1):
-                        submatriz.extend([n[j:p] for n in matriz[i:k]])
-                        submatriz.extend([n[j:p] for n in matriz_t[i:k]])
+                        submatriz.append([n[j:p] for n in matriz[i:k]])
+                        submatriz.append([n[j:p] for n in matriz_t[i:k]])
         for i in range(0, len(submatriz)):
             matriz_b = submatriz[i].copy()
             matriz_b.sort()
             if submatriz[i] == matriz_b:
                 cont = len(submatriz[i])
-                print(submatriz[i])
                 if cont > maior:
                     maior = cont
         print(maior)

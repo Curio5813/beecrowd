@@ -39,15 +39,9 @@ def alarme_despertador():
     while True:
         if h2 == 0 and m1 <= m2:
             tempo = (24 - h1) * 60 + m2 - m1
-        elif h2 == 0 and m1 > m2:
-            tempo = (24 - h1) * 60 + m2 - m1
-        elif h2 > h1 and m1 <= m2:
+        elif h2 > h1:
             tempo = (h2 - h1) * 60 + m2 - m1
-        elif h2 > h1 and m1 > m2:
-            tempo = (h2 - h1) * 60 + m2 - m1
-        elif h1 > h2 and m1 <= m2:
-            tempo = (24 - h1 + h2) * 60 + m2 - m1
-        elif h1 > h2 and m1 > m2:
+        elif h1 > h2:
             tempo = (24 - h1 + h2) * 60 + m2 - m1
         elif h1 == h2 and m1 <= m2:
             tempo = m2 - m1
