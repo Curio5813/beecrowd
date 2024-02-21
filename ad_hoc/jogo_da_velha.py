@@ -39,8 +39,6 @@ def jogo_da_velha():
     while n != 0:
         str_velha = input()
         div_x = str_velha.split("X")
-        print(div_x)
-        print(div_x)
         cont = str_velha.count("X")
         if (n - cont) % 2 != 0:
             print("S")
