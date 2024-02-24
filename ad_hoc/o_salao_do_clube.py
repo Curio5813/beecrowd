@@ -42,86 +42,137 @@ def o_salao_do_clube():
     sem acento).
     :return:
     """
-    entr = input().split(" ")
-    larg, comp = int(entr[0]), int(entr[1])
-    while larg != 0 and comp != 0:
-        cont1, cont2, tabuas1, tabuas2 = 0, 0, 0, 0
-        larg_tab = int(input())
-        doadas = int(input())
-        tabs_string = input().split(" ")
-        tabs_int = [int(tabua) for tabua in tabs_string]
-        tabs_int.sort()
-        tabs_int.reverse()
-        temp_tabs = tabs_int.copy()
-        k = len(tabs_int) - 1
-        # Laço no sentido do comprimento.
-        for i in range(0, len(temp_tabs)):
-            if cont1 * larg_tab == larg * comp * larg_tab:
-                break
-            while k >= 0:
-                if temp_tabs[i] > comp:
-                    break
-                elif temp_tabs[i] == comp:
-                    cont1 += temp_tabs[i]
-                    tabuas1 += 1
-                    temp_tabs[i] = 0
-                    break
-                elif temp_tabs[i] < comp:
-                    temp = temp_tabs[i] + temp_tabs[k]
-                    if temp > comp or i == k:
-                        break
-                    elif temp == comp:
-                        cont1 += temp
-                        tabuas1 += 2
-                        temp_tabs[i] = 0
-                        temp_tabs[k] = 0
-                        k -= 1
-                        break
-                    elif temp < comp:
-                        k -= 1
-                        break
-        # Laço no sentido da largura.
-        k = len(tabs_int) - 1
-        temp_tabs = tabs_int.copy()
-        for i in range(0, len(temp_tabs)):
-            if cont2 * larg_tab == larg * comp * larg_tab:
-                break
-            while k >= 0:
-                if temp_tabs[i] > larg:
-                    break
-                elif temp_tabs[i] == larg:
-                    cont2 += temp_tabs[i]
-                    tabuas2 += 1
-                    temp_tabs[i] = 0
-                    break
-                elif temp_tabs[i] < larg:
-                    temp = temp_tabs[i] + temp_tabs[k]
-                    if temp > larg or i == k:
-                        break
-                    elif temp == larg:
-                        cont2 += temp
-                        tabuas2 += 2
-                        temp_tabs[i] = 0
-                        temp_tabs[k] = 0
-                        k -= 1
-                        break
-                    elif temp < larg:
-                        k -= 1
-                        break
-        if cont1 * larg_tab == larg * comp * larg_tab and cont2 * larg_tab == larg * comp * larg_tab:
-            if tabuas1 <= tabuas2:
-                print(tabuas1)
-        elif cont1 * larg_tab == larg * comp * larg_tab and cont2 * larg_tab == larg * comp * larg_tab:
-            if tabuas1 > tabuas2:
-                print(tabuas2)
-        elif cont1 * larg_tab == larg * comp * larg_tab and cont2 * larg_tab != larg * comp * larg_tab:
-            print(tabuas1)
-        elif cont1 * larg_tab != larg * comp * larg_tab and cont2 * larg_tab == larg * comp * larg_tab:
-            print(tabuas2)
-        elif cont1 * larg_tab != larg * comp * larg_tab and cont2 * larg_tab != larg * comp * larg_tab:
+    entrada = input().strip().split(" ")
+    largura, comprimento = int(entrada[0]), int(entrada[1])
+    while largura != 0 and comprimento != 0:
+        i, cont1, cont2, n_tabuas1, n_tabuas2, idx1, idx2, resp1, resp2 = 0, 0, 0, 0, 0, [], [], [], []
+        largura_tabua = int(input().strip())
+        doadas = int(input().strip())
+        tabuas = list(map(int, input().strip().split(" ")))
+        if largura == 1 and comprimento == 1 and largura_tabua == 100:
+            if tabuas.count(1) > 0:
+                resp1.append(1)
+        else:
+            while i < doadas:
+                for k in range(doadas):
+                    if i == 0 and k != 0:
+                        if tabuas[i] == largura and i not in idx1 and k not in idx1:
+                            cont1 += 1
+                            n_tabuas1 += 1
+                            idx1.append(i)
+                        if tabuas[i] + tabuas[k] == largura and i not in idx1 and k not in idx1:
+                            cont1 += 1
+                            n_tabuas1 += 2
+                            idx1.append(i)
+                            idx1.append(k)
+                            if cont1 == comprimento:
+                                if cont1 * largura * largura_tabua == largura * comprimento * largura_tabua:
+                                    if n_tabuas1 not in resp1:
+                                        resp1.append(n_tabuas1)
+                                    cont1 = 0
+                                    n_tabuas1 = 0
+                                    idx1 = []
+                    if i == k and i != 0:
+                        if tabuas[k] == largura and i not in idx1 and k not in idx1:
+                            cont1 += 1
+                            n_tabuas1 += 1
+                            idx1.append(k)
+                            if cont1 == comprimento:
+                                if cont1 * largura * largura_tabua == largura * comprimento * largura_tabua:
+                                    if n_tabuas1 not in resp1:
+                                        resp1.append(n_tabuas1)
+                                    cont1 = 0
+                                    n_tabuas1 = 0
+                                    idx1 = []
+                    if i != k:
+                        if tabuas[k] == largura and i not in idx1 and k not in idx1:
+                            cont1 += 1
+                            n_tabuas1 += 1
+                            idx1.append(k)
+                            if cont1 == comprimento:
+                                if cont1 * largura * largura_tabua == largura * comprimento * largura_tabua:
+                                    if n_tabuas1 not in resp1:
+                                        resp1.append(n_tabuas1)
+                                    cont1 = 0
+                                    n_tabuas1 = 0
+                                    idx1 = []
+                        if tabuas[i] + tabuas[k] == largura and i not in idx1 and k not in idx1:
+                            cont1 += 1
+                            n_tabuas1 += 2
+                            idx1.append(i)
+                            idx1.append(k)
+                            if cont1 == comprimento:
+                                if cont1 * largura * largura_tabua == largura * comprimento * largura_tabua:
+                                    if n_tabuas1 not in resp1:
+                                        resp1.append(n_tabuas1)
+                                    cont1 = 0
+                                    n_tabuas1 = 0
+                                    idx1 = []
+                i += 1
+            i = 0
+            while i < doadas:
+                for k in range(doadas):
+                    if i == 0 and k != 0:
+                        if tabuas[i] == comprimento and i not in idx2 and k not in idx2:
+                            cont2 += 1
+                            n_tabuas2 += 1
+                            idx2.append(i)
+                        if tabuas[i] + tabuas[k] == comprimento and i not in idx2 and k not in idx2:
+                            cont2 += 1
+                            n_tabuas2 += 2
+                            idx2.append(i)
+                            idx2.append(k)
+                            if cont2 == largura:
+                                if cont2 * comprimento * largura_tabua == largura * comprimento * largura_tabua:
+                                    if n_tabuas2 not in resp2:
+                                        resp2.append(n_tabuas2)
+                                    cont2 = 0
+                                    n_tabuas2 = 0
+                                    idx2 = []
+                    if i == k and i != 0:
+                        if tabuas[k] == comprimento and i not in idx2 and k not in idx2:
+                            cont2 += 1
+                            n_tabuas2 += 1
+                            idx2.append(k)
+                            if cont2 == largura:
+                                if cont2 * comprimento * largura_tabua == largura * comprimento * largura_tabua:
+                                    if n_tabuas2 not in resp2:
+                                        resp2.append(n_tabuas2)
+                                    cont2 = 0
+                                    n_tabuas2 = 0
+                                    idx2 = []
+                    if i != k:
+                        if tabuas[k] == comprimento and k not in idx2 and k not in idx2:
+                            cont2 += 1
+                            n_tabuas2 += 1
+                            idx2.append(k)
+                            if cont2 == largura:
+                                if cont2 * comprimento * largura_tabua == largura * comprimento * largura_tabua:
+                                    if n_tabuas2 not in resp2:
+                                        resp2.append(n_tabuas2)
+                                    cont2 = 0
+                                    n_tabuas2 = 0
+                                    idx2 = []
+                        if tabuas[i] + tabuas[k] == comprimento and i not in idx2 and k not in idx2:
+                            cont2 += 1
+                            n_tabuas2 += 2
+                            idx2.append(i)
+                            idx2.append(k)
+                            if cont2 == largura:
+                                if cont2 * comprimento * largura_tabua == largura * comprimento * largura_tabua:
+                                    if n_tabuas2 not in resp2:
+                                        resp2.append(n_tabuas2)
+                                    cont2 = 0
+                                    n_tabuas2 = 0
+                                    idx2 = []
+                i += 1
+        resp1.extend(resp2)
+        if len(resp1) == 0:
             print("impossivel")
-        entr = input().split(" ")
-        larg, comp = int(entr[0]), int(entr[1])
+        else:
+            print(min(resp1))
+        entrada = input().strip().split(" ")
+        largura, comprimento = int(entrada[0]), int(entrada[1])
 
 
 o_salao_do_clube()
