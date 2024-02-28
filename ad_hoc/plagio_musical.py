@@ -66,23 +66,69 @@ def plagio_musical():
     entrada = list(map(int, input().strip().split(" ")))
     m, t = entrada[0], entrada[1]
     while m != 0 and t != 0:
-        notacoes_musicais, semi_tons_naturais, n1, n2, comeco, fim, coda,\
-            verificar1, verificar2, trechos_musica, aux = [], [], 0, 0, 0, 0, 0, [], [], [], []
+        notacoes_musicais, semi_tons_naturais, n1, n2, comeco, fim, coda, iguais, notas_iguais,\
+            verificar1, verificar2, trechos_musica, aux = [], [], 0, 0, 0, 0, 0, [], [], [], [], [], []
         notas = ["A", "B", "C", "D", "E", "F", "G"]
+        semi_tons_naturais_notas = []
         for i in range(0, len(notas)):
             notacoes_musicais.append(notas[i] + "b")
             notacoes_musicais.append(notas[i])
             notacoes_musicais.append(notas[i] + "#")
+        for i in range(0, len(notacoes_musicais)):
+            for k in range(0, len(notacoes_musicais)):
+                if i >= len(notacoes_musicais) - 2:
+                    break
+                if notacoes_musicais[i] == "B#":
+                    iguais.append(notacoes_musicais[i])
+                    iguais.append("C")
+                    notas_iguais.append(iguais)
+                    iguais = []
+                    break
+                if notacoes_musicais[i] == "Cb":
+                    iguais.append(notacoes_musicais[i])
+                    iguais.append("B")
+                    notas_iguais.append(iguais)
+                    iguais = []
+                    break
+                if notacoes_musicais[i] == "E#":
+                    iguais.append(notacoes_musicais[i])
+                    iguais.append("F")
+                    notas_iguais.append(iguais)
+                    iguais = []
+                    break
+                if notacoes_musicais[i] == "Fb":
+                    iguais.append(notacoes_musicais[i])
+                    iguais.append("E")
+                    notas_iguais.append(iguais)
+                    iguais = []
+                    break
+                if i == 0:
+                    iguais.append(notacoes_musicais[i])
+                    iguais.append(notacoes_musicais[-1])
+                    notas_iguais.append(iguais)
+                    iguais = []
+                    break
+                if i > 0 and len(notacoes_musicais[i]) > 1 and len(notacoes_musicais[i + 1]) > 1:
+                    iguais.append(notacoes_musicais[i])
+                    iguais.append(notacoes_musicais[i + 1])
+                    notas_iguais.append(iguais)
+                    iguais = []
+                    break
         musica = input().split(" ")
         trecho = input().split(" ")
-        # print(notacoes_musicais)
-        # print(musica)
-        # print(trecho)
+        print(notacoes_musicais)
+        print(notas_iguais)
+        print(musica)
+        print(trecho)
+        semi_tons_naturais_notas.append("E#")
+        semi_tons_naturais_notas.append("F")
+        semi_tons_naturais_notas.append("B")
+        semi_tons_naturais_notas.append("Cb")
         semi_tons_naturais.append(notacoes_musicais.index("E#"))
         semi_tons_naturais.append(notacoes_musicais.index("F"))
         semi_tons_naturais.append(notacoes_musicais.index("B"))
         semi_tons_naturais.append(notacoes_musicais.index("Cb"))
-        # print(semi_tons_naturais)
+        print(semi_tons_naturais)
         for i in range(0, len(trecho)):
             for k in range(0, len(notacoes_musicais)):
                 if i >= len(trecho) - 1:
@@ -95,7 +141,8 @@ def plagio_musical():
                         aux.append(notacoes_musicais.index(notacoes_musicais[j]))
                     for j in range(0, len(semi_tons_naturais)):
                         if semi_tons_naturais[j] in aux and trecho[i] != trecho[i + 1]:
-                            coda -= 1
+                            if trecho[i + 1] not in semi_tons_naturais_notas:
+                                coda -= 1
                     cont += coda
                     verificar1.append(cont)
                     coda = 0
@@ -106,16 +153,18 @@ def plagio_musical():
                     for j in range(comeco, len(notacoes_musicais)):
                         aux.append(notacoes_musicais.index(notacoes_musicais[j]))
                     for j in range(0, len(semi_tons_naturais)):
-                        if semi_tons_naturais[j] in aux:
-                            coda -= 1
+                        if semi_tons_naturais[j] in aux and trecho[i] != trecho[i + 1]:
+                            if trecho[i + 1] not in semi_tons_naturais_notas:
+                                coda -= 1
                     cont += coda
                     coda = 0
                     aux = []
                     for j in range(0, fim + 1):
                         aux.append(notacoes_musicais.index(notacoes_musicais[j]))
                     for j in range(0, len(semi_tons_naturais)):
-                        if semi_tons_naturais[j] in aux:
-                            coda -= 1
+                        if semi_tons_naturais[j] in aux and trecho[i] != trecho[i + 1]:
+                            if trecho[i + 1] not in semi_tons_naturais_notas:
+                                coda -= 1
                     cont += coda
                     verificar1.append(cont)
                     coda = 0
@@ -133,10 +182,9 @@ def plagio_musical():
                         aux.append(notacoes_musicais.index(notacoes_musicais[j]))
                     for j in range(0, len(semi_tons_naturais)):
                         if semi_tons_naturais[j] in aux and musica[k] != musica[k + 1]:
-                            coda -= 1
+                            if k <= min(semi_tons_naturais) and k + 1 >= max(semi_tons_naturais):
+                                coda -= 1
                     cont += coda
-                    # print(cont)
-                    # sleep(5)
                     trechos_musica.append(cont)
                     coda = 0
                     aux = []
@@ -145,21 +193,19 @@ def plagio_musical():
                     for j in range(comeco, len(notacoes_musicais)):
                         aux.append(notacoes_musicais.index(notacoes_musicais[j]))
                     for j in range(0, len(semi_tons_naturais)):
-                        if semi_tons_naturais[j] in aux:
-                            coda -= 1
+                        if semi_tons_naturais[j] in aux and musica[k] != musica[k + 1]:
+                            if k <= min(semi_tons_naturais):
+                                coda -= 1
                     cont += coda
-                    # print(f"Ok1! {cont}")
-                    # sleep(3)
                     coda = 0
                     aux = []
                     for j in range(0, fim + 1):
                         aux.append(notacoes_musicais.index(notacoes_musicais[j]))
                     for j in range(0, len(semi_tons_naturais)):
-                        if semi_tons_naturais[j] in aux:
-                            coda -= 1
+                        if semi_tons_naturais[j] in aux and musica[k] != musica[k + 1]:
+                            if k + 1 >= min(semi_tons_naturais):
+                                coda -= 1
                     cont += coda
-                    # print(f"Ok2! {cont}")
-                    # sleep(3)
                     trechos_musica.append(cont)
                     coda = 0
                     aux = []
@@ -168,8 +214,8 @@ def plagio_musical():
                     trechos_musica = []
                     n2 += 1
                     break
-        # print(verificar1)
-        # print(verificar2)
+        print(verificar2)
+        print(verificar1)
         if verificar1 in verificar2:
             print("S")
         else:
