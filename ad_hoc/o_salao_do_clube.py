@@ -1,4 +1,4 @@
-def o_salao_do_clube():
+def o_salao_do_clube(): 
     """
     O Clube Recreativo de Tinguá está construindo a sua nova sede social.
     Os sócios desejam que o piso do salão da sede seja de tábuas de madeira,
@@ -66,8 +66,7 @@ def o_salao_do_clube():
                             idx1.append(i)
                             idx1.append(k)
                             if cont1 * largura * largura_tabua == largura * comprimento:
-                                if n_tabuas1 not in resp1:
-                                    resp1.append(n_tabuas1)
+                                resp1.append(n_tabuas1)
                                 cont1 = 0
                                 n_tabuas1 = 0
                                 idx1 = []
@@ -77,8 +76,7 @@ def o_salao_do_clube():
                             n_tabuas1 += 1
                             idx1.append(k)
                             if cont1 * largura * largura_tabua == largura * comprimento:
-                                if n_tabuas1 not in resp1:
-                                    resp1.append(n_tabuas1)
+                                resp1.append(n_tabuas1)
                                 cont1 = 0
                                 n_tabuas1 = 0
                                 idx1 = []
@@ -88,8 +86,7 @@ def o_salao_do_clube():
                             n_tabuas1 += 1
                             idx1.append(k)
                             if cont1 * largura * largura_tabua == largura * comprimento:
-                                if n_tabuas1 not in resp1:
-                                    resp1.append(n_tabuas1)
+                                resp1.append(n_tabuas1)
                                 cont1 = 0
                                 n_tabuas1 = 0
                                 idx1 = []
@@ -99,8 +96,7 @@ def o_salao_do_clube():
                             idx1.append(i)
                             idx1.append(k)
                             if cont1 * largura * largura_tabua == largura * comprimento:
-                                if n_tabuas1 not in resp1:
-                                    resp1.append(n_tabuas1)
+                                resp1.append(n_tabuas1)
                                 cont1 = 0
                                 n_tabuas1 = 0
                                 idx1 = []
@@ -116,8 +112,7 @@ def o_salao_do_clube():
                             idx2.append(i)
                             idx2.append(k)
                             if cont2 * comprimento * largura_tabua == largura * comprimento:
-                                if n_tabuas2 not in resp2:
-                                    resp2.append(n_tabuas2)
+                                resp2.append(n_tabuas2)
                                 cont2 = 0
                                 n_tabuas2 = 0
                                 idx2 = []
@@ -127,8 +122,7 @@ def o_salao_do_clube():
                             n_tabuas2 += 1
                             idx2.append(k)
                             if cont2 * comprimento * largura_tabua == largura * comprimento:
-                                if n_tabuas2 not in resp2:
-                                    resp2.append(n_tabuas2)
+                                resp2.append(n_tabuas2)
                                 cont2 = 0
                                 n_tabuas2 = 0
                                 idx2 = []
@@ -138,8 +132,7 @@ def o_salao_do_clube():
                             n_tabuas2 += 1
                             idx2.append(k)
                             if cont2 * comprimento * largura_tabua == largura * comprimento:
-                                if n_tabuas2 not in resp2:
-                                    resp2.append(n_tabuas2)
+                                resp2.append(n_tabuas2)
                                 cont2 = 0
                                 n_tabuas2 = 0
                                 idx2 = []
@@ -149,8 +142,7 @@ def o_salao_do_clube():
                             idx2.append(i)
                             idx2.append(k)
                             if cont2 * comprimento * largura_tabua == largura * comprimento:
-                                if n_tabuas2 not in resp2:
-                                    resp2.append(n_tabuas2)
+                                resp2.append(n_tabuas2)
                                 cont2 = 0
                                 n_tabuas2 = 0
                                 idx2 = []
