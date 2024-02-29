@@ -152,7 +152,7 @@ def plagio_musical():
                     trechos_musica = []
                     n += 1
                     break
-        # Compara os trecho com a musica
+        # Compara o trecho com os trechos da musica
         if verificar1 in verificar2:
             print("S")
         else:
