@@ -78,6 +78,7 @@ def plagio_musical():
                 fim = notacoes_musicais.index(trecho[i + 1])
                 if fim >= comeco and trecho[i] != trecho[i + 1]:
                     cont = fim - comeco
+                    # Verifica as alturas quando o intervalo tem semitons naturais
                     if comeco <= para_codas[0] and fim >= para_codas[1]:
                         coda -= 3
                     elif comeco <= para_codas[0] < fim < para_codas[1]:
@@ -90,6 +91,7 @@ def plagio_musical():
                     break
                 if comeco > fim and trecho[i] != trecho[i + 1]:
                     cont = len(notacoes_musicais) - comeco + fim
+                    # Verifica as alturas quando o intervalo tem semitons naturais
                     if comeco <= para_codas[0]:
                         coda -= 3
                     elif comeco > para_codas[1] and fim > para_codas[1]:
@@ -116,6 +118,7 @@ def plagio_musical():
                 fim = notacoes_musicais.index(musica[k + 1])
                 cont = fim - comeco
                 if fim >= comeco and musica[k] != musica[k + 1]:
+                    # Verifica as alturas quando o intervalo tem semitons naturais
                     if comeco <= para_codas[0] and fim >= para_codas[1]:
                         coda -= 3
                     elif comeco <= para_codas[0] < fim < para_codas[1]:
@@ -126,6 +129,7 @@ def plagio_musical():
                     trechos_musica.append(cont)
                     coda = 0
                 if comeco > fim and musica[k] != musica[k + 1]:
+                    # Verifica as alturas quando o intervalo tem semitons naturais
                     cont = len(notacoes_musicais) - comeco + fim
                     if comeco <= para_codas[0]:
                         coda -= 3
@@ -148,6 +152,7 @@ def plagio_musical():
                     trechos_musica = []
                     n += 1
                     break
+        # Compara os trecho com a musica
         if verificar1 in verificar2:
             print("S")
         else:
@@ -162,4 +167,17 @@ plagio_musical()
 14 14
 A A D C# C# D E E E F# A D G# A
 B B E D# D# E Gb Gb Gb G# B E A# B
+16 4
+D G A B C D G G G C D E F# G C C
+G G C D
+12 2
+C C# D D# E F F# G G# A A# B
+C D
+12 2
+C Db D Eb E F Gb G Ab A Bb B
+C D
+4 3
+C E G Bb
+D F# A
+0 0
 """
