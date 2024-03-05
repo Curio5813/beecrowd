@@ -1,3 +1,6 @@
+import copy
+
+
 def coral_perfeito():
     """
     A Maestrina do coral está planejando o espetáculo que apresentará
@@ -39,20 +42,19 @@ def coral_perfeito():
             n = int(input())
             cont = 1
             notas = list(map(int, input().split(" ")))
-            k, j = 0, len(notas) - 1
+            i, k = -1, 0
             soma = sum(notas)
-            unissono = soma // n
             if soma % n == 0:
-                while len(set(notas)) > 1:
-                    if notas[j] == unissono:
-                        j -= 1
-                    if notas[k] == unissono:
-                        k += 1
-                    if k >= j:
-                        break
-                    notas[k] += 1
-                    notas[j] -= 1
-                    cont += 1
+                unissono = soma // n
+                while len(set(notas)) > 2:
+                    while notas[k] != unissono:
+                        notas[k] += 1
+                        notas[i] -= 1
+                        cont += 1
+                        if notas[k] == unissono:
+                            k += 1
+                        if notas[i] == unissono:
+                            i -= 1
                 print(cont)
             else:
                 print(-1)
