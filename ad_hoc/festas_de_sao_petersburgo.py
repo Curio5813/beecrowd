@@ -38,16 +38,17 @@ def festas_de_sao_petersburgo():
     :return:
     """
     while True:
-        festa, par, pares, amigos, amigo, sigma, sigmas = [], [], [], [], 0, [], []
+        festa, par, pares, amigos, amigo, sigma, sigmas, respostas = [], [], [], [], 0, [], [], {()}
+        respostas.discard(())
         try:
-            n, m, k = map(int, input().split(" "))
+            n, m, t = map(int, input().split(" "))
             for i in range(1, n + 1):
                 festa.append(i)
-            print(festa)
+            # print(festa)
             for i in range(m):
                 par = list(map(int, input().split(" ")))
                 pares.append(par)
-            print(pares)
+            # print(pares)
             for i in range(0, len(festa)):
                 for k in range(0, len(pares)):
                     if festa[i] == pares[k][0]:
@@ -57,10 +58,41 @@ def festas_de_sao_petersburgo():
                 amigo = 0
                 sigmas.append(sigma)
                 sigma = []
-            print(amigos)
-            print(sigmas)
+            for i in range(0, len(amigos)):
+                if amigos[i] >= t:
+                    respostas.add(amigos.index(amigos[i]) + 1)
+            for i in range(0, len(sigmas)):
+                for k in range(0, len(sigmas)):
+                    for j in range(0, len(sigmas[k])):
+                        if sigmas[k][j] in respostas:
+                            respostas.add(sigmas.index(sigmas[k]) + 1)
+                            break
+            respostas = list(respostas)
+            respostas.sort()
+            # print(amigos)
+            # print(sigmas)
+            # print(respostas)
+            if len(respostas) == 0:
+                print(0)
+            else:
+                print(*respostas)
         except EOFError:
             break
 
 
 festas_de_sao_petersburgo()
+
+
+"""
+6 10 2
+3 1
+6 5
+1 2
+2 4
+4 3
+1 6
+4 3
+1 6
+1 6
+1 6
+"""
