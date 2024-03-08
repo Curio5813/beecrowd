@@ -29,7 +29,7 @@ def jollo():
     As primeiras três cartas são dadas à Princesa (1 ≤ A,B,C ≤ 52) e as últimas
     duas cartas são dadas ao Príncipe (1 ≤ X,Y ≤ 52).
 
-    ​O último caso de teste é seguido de uma linha contendo cinco zeros.
+    O último caso de teste é seguido de uma linha contendo cinco zeros.
 
     Saída
     Para cada caso de teste, imprima uma única linha. Se existe uma carta que fará
