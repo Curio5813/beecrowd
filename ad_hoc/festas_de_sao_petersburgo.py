@@ -38,32 +38,27 @@ def festas_de_sao_petersburgo():
     :return:
     """
     while True:
-        festa, convidados, par, pares = {}, [], [], []
+        festa, par, pares, amigos, amigo, sigma, sigmas = [], [], [], [], 0, [], []
         try:
             n, m, k = map(int, input().split(" "))
             for i in range(1, n + 1):
-                festa[i] = 0
+                festa.append(i)
+            print(festa)
             for i in range(m):
-                conv, amigo = map(int, input().split(" "))
-                festa[conv] += 1
-                festa[conv] += festa[amigo]
-                par.append(conv)
-                par.append(amigo)
+                par = list(map(int, input().split(" ")))
                 pares.append(par)
-                par = []
-            for i in range(0, len(pares)):
-                keys1 = pares[i][0]
-                keys2 = pares[i][1]
-                if festa[keys2] > 1:
-                    festa[keys1] += 1
-            for keys in festa.keys():
-                if festa[keys] >= k:
-                    convidados.append(keys)
-            convidados.sort()
-            if len(convidados) > 0:
-                print(*convidados)
-            else:
-                print(0)
+            print(pares)
+            for i in range(0, len(festa)):
+                for k in range(0, len(pares)):
+                    if festa[i] == pares[k][0]:
+                        amigo += 1
+                        sigma.append(pares[k][1])
+                amigos.append(amigo)
+                amigo = 0
+                sigmas.append(sigma)
+                sigma = []
+            print(amigos)
+            print(sigmas)
         except EOFError:
             break
 
