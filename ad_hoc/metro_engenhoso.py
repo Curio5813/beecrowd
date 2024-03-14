@@ -47,32 +47,57 @@ def metro_engenhoso():
     :return:
     """
     while True:
-        t, q = map(int, input().split(" "))
-        distancias_tele, distancia_total = [], 0
+        entrada = list(map(int, input().split(" ")))
+        t, q = entrada[0], entrada[1]
+        distancia_total, divisores, somas = 0, [], []
         if t == q == 0:
             break
         else:
             estacoes_teletransporte = list(map(int, input().split(" ")))
-            estacoes_teletransporte.sort()
             for i in range(0, len(estacoes_teletransporte)):
-                for k in range(0, len(estacoes_teletransporte)):
-                    if len(estacoes_teletransporte) == 1:
-                        distancias_tele.append(abs(estacoes_teletransporte[k]))
-                        break
-                    distancias_tele.append(abs(estacoes_teletransporte[i] - estacoes_teletransporte[k]))
-            # print(distancias_tele)
+                estacoes_teletransporte[i] = abs(estacoes_teletransporte[i])
+            estacoes_teletransporte.sort()
+            # print(estacoes_teletransporte)
             for i in range(q):
-                s, d = map(int, input().split(" "))
-                distancia_total = abs(s - d)
-                # print(distancia_total)
-                for k in range(0, len(distancias_tele)):
-                    if distancias_tele[k] != 0 and distancias_tele[k] != 1:
-                        if distancia_total % distancias_tele[k] == 0:
-                            print("Y", end=" ")
+                entrada = list(map(int, input().split(" ")))
+                s, d = entrada[0], entrada[1]
+                distancia_total = abs(s + d)
+                for k in range(2, distancia_total + 1):
+                    if distancia_total % k == 0 and k not in divisores:
+                        divisores.append(k)
+                # print(divisores)
+                for k in range(0, len(divisores)):
+                    for j in range(0, len(divisores)):
+                        soma = divisores[k] + divisores[j]
+                        if soma not in somas:
+                            somas.append(soma)
+                somas.sort()
+                # print(somas)
+                if i == q - 1:
+                    for k in range(0, len(divisores)):
+                        if divisores[k] in estacoes_teletransporte or somas[k] in divisores and \
+                                somas[k] not in estacoes_teletransporte:
+                            print("Y")
+                            divisores = []
+                            somas = []
                             break
+                    else:
+                        print("N")
+                        divisores = []
+                        somas = []
                 else:
-                    print("N", end=" ")
-        print("")
+                    for k in range(0, len(divisores)):
+                        if divisores[k] in estacoes_teletransporte or somas[k] in divisores and \
+                                somas[k] not in estacoes_teletransporte:
+                            print("Y", end=" ")
+                            divisores = []
+                            somas = []
+                            break
+                    else:
+                        print("N", end=" ")
+                        divisores = []
+                        somas = []
+        print(end="")
 
 
 metro_engenhoso()
