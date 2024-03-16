@@ -50,32 +50,47 @@ def escultura_a_laser():
     """
     while True:
         a, c = map(int, input().split(" "))
-        ligacoes1, ligacoes2, usados1, usados2 = 0, 0, [], []
+        ligacoes1, ligacoes2, usados1, usados2, booleano = 0, 0, [], [], 0
         if a == c == 0:
             break
         else:
             formato_escultura = list(map(int, input().split(" ")))
             reverso = deepcopy(formato_escultura)
             reverso.reverse()
-            # print(formato_escultura)
-            # print(reverso)
+            print(formato_escultura)
+            print(reverso)
             for i in range(0, len(reverso)):
                 for k in range(0, len(formato_escultura)):
-                    if reverso[i] < formato_escultura[k] and reverso[i] not in usados1:
+                    if reverso[i] < formato_escultura[k] and reverso[k] not in usados1:
                         ligacoes1 += 1
                         usados1.append(reverso[k])
-                        # print(usados1)
+                        booleano = 1
+                        print(usados1)
+                        break
+                    elif reverso[i] < a and reverso[k] not in usados1 and booleano == 0:
+                        ligacoes1 += 1
+                        booleano = 0
+                        break
             for i in range(0, len(formato_escultura)):
                 for k in range(0, len(reverso)):
-                    if formato_escultura[i] < reverso[k] and formato_escultura[i] not in usados2:
+                    if formato_escultura[i] < reverso[k] and formato_escultura[k] not in usados2:
                         ligacoes2 += 1
                         usados2.append(formato_escultura[k])
-                        # print(usados2)
-        # print(f"{ligacoes1} {ligacoes2}")
-        if ligacoes1 < c - 1:
-            print(ligacoes2)
-        elif ligacoes1 >= c - 1:
-            print(ligacoes1)
+                        booleano = 1
+                        print(usados2)
+                        break
+                    elif formato_escultura[i] < a and formato_escultura[k] not in usados2 and booleano == 0:
+                        ligacoes2 += 1
+                        booleano = 0
+                        break
+        print(f"{ligacoes1} {ligacoes2}")
+        if ligacoes1 < c - 1 and ligacoes2 < c - 1:
+            print(c)
+        else:
+            if ligacoes1 >= ligacoes2:
+                print(ligacoes1)
+            elif ligacoes2 > ligacoes1:
+                print(ligacoes2)
 
 
 escultura_a_laser()
