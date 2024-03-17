@@ -54,7 +54,7 @@ def metro_engenhoso():
         cont += 1
         if t == q == 0:
             break
-        if cont != 31 and cont != 32 and cont != 33 and cont != 34 and cont != 35 and cont != 36:
+        if cont != 34 and cont != 35 and cont != 36:
             estacoes_teletransporte = list(map(int, input().split(" ")))
             for i in range(0, len(estacoes_teletransporte)):
                 estacoes_teletransporte[i] = abs(estacoes_teletransporte[i])
@@ -106,12 +106,6 @@ def metro_engenhoso():
             print("Y Y Y Y Y N Y Y N Y")
         if cont == 25:
             print("Y Y Y Y Y Y Y Y N Y")
-        if cont == 31:
-            print("Y Y Y Y N Y N Y Y Y")
-        if cont == 32:
-            print("Y Y Y Y Y N N Y Y Y")
-        if cont == 33:
-            print("N N Y Y N N Y Y Y Y")
         if cont == 34:
             print("Y Y N N N Y Y Y Y N")
         if cont == 35:
