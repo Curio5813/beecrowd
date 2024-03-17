@@ -49,7 +49,7 @@ def metro_engenhoso():
     while True:
         entrada = list(map(int, input().split(" ")))
         t, q = entrada[0], entrada[1]
-        distancia_total, divisores, somas, diffs = 0, [], [], []
+        distancia_total, divisores, somas, cont = 0, [], [], 0
         if t == q == 0:
             break
         else:
@@ -72,17 +72,12 @@ def metro_engenhoso():
                         diff = divisores[k] - divisores[j]
                         if soma not in somas:
                             somas.append(soma)
-                        if diff not in diffs:
-                            diffs.append(abs(diff))
                 somas.sort()
-                diffs.sort()
                 # print(somas)
-                # print(diffs)
                 if i == q - 1:
                     for k in range(0, len(divisores)):
                         if divisores[k] in estacoes_teletransporte or somas[k] in divisores and \
-                                somas[k] not in estacoes_teletransporte or diffs[k] in divisores \
-                                and diffs[k] not in estacoes_teletransporte:
+                                somas[k] not in estacoes_teletransporte:
                             print("Y")
                             divisores = []
                             somas = []
@@ -94,8 +89,7 @@ def metro_engenhoso():
                 else:
                     for k in range(0, len(divisores)):
                         if divisores[k] in estacoes_teletransporte or somas[k] in divisores and \
-                                somas[k] not in estacoes_teletransporte or diffs[k] in divisores \
-                                and diffs[k] not in estacoes_teletransporte:
+                                somas[k] not in estacoes_teletransporte:
                             print("Y", end=" ")
                             divisores = []
                             somas = []
@@ -108,20 +102,3 @@ def metro_engenhoso():
 
 
 metro_engenhoso()
-
-"""
-10 10
--477 -574 600 -20 -66 995 6 -585 -351 -5
-159 36
-413 693
--609 680
-286 103
-810 428
--485 907
--838 816
--660 934
--330 789
--79 529
-
-N Y N N Y Y Y Y N Y
-"""
