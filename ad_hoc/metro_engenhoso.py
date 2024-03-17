@@ -63,18 +63,20 @@ def metro_engenhoso():
             for i in range(q):
                 entrada = list(map(int, input().split(" ")))
                 s, d = entrada[0], entrada[1]
+                # Fazendo a interpolação de da distânica absoluta entre a estação inicial e final
                 distancia_total = abs(s + d)
                 for k in range(2, distancia_total + 1):
                     if distancia_total % k == 0 and k not in divisores:
                         divisores.append(k)
-                # print(divisores)
+                # Achando o fatores primo que são o divisores de cada interpolação
+                # feita para achar seus multiplos
                 for k in range(0, len(divisores)):
                     for j in range(0, len(divisores)):
+                        # Interpolando estações intermediárias
                         soma = divisores[k] + divisores[j]
                         if soma not in somas:
                             somas.append(soma)
                 somas.sort()
-                # print(somas)
                 if i == q - 1:
                     for k in range(0, len(divisores)):
                         if divisores[k] in estacoes_teletransporte or somas[k] in divisores and \
