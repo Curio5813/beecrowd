@@ -63,12 +63,12 @@ def metro_engenhoso():
             for i in range(q):
                 entrada = list(map(int, input().split(" ")))
                 s, d = entrada[0], entrada[1]
-                # Fazendo a interpolação de da distânica absoluta entre a estação inicial e final
+                # Fazendo a interpolação da distânica absoluta entre a estação inicial e final
                 distancia_total = abs(s + d)
                 for k in range(2, distancia_total + 1):
                     if distancia_total % k == 0 and k not in divisores:
                         divisores.append(k)
-                # Achando o fatores primo que são o divisores de cada interpolação
+                # Achando os fatores primos que são divisores de cada interpolação
                 # feita para achar seus multiplos
                 for k in range(0, len(divisores)):
                     for j in range(0, len(divisores)):
