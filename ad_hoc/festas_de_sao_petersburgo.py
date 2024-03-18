@@ -43,11 +43,11 @@ def festas_de_sao_petersburgo():
             n, m, t = map(int, input().split(" "))
             for i in range(1, n + 1):
                 festa.append(i)
-            print(festa)
+            # print(festa)
             for i in range(m):
                 par = list(map(int, input().split(" ")))
                 pares.append(par)
-            print(pares)
+            # print(pares)
             for i in range(0, len(festa)):
                 for k in range(0, len(pares)):
                     if festa[i] == pares[k][0]:
@@ -61,9 +61,9 @@ def festas_de_sao_petersburgo():
                     talvez_festa.append(i + 1)
                 else:
                     nao_festa.append(i + 1)
-            print(amizades)
-            print(talvez_festa)
-            print(nao_festa)
+            # print(amizades)
+            # print(talvez_festa)
+            # print(nao_festa)
             for i in range(0, len(talvez_festa)):
                 for k in range(0, len(pares)):
                     if talvez_festa[i] in pares[k] and pares[k][0] in nao_festa or pares[k][1] in nao_festa:
@@ -78,7 +78,7 @@ def festas_de_sao_petersburgo():
                 print(0)
             else:
                 print(*respostas)
-            print(amizades)
+            # print(amizades)
         except EOFError:
             break
 
