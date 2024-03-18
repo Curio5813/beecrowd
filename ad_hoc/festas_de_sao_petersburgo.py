@@ -38,8 +38,7 @@ def festas_de_sao_petersburgo():
     :return:
     """
     while True:
-        festa, par, pares, amigos, amigo, sigma, sigmas, respostas = [], [], [], [], 0, [], [], {()}
-        respostas.discard(())
+        festa, pares, amigos, amizades, talvez_festa, nao_festa, respostas = [], [], 0, [], [], [], []
         try:
             n, m, t = map(int, input().split(" "))
             for i in range(1, n + 1):
@@ -52,30 +51,35 @@ def festas_de_sao_petersburgo():
             for i in range(0, len(festa)):
                 for k in range(0, len(pares)):
                     if festa[i] == pares[k][0]:
-                        amigo += 1
-                        sigma.append(pares[k][1])
-                amigos.append(amigo)
-                amigo = 0
-                sigmas.append(sigma)
-                sigma = []
-            for i in range(0, len(amigos)):
-                if amigos[i] >= t:
-                    respostas.add(amigos.index(amigos[i]) + 1)
-            for i in range(0, len(sigmas)):
-                for k in range(0, len(sigmas)):
-                    for j in range(0, len(sigmas[k])):
-                        if sigmas[k][j] in respostas:
-                            respostas.add(sigmas.index(sigmas[k]) + 1)
-                            break
-            respostas = list(respostas)
-            respostas.sort()
-            # print(amigos)
-            # print(sigmas)
-            # print(respostas)
+                        amigos += 1
+                    elif festa[i] == pares[k][1]:
+                        amigos += 1
+                amizades.append(amigos)
+                amigos = 0
+            for i in range(0, len(amizades)):
+                if amizades[i] >= t:
+                    talvez_festa.append(i + 1)
+                else:
+                    nao_festa.append(i + 1)
+            # print(amizades)
+            # print(talvez_festa)
+            # print(nao_festa)
+            for i in range(0, len(talvez_festa)):
+                for k in range(0, len(pares)):
+                    if talvez_festa[i] in pares[k] and pares[k][0] in nao_festa or pares[k][1] in nao_festa:
+                        if talvez_festa[i] == pares[k][0]:
+                            amizades[festa.index(pares[k][0]) - 1] -= 1
+                        elif talvez_festa[i] == pares[k][1]:
+                            amizades[festa.index(pares[k][1]) - 1] -= 1
+                        break
+            for i in range(0, len(amizades)):
+                if amizades[i] >= t:
+                    respostas.append(i + 1)
             if len(respostas) == 0:
                 print(0)
             else:
                 print(*respostas)
+            # print(amizades)
         except EOFError:
             break
 
