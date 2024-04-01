@@ -31,13 +31,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/ad_hoc/teste01.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
       </map>
     </option>
   </component>
