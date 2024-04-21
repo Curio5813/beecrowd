@@ -1,33 +1,38 @@
 def desafio_a():
     n = int(input())
-    i, moedas, passo, moedas1, moedas2 = 0, 0, 1, 0, 0
+    moedas, passo1, passo2 = 0, 0, 0
     postos = list(map(int, input().split(" ")))
-    moedas = postos[0]
-    for i in range(1, len(postos), passo):
-        print(postos[passo])
-        if i >= 2 ** (n - 1):
-            print(f"ok{i}")
-            break
-        passo = 2 * i
-        if passo <= len(postos) - 1:
-            moedas1 += postos[passo]
-    print("---------")
-    for i in range(1, len(postos), passo):
-        print(postos[passo])
-        if i >= 2 ** (n - 1):
-            print(f"ok{i}")
-            break
-        passo = 2 * i + 1
-        if passo <= len(postos) - 1:
-            moedas2 += postos[passo]
-    total1 = moedas + moedas1
-    total2 = moedas + moedas2
-    # print(total1)
-    # print(total2)
-    if total1 >= total2:
-        print(total1)
-    if total1 < total2:
-        print(total2)
+    if n % 2 == 0:
+        postos.insert(0, 0)
+        moedas = postos[1]
+        i = 1
+        while i < 2 ** (n - 1) or i <= len(postos) - 1:
+            passo1 = 2 * i
+            passo2 = 2 * i + 1
+            if passo1 >= len(postos) - 1 or passo1 >= len(postos):
+                break
+            if postos[passo1] >= postos[passo2]:
+                moedas += postos[passo1]
+                i += passo1
+            if postos[passo1] < postos[passo2]:
+                moedas += postos[passo2]
+                i += passo2
+    if n % 2 == 1:
+        i = 0
+        moedas = postos[0]
+        while i < 2 ** (n - 1) or i <= len(postos) - 1:
+            passo1 = 2 * i
+            passo2 = 2 * i + 1
+            if passo1 >= len(postos) - 1 or passo1 >= len(postos):
+                break
+            if postos[passo1] >= postos[passo2]:
+                moedas += postos[passo1]
+                i += passo1
+            if postos[passo1] < postos[passo2]:
+                moedas += postos[passo2]
+                i += passo2
+    total = moedas
+    print(total)
 
 
 desafio_a()
