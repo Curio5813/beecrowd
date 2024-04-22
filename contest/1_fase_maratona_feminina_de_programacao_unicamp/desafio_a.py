@@ -3,7 +3,6 @@ def desafio_a():
     passo1, passo2, moedas1, moedas2, totais = 0, 0, 0, 0, []
     postos = list(map(int, input().split(" ")))
     postos.insert(0, 0)
-    print(postos)
     moedas = postos[1]
     moedas1 += moedas
     moedas2 += moedas
@@ -31,7 +30,6 @@ def desafio_a():
     totais.append(total1)
     totais.append(total2)
     totais.append(total3)
-    print(totais)
     print(max(totais))
 
 
