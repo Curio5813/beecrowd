@@ -8,23 +8,23 @@ def desafio_a():
     moedas1 += moedas
     moedas2 += moedas
     i = 1
-    j = 0
-    k = 2 ** (n - 1)
-    while passo1 < k or passo2 < k or i <= len(postos) - 1:
-        passo1 = 2 * i
-        passo2 = 2 * i + 1
-        if passo1 >= len(postos) - 1 or passo1 >= len(postos) or passo1 > k + 1 or passo2 > k + 1:
-            break
-        if postos[passo1] >= postos[passo2]:
-            moedas += postos[passo1]
-            j += 1
+    j = 1
+    t = 1
+    u = 1
+    k = (2 ** n) - 1
+    while i < k or j < k:
+        i *= 2
+        j = 2 * j + 1
+        t *= 2
+        u = 2 * u + 1
+        if postos[i] >= postos[j]:
+            moedas += postos[i]
+            j = i
+        if postos[i] < postos[j]:
+            moedas += postos[j]
             i = j
-        if postos[passo1] < postos[passo2]:
-            moedas += postos[passo2]
-            j += 2
-            i = j
-        moedas1 += postos[passo1]
-        moedas2 += postos[passo2]
+        moedas1 += postos[t]
+        moedas2 += postos[u]
     total1 = moedas
     total2 = moedas1
     total3 = moedas2
