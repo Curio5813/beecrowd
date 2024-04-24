@@ -10,6 +10,7 @@ def desafio_a():
     j = 1
     t = 1
     u = 1
+    cont = 0
     k = (2 ** n) - 1
     while i < k or j < k:
         i *= 2
