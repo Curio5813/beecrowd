@@ -14,16 +14,16 @@ def dividindo_os_trabalhos():
             n = int(input())
             for i in range(n):
                 trabalhos.append(int(input()))
-            print(len(trabalhos))
+            # print(len(trabalhos))
             soma = sum(trabalhos)
-            print(soma)
+            # print(soma)
             media = soma / 2
-            print(media, end=" ")
+            # print(media, end=" ")
             for i in range(0, len(trabalhos)):
                 rangel += trabalhos[i]
                 if rangel > media:
                     rangel -= trabalhos[i]
-                    print(rangel, end=" ")
+                    # print(rangel, end=" ")
                     print(ceil(abs(rangel - media)))
                     break
         except EOFError:
