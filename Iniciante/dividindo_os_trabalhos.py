@@ -10,7 +10,7 @@ def dividindo_os_trabalhos():
     """
     while True:
         try:
-            trabalhos, rangel, gugu, k = [], 0, 0, -1
+            rangel = 0
             n = int(input())
             trabalhos = list(map(int, input().split(" ")))
             # print(len(trabalhos))
@@ -24,7 +24,7 @@ def dividindo_os_trabalhos():
                     gugu = sum(trabalhos[i + 1::])
                     # print(rangel, end=" ")
                     # print(gugu, end=" ")
-                    print(ceil(abs(rangel - gugu)))
+                    print(abs(rangel - gugu))
                     break
         except EOFError:
             break
