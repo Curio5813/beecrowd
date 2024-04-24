@@ -12,19 +12,19 @@ def dividindo_os_trabalhos():
         try:
             trabalhos, rangel, gugu, k = [], 0, 0, -1
             n = int(input())
-            for i in range(n):
-                trabalhos.append(int(input()))
+            trabalhos = list(map(int, input().split(" ")))
             # print(len(trabalhos))
             soma = sum(trabalhos)
             # print(soma)
-            media = soma / 2
+            media = floor(soma / 2)
             # print(media, end=" ")
             for i in range(0, len(trabalhos)):
                 rangel += trabalhos[i]
-                if rangel > media:
-                    rangel -= trabalhos[i]
+                if rangel >= media:
+                    gugu = sum(trabalhos[i + 1::])
                     # print(rangel, end=" ")
-                    print(ceil(abs(rangel - media)))
+                    # print(gugu, end=" ")
+                    print(ceil(abs(rangel - gugu)))
                     break
         except EOFError:
             break
