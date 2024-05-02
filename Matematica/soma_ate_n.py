@@ -20,14 +20,15 @@ def soma_ate_n():
     while True:
         try:
             n = int(input())
-            soma, qt, inicio = 0, 0, 1
+            soma, qt, inicio = 0, 1, 1
             if n == 0:
                 print(1)
             if n == 1:
                 print(1)
+            limite = n // 2
             if n > 1:
-                for i in range(inicio, n + 1):
-                    for k in range(i, n + 1):
+                for i in range(inicio, limite + 2):
+                    for k in range(i, limite + 2):
                         soma += k
                         if soma == n:
                             qt += 1
