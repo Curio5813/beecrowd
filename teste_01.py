@@ -7,5 +7,3 @@ for i in range(1, 100):
             break
     if booleano == 1:
         break
-
-
