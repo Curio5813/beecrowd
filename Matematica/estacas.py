@@ -34,7 +34,6 @@ def estacas():
                 else:
                     divisor = gcd(x, y)
                     print(((x // divisor) * 2) + ((y // divisor) * 2))
-
         except EOFError:
             break
 
