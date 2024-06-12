@@ -59,14 +59,15 @@ def trocando_de_mesa():
         if evento[0] == 1:
             update.append(evento[1])
             update.append(evento[2])
-            if update[0] in updates or update[1] in updates:
-                if update in updates and len(updates) > 1:
-                    break
+            if len(updates) > 0 and updates[j - 1] == update:
+                idx = updates.index(update)
+                updates.pop(idx)
+                j -= 1
             else:
-                if len(updates) > 0 and updates[j - 1] == update:
-                    idx = updates.index(update)
-                    updates.pop(idx)
-                    j -= 1
+                if update[0] in updates or update[1] in updates:
+                    if update in updates and len(updates) > 1:
+                        updates.append(update)
+                        j += 1
                 else:
                     updates.append(update)
                     j += 1
