@@ -42,23 +42,25 @@ def jogo_de_varetas():
                 varetas.append(entrada)
             for i in range(0, len(varetas)):
                 for j in range(0, len(varetas[i])):
-                    if varetas[i][1] >= 4:
+                    if varetas[i][1] >= 4 and varetas[i][1] % 4 == 0:
+                        retangulos += varetas[i][1] // 4
+                        break
+                    if varetas[i][1] > 4 and varetas[i][1] % 4 != 0:
                         sobras.append(varetas[i][1] % 4)
                         retangulos += varetas[i][1] // 4
                         break
-                    if varetas[i][1] < 4:
+                    if 2 <= varetas[i][1] < 4:
                         sobras.append(varetas[i][1])
                         break
-            # print(sobras)
-            if len(sobras) <= 1:
+            if len(sobras) < 2:
                 print(retangulos)
             else:
                 for i in range(0, len(sobras)):
                     for j in range(i + 1, len(sobras)):
                         if sobras[i] >= 2 and sobras[j] >= 2:
                             retangulos += (sobras[i] + sobras[j]) // 4
-                            sobras.pop(i)
-                            sobras.pop(j - 1)
+                            sobras[i] = 0
+                            sobras[j] = 0
                             break
                 print(retangulos)
 
