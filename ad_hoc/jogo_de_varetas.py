@@ -46,7 +46,8 @@ def jogo_de_varetas():
                         retangulos += varetas[i][1] // 4
                         break
                     if varetas[i][1] > 4 and varetas[i][1] % 4 != 0:
-                        sobras.append(varetas[i][1] % 4)
+                        if varetas[i][1] % 4 >= 2:
+                            sobras.append(varetas[i][1] % 4)
                         retangulos += varetas[i][1] // 4
                         break
                     if 2 <= varetas[i][1] < 4:
