@@ -17,15 +17,17 @@ def contagem_de_digitos():
     """
     while True:
         a, b = map(int, input().split(" "))
-        digitos, cont, str_numero, quantidade = "0123456789", 0, "", []
+        digitos, cont, qtd = "0123456789", 0, []
+        print(3 % 10)
         if a == 0 and b == 0:
             break
         else:
-            for i in range(a, b + 1):
-                str_numero += str(i)
-            for i in digitos:
-                quantidade.append(str_numero.count(i))
-            print(*quantidade)
+            for k in digitos:
+                for i in range(a, b + 1):
+                    cont += str(i).count(k)
+                qtd.append(cont)
+                cont = 0
+            print(*qtd)
 
 
 contagem_de_digitos()
