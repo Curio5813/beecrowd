@@ -26,7 +26,6 @@ def instrucoes_do_robo():
         posicao, conjunto_inst = 0, []
         for j in range(n):
             instrucao = list(input().split(" "))
-            # print(instrucao)
             if instrucao[0] == "LEFT":
                 posicao -= 1
                 conjunto_inst.append(*instrucao)
@@ -41,8 +40,6 @@ def instrucoes_do_robo():
                 if conjunto_inst[instrucao[2] - 1] == "RIGHT":
                     posicao += 1
                     conjunto_inst.append("RIGHT")
-            # print(posicao)
-            # print(conjunto_inst)
         print(posicao)
 
 
