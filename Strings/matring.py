@@ -31,7 +31,7 @@ def matring():
     caractere de fim-de-linha após a string.
     :return:
     """
-    numeros, str_num, decimal, p_l, p_ls, char_dec, decode = [], "", [], [], [], [], ""
+    numeros, str_num, decimal, char_dec, decode = [], "", [], [], ""
     for i in range(4):
         numero = input()
         numeros.append(numero)
