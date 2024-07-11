@@ -35,7 +35,7 @@ def decoracao_natalina():
     """
     while True:
         try:
-            pi = 3.141592654
+            pi =  
             entrada = list(input().split(" "))
             a = float(entrada[0]) * (pi / 180)
             b = float(entrada[1])
