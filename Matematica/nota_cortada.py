@@ -20,9 +20,9 @@ def nota_cortada():
 
 
     O corte reto vai começar na base a uma distância de B centímetros a partir
-     do lado esquerdo da nota; e terminar no topo a uma distância de T centímetros
-     também a partir do lado esquerdo da nota. Veja a indicação na parte direita
-     da figura.
+    do lado esquerdo da nota; e terminar no topo a uma distância de T centímetros
+    também a partir do lado esquerdo da nota. Veja a indicação na parte direita
+    da figura.
 
     Neste problema, dados os valores B e T, seu programa deve computar quem vai
     ficar com o pedaço que vale 100 reais, ou se o valor da nota se perdeu.
