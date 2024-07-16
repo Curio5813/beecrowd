@@ -1,62 +1,39 @@
-"""
-Observações sobre alguns problemas.
-"""
+from math import factorial
 
 
-dados, estrutura, estruturas = [1, 2, 3], [], []
-x1 = [1, 1, 1, 1, 1, 1, 1]  # 1
-x2 = [2, 1, 1, 1, 1, 1]  # 6
-x3 = [2, 2, 1, 1, 1]  # 5
-x4 = [2, 2, 2, 1]  # 4
-x5 = [3, 1, 1, 1, 1] # 5
-x6 = [3, 3, 1]  # 3
-x7 = [3, 1, 1, 2]  # 4
-x8 = [3, 2, 2] # 3
-
-
-n = int(input())
-
-for i in range(n):
-    estrutura.append(dados[0])
-estruturas.append(estrutura)
-temp = estrutura.copy()
-a, b = 0, 1
-cont = 0
-for i in range(n):
-    if not temp:
-        temp = estrutura.copy()
-        a = 0
-        b += 1
-        temp.insert(a, dados[b])
-    else:
-        temp.insert(a, dados[b])
-        temp.pop()
-    while sum(temp) != n:
-        if not temp:
-            break
-        temp.pop()
-    if sum(temp) == n:
-        # print(a, temp, end=" ")
-        if a == 0:
-            estruturas.append(temp)
-            temp = estruturas[-1].copy()
-            a += 1
+def nem_tudo_e_greve_versao_hard():
+    """
+    :return:
+    """
+    n = int(input())
+    m = n
+    soma, cont = 0, 0
+    k = n
+    for i in range(n, 0, -1):
+        if i == n:
+            permutacao = int(factorial(i) / factorial(k))
+            soma += permutacao
+            print(i, k, permutacao, soma)
         else:
-            if dados[b] == 3:
-                estruturas.append(temp)
-                temp = estruturas[a + 1].copy()
-                a += 1
-                b = 1
-                print(dados[b])
+            k = i - 1
+            a = k
+            if i == 2 and k == 1:
+                permutacao = int(factorial(i) / factorial(k))
+                soma += permutacao
+                print(i, k, permutacao, soma)
+                break
             else:
-                estruturas.append(temp)
-                temp = estruturas[a + 1].copy()
-                a += 1
-        # print(temp, estruturas, i)
-print(estruturas)
-soma = 1
-for i in range(1, len(estruturas)):
-    soma += len(estruturas[i])
-print(soma)
+                while a <= m:
+                    permutacao = int(factorial(i) / factorial(k))
+                    soma += permutacao
+                    print(i, k, permutacao, soma)
+                    a += a
+
+    print(soma)
+    p = 10 ** 9 + 7
+    print(p)
+    resultado = soma % p
+    print(resultado)
 
 
+nem_tudo_e_greve_versao_hard()
