@@ -18,7 +18,7 @@ def nem_tudo_e_greve_versao_hard():
     :return:
     """
     n = int(input())
-    a, b, c, p = 1, 1, 2, 4
+    a, b, c, p = 1, 1, 2, 0
     primo = 10 ** 9 + 7
     if n == 1:
         return print(1)
