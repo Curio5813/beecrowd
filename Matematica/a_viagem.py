@@ -1,7 +1,3 @@
-from statistics import mean
-from math import floor
-
-
 def a_viagem():
     """
     Alguns estudantes são membros de um clube que viaja anualmente
@@ -30,24 +26,22 @@ def a_viagem():
     :return:
     """
     while True:
-        n = int(input())
-        soma, despesa, str_despesa = [], 0, ""
+        n = int(input().strip())
+        despesas, trocas = [], 0
         if n == 0:
             break
         for i in range(n):
-            valor = float(input())
-            soma.append(valor)
-        soma.sort()
-        soma = soma[::-1]
-        media = round(mean(soma), 3)
-        baixo = floor(media)
-        mantissa = round(media - baixo, 3)
-        media += mantissa
-        media = round(media, 2)
-        for i in range(0, len(soma)):
-            if soma[i] - media > 0:
-                despesa += soma[i] - media
-        print(f"${despesa:.2f}")
+            valor = float(input().strip())
+            despesas.append(valor)
+        media = round(sum(despesas) / len(despesas), 2)
+        # print(media)
+        if media - 0.01 == round(media, 2):
+            media = media - 0.01
+        # print(media)
+        for i in range(0, len(despesas)):
+            if despesas[i] < media:
+                trocas += (media - despesas[i])
+        print(f"${trocas:.2f}")
 
 
 a_viagem()
