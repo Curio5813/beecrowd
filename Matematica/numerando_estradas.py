@@ -38,34 +38,36 @@ def numerando_estradas():
     """
     caso = 0
     while True:
-        sufixos = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
-                   'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         r, n = map(int, input().strip().split(" "))
-        inteiros, cont, str_sufx, flag, sufixos_usados, sufx_mais = [], 1, "", 0, [], []
+        sufixos, flag = 1, 0
         if r == 0 and n == 0:
             break
         caso += 1
-        for i in range(1, n + 1):
-            inteiros.append(i)
-        sufx_mais = inteiros.copy()
-        if len(inteiros) >= r:
+        if n >= r:
             print(f"Case {caso}: 0")
         else:
-            for i in range(0, len(sufixos)):
-                for j in range(0, len(inteiros)):
-                    str_sufx = str(inteiros[j]) + sufixos[i]
-                    sufx_mais.append(str_sufx)
-                    if sufixos[i] not in sufixos_usados:
-                        sufixos_usados.append(sufixos[i])
-                    if len(sufx_mais) == r:
-                        flag = 1
-                        print(f"Case {caso}: {len(sufixos_usados)}")
-                        break
-                if len(sufixos_usados) >= 26 or flag == 1:
-                    break
-            if flag == 0:
-                # print(inteiros)
+            if r > (n + n * 26):
                 print(f"Case {caso}: impossible")
+            elif n < r <= (n + n * 26):
+                r -= n
+                if r <= n:
+                    print(f"Case {caso}: 1")
+                else:
+                    r -= n
+                    sufixos += 1
+                    if n >= r:
+                        print(f"Case {caso}: {sufixos}")
+                    else:
+                        while n < r:
+                            r -= n
+                            sufixos += 1
+                            if sufixos >= 26:
+                                flag = 1
+                                break
+                        if flag == 1:
+                            print(f"Case {caso}: 26")
+                        if flag == 0:
+                            print(f"Case {caso}: {sufixos}")
 
 
 numerando_estradas()
