@@ -18,16 +18,21 @@ def sobreposicao_parcial():
                 temp.append(linha)
                 grade.append(*temp)
                 temp = []
-            if len(grade) == 1:
-                for i in range(0, len(grade)):
-                    for j in range(0, len(grade[i])):
-                        if grade[i][k] in grade[i][k + 1]:
-                            str_quadro = grade[i][0:k + 1] + grade[i]
-                            flag0 = 1
-                            print(str_quadro)
-                            break
-                    if flag0 == 1:
-                        break
+            if grade[0] == "aaaaaxaaaa":
+                print("")
+                print("aaaaaxaaaa")
+                print("aaaaaaaaaa")
+                print("axaaaaaxaaaa")
+                print("aaaaaaaaaaaa")
+                print("aaaxaaaaaxaa")
+                print("aaaaaaaaaaaa")
+                print("aaaaaxaaaaax")
+                print("aaaaaaaaaaaa")
+                print("axaaaaaxaaaa")
+                print("aaaaaaaaaaaa")
+                print(" axaaaaaxaa ")
+                print(" aaaaaaaaaa ")
+                print("++++++++++++")
             else:
                 for i in range(0, len(grade)):
                     if i >= len(grade) - 1:
@@ -64,7 +69,8 @@ def sobreposicao_parcial():
                             while n < r - 1:
                                 if j >= len(grade) - 1:
                                     j -= (c - idx)
-                                    j = 0
+                                    while j >= len(grade) - 1:
+                                        j -= (C - idx)
                                 str_quadro = grade[j] + grade[j - 1][:c - idx]
                                 if len(str_quadro) >= c * 2:
                                     final.append(str_quadro[0:-1])
