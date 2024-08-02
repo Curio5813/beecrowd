@@ -27,7 +27,7 @@ def sequencia_do_tio_phill_bonati():
     na sequência.
     :return:
     """
-    sequencia = [0, 1, 1, 1, 2, 2, 4, 8, 12]
+    sequencia = [0, 1, 1]
     cont = 0
     for i in range(17 + 1):
         if cont == 0:
