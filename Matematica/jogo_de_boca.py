@@ -38,10 +38,12 @@ def jogo_de_boca():
             print(1)
         if n == 5:
             print(2)
-        elif n > 5:
-            if n % 2 == 1:
+        elif n >= 7:
+            if n % 2 == 1 and n % 5 == 0 or n % 7 == 0:
                 print(1)
-            elif n % 2 == 0 and n % 5 == 0:
+            elif n % 2 == 1:
+                print(1)
+            elif n % 2 == 0 and n % 5 == 0 or n % 7 == 0:
                 print(1)
             elif n % 2 == 0:
                 print(2)
