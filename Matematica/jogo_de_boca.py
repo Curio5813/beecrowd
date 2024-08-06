@@ -30,7 +30,8 @@ def jogo_de_boca():
     possível, então o inteiro deve ser zero.
     :return:
     """
-    print(int(input() % 3))
+    n = int(input())
+    print(n % 3)
 
 
 jogo_de_boca()
