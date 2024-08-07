@@ -13,13 +13,12 @@ def kikoho():
     a ter, mas ele sabe em quais pontos se encontram os vértices do
     triângulo formado.
 
-    ![imagem](https://resources.beecrowd.com/gallery/images/contests/UOJ_3389.png)
-
-    Você pode ajudar Tenshi informando qual a área total que o seu ataque
+   Você pode ajudar Tenshi informando qual a área total que o seu ataque
     teve?
 
     Veja um exemplo de como é seu ataque e como se assemelha a um triângulo.
 
+    ![imagem](https://resources.beecrowd.com/gallery/images/contests/UOJ_3389.png)
 
     Entrada
     A primeira linha de entrada contém um inteiro N (1 <= N <= 20) representando
