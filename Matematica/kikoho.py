@@ -13,6 +13,8 @@ def kikoho():
     a ter, mas ele sabe em quais pontos se encontram os vértices do
     triângulo formado.
 
+    ![imagem](https://resources.beecrowd.com/gallery/images/contests/UOJ_3389.png)
+
     Você pode ajudar Tenshi informando qual a área total que o seu ataque
     teve?
 
