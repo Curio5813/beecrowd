@@ -56,18 +56,10 @@ def corrida_dos_marrecos():
         if n == 1:
             print(0)
         else:
-            while n >= 3:
-                quociente3 = n // 3
-                resto3 = n % 3
-                if resto3 == 0:
-                    perderam = quociente3 * 2
-                    n -= perderam
-                    corridas += quociente3 + resto3
-                else:
-                    perderam = quociente3 * 3
-                    n -= perderam
-                    corridas += quociente3 + resto3
-                print(quociente3, resto3, perderam, n)
+            while n > 1:
+                aprox = ceil(n / 3)
+                corridas += aprox
+                n = aprox
             print(corridas)
 
 
