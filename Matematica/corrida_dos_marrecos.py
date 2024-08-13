@@ -50,18 +50,24 @@ def corrida_dos_marrecos():
     """
     while True:
         n = int(input())
-        cont, corridas = 1, 1
+        corridas = 0
         if n == 0:
             break
         if n == 1:
             print(0)
         else:
-            if n % 3 == 0:
-                corridas = n // 2 + 1
-            else:
-                resto = n % 2
-                quociente = n // 2
-                corridas = quociente + resto
+            while n >= 3:
+                quociente3 = n // 3
+                resto3 = n % 3
+                if resto3 == 0:
+                    perderam = quociente3 * 2
+                    n -= perderam
+                    corridas += quociente3 + resto3
+                else:
+                    perderam = quociente3 * 3
+                    n -= perderam
+                    corridas += quociente3 + resto3
+                print(quociente3, resto3, perderam, n)
             print(corridas)
 
 
