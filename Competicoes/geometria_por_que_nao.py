@@ -17,7 +17,7 @@ def geometria_por_que_nao():
                 if caminhos[j] == "U":
                     y += 1
             if x > 0:
-                m = round(y / x, 3)
+                m = y / x
             if m > 0 and x > 0 and y > 0:
                 x, y = 0, 0
                 while i < len(caminhos) - 1:
@@ -47,22 +47,24 @@ def geometria_por_que_nao():
                     if reta_h > altura:
                         altura_menor = reta_h - altura
                         base_menor = altura_menor / m
-                        area1 = ((base_menor + base) * altura) / 2
-                        area2 = altura_menor * base_menor / 2
+                        area1 = round(((base_menor + base) * altura) / 2, 3)
+                        area2 = round(altura_menor * base_menor / 2, 3)
                         area += area1 + area2
-                        area = area
+                        area = round(area, 3)
                         sobras1.append(area2)
                         # print(area, area2, base, base_menor, reta_h, altura, altura_menor, "Ok0")
                         base = base_menor
                         altura = 0
-                    if reta_h <= altura:
+                    elif reta_h <= altura:
                         base = base
                         altura1 =base * m
                         area += altura1 * base / 2
-                        base2 = base - altura1
+                        area = round(area, 3)
+                        base2 = round(base - altura1, 3)
                         base3 = base - base2
                         altura2 = base2 * m
-                        area3 = base3 * altura2
+                        altura3 = base3 * m
+                        area3 = round(base3 * altura2, 3)
                         # print(area, area3, base, altura2, altura3, base2, base3, "Ok1")
                         sobras2.append(area3)
                         pontos_y.append(y)
@@ -81,10 +83,10 @@ def geometria_por_que_nao():
                     area -= sum(sobras1)
                 if len(sobras3) > 0:
                     area -= sum(sobras3)
-                print(f"{k}. {area:.7f}")
+                print(f"{k}. {area:.3f}")
             else:
                 area = 0
-                print(f"{k}. {area:.7f}")
+                print(f"{k}. {area:.3f}")
 
 
 geometria_por_que_nao()
