@@ -52,28 +52,27 @@ def trocando_de_mesa():
     :return:
     """
     n = int(input())
+    mesas, evento, redirecoes = [], [], []
+    for i in range(1, n + 1):
+        mesas.append(i)
     q = int(input())
-    j, update, updates = 0, [], []
     for i in range(q):
-        evento = list(map(int, input().split(" ")))
+        redirecionamento, cont = 0, 0
+        evento = list(map(int, input().strip().split(" ")))
         if evento[0] == 1:
-            update.append(evento[1])
-            update.append(evento[2])
-            if len(updates) > 0 and updates[j - 1] == update:
-                idx = updates.index(update)
-                updates.pop(idx)
-                j -= 1
-            else:
-                if update[0] in updates or update[1] in updates:
-                    if update in updates and len(updates) > 1:
-                        updates.append(update)
-                        j += 1
-                else:
-                    updates.append(update)
-                    j += 1
-            update = []
+            idx1 = mesas.index(evento[1])
+            idx2 = mesas.index(evento[2])
+            mesas[idx1], mesas[idx2] = mesas[idx2], mesas[idx1]
         if evento[0] == 2:
-            print(len(updates))
+            temp = mesas[evento[1] - 1]
+            while True:
+                if evento[1] == temp:
+                    print(redirecionamento)
+                    break
+                else:
+                    idx = temp - 1
+                    temp = mesas[idx]
+                    redirecionamento += 1
 
 
 trocando_de_mesa()
