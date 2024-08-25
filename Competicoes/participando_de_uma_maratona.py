@@ -3,8 +3,8 @@ def participando_de_uma_maratona():
     :return:
     """
     r = int(input())
-    (corredores, fotos, instantes, instantes2, querys, temp, descarte, maior, flag,
-     sucesso, descarte) = [], [], [], [], [], [], 0, 0, 0, 0, 0
+    (corredores, fotos, instantes, instantes2, querys, temp, descarte, maior,
+     sucesso, descarte) = [], [], [], [], [], [], 0, 0, 0, 0
     for i in range(r):
         corredor = list(map(int, input().strip().split(" ")))
         corredores.append(corredor)
