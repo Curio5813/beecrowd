@@ -8,17 +8,6 @@ def participando_de_uma_maratona():
     for i in range(r):
         corredor = list(map(int, input().strip().split(" ")))
         corredores.append(corredor)
-    for i in range(0, len(corredores)):
-        tempo = corredores[i][0]
-        posicao = corredores[i][1]
-        while posicao <= maior:
-            temp.append(tempo)
-            temp.append(posicao)
-            tempo += 1
-            posicao += corredores[i][1]
-            if temp not in instantes:
-                instantes.append(temp)
-            temp = []
     p = int(input())
     for i in range(p):
         foto = list(map(int, input().strip().split(" ")))
@@ -66,8 +55,8 @@ def participando_de_uma_maratona():
                     break
         descarte = q - sucesso
         print(descarte)
-        print(fotos)
-        print(instantes2)
+        # print(fotos)
+        # print(instantes2)
         sucesso = 0
 
 
