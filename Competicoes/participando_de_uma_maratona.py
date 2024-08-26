@@ -4,7 +4,7 @@ def participando_de_uma_maratona():
     """
     r = int(input())
     (corredores, fotos, instantes, instantes2, querys, temp, descarte, maior,
-     sucesso, descarte) = [], [], [], [], [], [], 0, 0, 0, 0
+     sucesso) = [], [], [], [], [], [], 0, 0, 0
     for i in range(r):
         corredor = list(map(int, input().strip().split(" ")))
         corredores.append(corredor)
