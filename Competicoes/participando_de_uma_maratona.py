@@ -33,7 +33,6 @@ def participando_de_uma_maratona():
     for i in range(q):
         query = list(map(int, input().strip().split(" ")))
         querys.append(query)
-    for i in range(0, len(querys)):
         tempo = 0
         posicao = 0
         instantes2 = instantes.copy()
@@ -55,8 +54,6 @@ def participando_de_uma_maratona():
                     break
         descarte = q - sucesso
         print(descarte)
-        # print(fotos)
-        # print(instantes2)
         sucesso = 0
 
 
