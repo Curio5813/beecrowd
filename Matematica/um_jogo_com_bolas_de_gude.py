@@ -50,7 +50,6 @@ def um_jogo_com_bolas_de_gude():
                             bacias[i - 1] += 1
                             i -= 1
                             rodadas += 1
-            print(bacias)
             if sum(bacias) == 0:
                 break
         print(rodadas + soma)
