@@ -1,3 +1,6 @@
+import itertools
+
+
 def ajude_nhonho():
     """
     Depois de Professor Girafales descobrir que Nhonho faltava às aulas
@@ -37,17 +40,60 @@ def ajude_nhonho():
     """
     t = int(input())
     digitos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    str_num, numeros_srt, permutacoes, j, m = "", [], [], 0, 0
+    subconjuntos_5 = list(itertools.combinations(digitos, 5))
+    (numeros, subconjuntos, temp, permutacoes, todas, soma,
+     str_num, solucoes, idx) = "", [], [], [], [], 0, "", [], []
+    for i in range(0, len(subconjuntos_5)):
+        for j in range(0, len(subconjuntos_5[i])):
+            numeros += str(subconjuntos_5[i][j])
+        subconjuntos.append(numeros)
+        numeros = ""
+    for i in range(0, len(subconjuntos)):
+        temp = list(itertools.permutations(subconjuntos[i]))
+        permutacoes.append(temp)
+    temp = []
+    for j in range(0, len(permutacoes)):
+        for k in range(0, len(permutacoes[j])):
+            for m in range(0, len(permutacoes[j][k])):
+                numeros += permutacoes[j][k][m]
+            if "0" in numeros:
+                idx.append(j)
+                temp.append(int(numeros))
+            elif "0" not in numeros:
+                temp.append(int(numeros))
+            numeros = ""
+        todas.append(temp)
+        temp = []
+    temp = []
     for i in range(t):
+        flag = 0
         k = int(input())
-        for j in range(0, len(digitos)):
-            for k in range(0, len(digitos)):
-                str_num += str(digitos[k])
-                if len(str_num) == 5:
-                    numeros_srt.append(str_num)
-                    str_num = ""
-                    m += 1
-        print(numeros_srt)
+        for j in range(0, len(todas)):
+            soma = sum(todas[j])
+            if soma == k:
+                str_num = str(todas[j][0])
+                if j in idx:
+                    temp.append(0)
+                for m in str_num:
+                    temp.append((int(m)))
+                solucoes.append(temp)
+                temp = []
+                flag = 1
+        if flag == 1:
+            for j in range(0, len(solucoes)):
+                print("{", end="")
+                for m in range(0, len(solucoes[j])):
+                    if m >= len(solucoes[j]) - 1:
+                        print(f"{solucoes[j][m]}", end="")
+                    else:
+                        print(f"{solucoes[j][m]},", end="")
+                print("}", end="")
+                print("")
+            print("")
+        if flag == 0:
+            print("impossivel")
+            print("")
+        solucoes = []
 
 
 ajude_nhonho()
