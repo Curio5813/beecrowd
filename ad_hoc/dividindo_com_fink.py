@@ -29,11 +29,11 @@ def dividindo_com_fink():
             picapau += 1
             if raposa + picapau >= comida:
                 usura = comida - (raposa + picapau)
-                flag = 1
                 break
             for j in range(1, i + 1):
                 raposa += j
                 if raposa + picapau >= comida:
+                    flag = 1
                     break
         # print(raposa, picapau, usura)
         usura *= -1
