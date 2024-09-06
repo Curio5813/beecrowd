@@ -24,29 +24,24 @@ def dividindo_com_fink():
     """
     while True:
         n = int(input())
-        raposa, picapau, comida, usura, roubo, flag = 0, 0, n, 0, 0, 0
+        raposa, picapau, comida, flag, div_raposa, div_picapau = 0, 0, n, 0, 0, 0
         for i in range(1, n + 1):
             picapau += 1
-            if raposa + picapau >= comida:
-                usura = comida - (raposa + picapau)
-                break
+            div_picapau = picapau
+            # print(raposa, picapau, div_raposa, div_picapau)
             for j in range(1, i + 1):
-                raposa += j
-                if raposa + picapau >= comida:
+                if div_raposa + div_picapau > comida:
                     flag = 1
-                    break
-        # print(raposa, picapau, usura)
-        usura *= -1
-        picapau -= usura
-        # print(raposa, picapau, usura)
-        if flag == 1:
-            while raposa <= comida or usura > 0:
-                picapau -= 1
-                raposa += 1
-                usura -= 1
-                if usura == 0 or picapau == 0:
-                    break
-                # print(raposa, picapau, usura)
+                else:
+                    raposa += j
+            if flag == 1:
+                pass
+            else:
+                div_raposa = raposa
+                raposa = 0
+        while raposa < div_raposa:
+            picapau -= 1
+            raposa += 1
         print(raposa, picapau)
 
 
