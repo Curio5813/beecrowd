@@ -39,10 +39,9 @@ def dividindo_com_fink():
             else:
                 div_raposa = raposa
                 raposa = 0
-        while raposa < div_raposa:
+        while div_raposa + picapau > comida:
             picapau -= 1
-            raposa += 1
-        print(raposa, picapau)
+        print(div_raposa, picapau)
 
 
 dividindo_com_fink()
