@@ -28,7 +28,6 @@ def dividindo_com_fink():
         for i in range(1, n + 1):
             picapau += 1
             div_picapau = picapau
-            # print(raposa, picapau, div_raposa, div_picapau)
             for j in range(1, i + 1):
                 if div_raposa + div_picapau > comida:
                     flag = 1
