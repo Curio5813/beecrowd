@@ -47,29 +47,26 @@ def banco_imobiliario():
     :return:
     """
     i, n = map(int, input().split(" "))
-    dalia, eloi, felix, d_dalia, p_dalia, d_eloi, p_eloi, d_felix, p_felix = i, i, i, 0, 0, 0, 0, 0, 0
+    dalia, eloi, felix = i, i, i
     for j in range(n):
         operacoes = input().split(" ")
         valor = int(operacoes[-1])
         for k in range(0, len(operacoes)):
             if operacoes[0] == 'C':
                 if operacoes[1] == "D":
-                    if valor >= dalia + p_dalia:
-                        d_dalia += valor - (dalia + p_dalia)
+                    if valor >= dalia:
                         dalia -= dalia
                     else:
                         dalia -= valor
                     break
                 if operacoes[1] == "E":
-                    if valor >= eloi + p_eloi:
-                        d_eloi += valor - (eloi + p_eloi)
+                    if valor >= eloi:
                         eloi -= eloi
                     else:
                         eloi -= valor
                     break
                 if operacoes[1] == "F":
-                    if valor >= felix + p_felix:
-                        d_felix += valor - (felix + p_felix)
+                    if valor >= felix:
                         felix -= felix
                     else:
                         felix -= valor
@@ -79,24 +76,20 @@ def banco_imobiliario():
                     dalia += valor
                     if dalia > 1_000_000:
                         dalia = 1_000_000
-                        p_dalia += dalia - 1_000_000
                     break
                 if operacoes[1] == "E":
                     eloi += valor
                     if eloi > 1_000_000:
                         eloi = 1_000_000
-                        p_eloi += eloi - 1_000_000
                     break
                 if operacoes[1] == "F":
                     felix += valor
                     if felix > 1_000_000:
                         felix = 1_000_000
-                        p_felix += felix - 1_000_000
                     break
             if operacoes[0] == 'A':
                 if operacoes[1] == "D" and operacoes[2] == "E":
-                    if valor >= eloi + p_eloi:
-                        d_eloi = valor - (eloi + p_eloi)
+                    if valor >= eloi:
                         eloi -= eloi
                         dalia += valor
                     else:
@@ -104,11 +97,9 @@ def banco_imobiliario():
                         eloi -= valor
                     if dalia > 1_000_000:
                         dalia = 1_000_000
-                        p_dalia = dalia - 1_000_000
                     break
                 if operacoes[1] == "D" and operacoes[2] == "F":
-                    if valor >= felix + p_felix:
-                        d_felix = valor - (felix + p_felix)
+                    if valor >= felix:
                         felix -= felix
                         dalia += valor
                     else:
@@ -116,11 +107,9 @@ def banco_imobiliario():
                         felix -= valor
                     if dalia > 1_000_000:
                         dalia = 1_000_000
-                        p_dalia = dalia - 1_000_000
                     break
                 if operacoes[1] == "E" and operacoes[2] == "D":
-                    if valor >= dalia + p_dalia:
-                        d_dalia += valor - (dalia + p_dalia)
+                    if valor >= dalia:
                         dalia -= dalia
                         eloi += valor
                     else:
@@ -128,11 +117,9 @@ def banco_imobiliario():
                         eloi += valor
                     if eloi > 1_000_000:
                         eloi = 1_000_000
-                        p_eloi = eloi - 1_000_000
                     break
                 if operacoes[1] == "F" and operacoes[2] == "D":
-                    if valor >= dalia + p_dalia:
-                        d_dalia += valor - (dalia + p_dalia)
+                    if valor >= dalia:
                         dalia -= dalia
                         felix += valor
                     else:
@@ -140,11 +127,9 @@ def banco_imobiliario():
                         felix += valor
                     if felix > 1_000_000:
                         felix = 1_000_000
-                        p_felix += felix - 1_000_000
                     break
                 if operacoes[1] == "E" and operacoes[2] == "F":
-                    if valor >= felix + p_felix:
-                        d_felix += valor - (felix + p_felix)
+                    if valor >= felix:
                         felix -= felix
                         eloi += valor
                     else:
@@ -152,11 +137,9 @@ def banco_imobiliario():
                         felix -= valor
                     if eloi > 1_000_000:
                         eloi = 1_000_000
-                        p_eloi += eloi - 1_000_000
                     break
                 if operacoes[1] == "F" and operacoes[2] == "E":
-                    if valor >= eloi + p_eloi:
-                        d_eloi += valor - (eloi + p_eloi)
+                    if valor >= eloi:
                         eloi -= eloi
                         felix += valor
                     else:
@@ -164,7 +147,6 @@ def banco_imobiliario():
                         felix += valor
                     if felix > 1_000_000:
                         felix = 1_000_000
-                        felix = felix - 1_000_000
                     break
     print(dalia, eloi, felix)
 
