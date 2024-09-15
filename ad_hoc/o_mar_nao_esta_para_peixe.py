@@ -1,6 +1,3 @@
-from math import floor
-
-
 def o_mar_nao_esta_para_peixe():
     """
     Em um arquipélago no meio do Oceano Pacífico a economia
@@ -43,24 +40,34 @@ def o_mar_nao_esta_para_peixe():
     :return:
     """
     n = int(input())
-    coordenadas_x, coordenadas_y, area = [], [], 0
+    (coordenada_x, coordenada_y, coordenadas_x, coordenadas_y,
+     x, y, str_coord, pares_ordenados, j) = [], [], [], [], 0, 0, "", [], 0
     for i in range(n):
         x1, x2, y1, y2 = map(int, input().split(" "))
-        coordenadas_x.append(x1)
-        coordenadas_x.append(x2)
-        coordenadas_y.append(y1)
-        coordenadas_y.append(y2)
-    coordenadas_x.sort()
-    coordenadas_y.sort()
-    base = coordenadas_x[-1] - coordenadas_x[0]
-    altura_menor = coordenadas_y[1] - coordenadas_y[0]
-    altura_maior = coordenadas_y[-1] - coordenadas_y[0]
-    base_maior = coordenadas_x[-1] - coordenadas_x[0]
-    base_menor = coordenadas_x[1] - coordenadas_x[0]
-    print(altura_maior)
-    print(altura_menor)
-    print(base_maior)
-    print(base_menor)
+        coordenada_x.append(x1)
+        coordenada_x.append(x2)
+        coordenada_y.append(y1)
+        coordenada_y.append(y2)
+        coordenadas_x.append(coordenada_x)
+        coordenadas_y.append(coordenada_y)
+        coordenada_x = []
+        coordenada_y = []
+    while j <= len(coordenadas_x) - 1:
+        x = coordenadas_x[j][0]
+        y = coordenadas_y[j][0]
+        while x < coordenadas_x[j][-1]:
+            while y < coordenadas_y[j][-1]:
+                str_coord += str(x)
+                str_coord += " "
+                str_coord += str(y)
+                pares_ordenados.append(str_coord)
+                str_coord = ""
+                y += 1
+            x += 1
+            y = coordenadas_y[j][0]
+        j += 1
+    pares_ordenados = set(pares_ordenados)
+    print(len(pares_ordenados))
 
 
 o_mar_nao_esta_para_peixe()
