@@ -36,15 +36,25 @@ def robo():
     """
     l, c = map(int, input().split(" "))
     i, j = map(int, input().split(" "))
-    temp, idxs = [], []
+    temp, idxs, uns = [], [], 0
+    temp.append(i)
+    temp.append(j)
+    idxs.append(temp)
+    temp = []
     i -= 1
     j -= 1
     ladrilhos = []
     for k in range(l):
         ladrilho = list(map(int, input().split(" ")))
         ladrilhos.append(ladrilho)
+        uns += ladrilhos[k].count(1)
+    print(uns)
     print(i + 1, j + 1)
     while True:
+        print(idxs)
+        print(i, j)
+        if len(idxs) >= uns:
+            break
         # Canto superior esqerdo --------
         if i == 0 and j == 0 and ladrilhos[i][j + 1] == 1:
             l = i
@@ -55,24 +65,31 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                j -= 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         elif i == 0 and j == 0 and ladrilhos[i + 1][j] == 1:
             l = i + 1
             c = j
             i += 1
             print(l + 1, c + 1)
-            print(l + 1, c + 1)
             temp.append(l + 1)
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i -= 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         # Canto superior direito -------
         elif i == 0 and j == len(ladrilhos[i]) - 1 and ladrilhos[i][j - 1] == 1:
             l = i
@@ -83,10 +100,14 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                j += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         elif i == 0 and j == len(ladrilhos[i]) - 1 and ladrilhos[i + 1][j] == 1:
             l = i + 1
             c = j
@@ -96,10 +117,14 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i -= 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         # Canto inferior esquerdo
         elif i == len(ladrilhos) - 1 and j == 0 and ladrilhos[i][j + 1] == 1:
             l = i
@@ -110,10 +135,14 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                j -= 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         # Canto inferior esquerdo
         elif i == len(ladrilhos) - 1 and j == 0 and ladrilhos[i - 1][j] == 1:
             l = i - 1
@@ -124,10 +153,14 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         # Canto inferior direito
         elif i == len(ladrilhos) - 1 and j == len(ladrilhos[i]) - 1 and ladrilhos[i - 1][j] == 1:
             l = i - 1
@@ -138,10 +171,14 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         # Canto inferior direito
         elif i == len(ladrilhos) - 1 and j == len(ladrilhos[i]) - 1 and ladrilhos[i][j - 1] == 1:
             l = i
@@ -152,38 +189,15 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                j += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         # Borda superior --------
-        elif i == 0 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i][j + 1] == 1:
-            l = i
-            c = j + 1
-            j += 1
-            print(l + 1, c + 1)
-            temp.append(l + 1)
-            temp.append(c + 1)
-            if temp in idxs:
-                print(*idxs[-1])
-                break
-            else:
-                idxs.append(temp)
-                temp = []
-        elif i == 0 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i + 1][j + 1] == 1:
-            l = i + 1
-            c = j + 1
-            i + 1
-            j += 1
-            print(l + 1, c + 1)
-            temp.append(l + 1)
-            temp.append(c + 1)
-            if temp in idxs:
-                print(*idxs[-1])
-                break
-            else:
-                idxs.append(temp)
-                temp = []
         elif i == 0 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i][j - 1] == 1:
             l = i
             c = j - 1
@@ -193,24 +207,48 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                j += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
-        elif i == 0 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i + 1][j - 1] == 1:
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
+        elif i == 0 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i + 1][j] == 1:
             l = i + 1
-            c = j - 1
+            c = j
             i += 1
-            j -= 1
             print(l + 1, c + 1)
             temp.append(l + 1)
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i -= 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
+        elif i == 0 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i][j + 1] == 1:
+            l = i
+            c = j + 1
+            j += 1
+            print(l + 1, c + 1)
+            temp.append(l + 1)
+            temp.append(c + 1)
+            if temp in idxs:
+                print(*idxs[-1])
+                j -= 2
+                temp = []
+            else:
+                idxs.append(temp)
+                temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         # Borda inferior -------------
         elif i == len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i][j + 1] == 1:
             l = i
@@ -221,10 +259,14 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                j -= 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         elif i == len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i - 1][j] == 1:
             l = i - 1
             c = j
@@ -234,10 +276,14 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         elif i == len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i][j - 1] == 1:
             l = i
             c = j - 1
@@ -247,10 +293,14 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                j += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         elif i == len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i - 1][j] == 1:
             l = i - 1
             c = j
@@ -260,12 +310,16 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         # Borda lateral esquerda --------------------
-        elif len(ladrilhos) > i > 0 == j and ladrilhos[i + 1][j] == 1:
+        elif len(ladrilhos) >= i >= 0 == j and ladrilhos[i + 1][j] == 1:
             l = i + 1
             c = j
             i += 1
@@ -274,11 +328,15 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i -= 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
-        elif len(ladrilhos) > i > 0 == j and ladrilhos[i - 1][j] == 1:
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
+        elif len(ladrilhos) >= i >= 0 == j and ladrilhos[i - 1][j] == 1:
             l = i - 1
             c = j
             i -= 1
@@ -287,39 +345,32 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
-        elif len(ladrilhos) > i > 0 == j and ladrilhos[i + 1][j + 1] == 1:
-            l = i + 1
-            c = j + 1
-            i += 1
-            j += 1
-            print(l + 1, c + 1)
-            temp.append(l + 1)
-            temp.append(c + 1)
-            if temp in idxs:
-                print(*idxs[-1])
-                break
-            else:
-                idxs.append(temp)
-                temp = []
-        elif len(ladrilhos) > i > 0 == j and ladrilhos[i - 1][j + 1] == 1:
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
+        # Borda lateral direita ---------
+        elif len(ladrilhos) > i > 0 and j == len(ladrilhos[i]) - 1 and ladrilhos[i - 1][j] == 1:
             l = i - 1
-            c = j + 1
+            c = j
             i -= 1
-            j += 1
             print(l + 1, c + 1)
             temp.append(l + 1)
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
-        # Borda lateral direira ---------
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         elif len(ladrilhos) > i > 0 and j == len(ladrilhos[i]) - 1 and ladrilhos[i + 1][j] == 1:
             l = i + 1
             c = j
@@ -329,52 +380,50 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i -= 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
-        elif len(ladrilhos) > i > 0 and j == len(ladrilhos[i]) - 1 and ladrilhos[i - 1][j] == 1:
-            l = i + 1
-            c = j - 1
-            i += 1
-            j -= 1
-            print(l + 1, c + 1)
-            temp.append(l + 1)
-            temp.append(c + 1)
-            if temp in idxs:
-                print(*idxs[-1])
-                break
-            else:
-                idxs.append(temp)
-                temp = []
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
         # Meio ------------------
-        elif 0 < i < len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) and ladrilhos[i][j + 1] == 1:
+        elif 0 <= i <= len(ladrilhos) - 1 and 0 <= j <= len(ladrilhos[i]) and ladrilhos[i][j + 1] == 1:
             l = i
             c = j + 1
             j += 1
-            print(l + 1, c + 1)
+            print(l + 1, c + 1, "Ok-01")
             temp.append(l + 1)
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                j -= 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
-        elif 0 < i < len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) and ladrilhos[i][j - 1] == 1:
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
+        elif 0 <= i <= len(ladrilhos) - 1 and 0 <= j <= len(ladrilhos[i]) and ladrilhos[i][j - 1] == 1:
             l = i
             c = j - 1
             j -= 1
-            print(l + 1, c + 1)
+            print(l + 1, c + 1, "Ok-02")
             temp.append(l + 1)
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                j += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
-        elif 0 < i < len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) and ladrilhos[i + 1][j] == 1:
+                if len(idxs) == uns:
+                    print(idxs[-1])
+                    break
+        elif 0 <= i <= len(ladrilhos) - 1 and 0 <= j <= len(ladrilhos[i]) and ladrilhos[i + 1][j] == 1:
             l = i + 1
             c = j
             i += 1
@@ -383,11 +432,15 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i -= 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
-        elif 0 < i < len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) and ladrilhos[i - 1][j] == 1:
+                if len(idxs) == uns:
+                    print(*idxs[-1])
+                    break
+        elif 0 <= i <= len(ladrilhos) - 1 and 0 <= j <= len(ladrilhos[i]) and ladrilhos[i - 1][j] == 1:
             l = i - 1
             c = j
             i -= 1
@@ -396,39 +449,33 @@ def robo():
             temp.append(c + 1)
             if temp in idxs:
                 print(*idxs[-1])
-                break
+                i += 2
+                temp = []
             else:
                 idxs.append(temp)
                 temp = []
-        elif 0 < i < len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) and ladrilhos[i + 1][j + 1] == 1:
-            l = i + 1
-            c = j + 1
-            i += 1
-            j += 1
-            print(l + 1, c + 1)
-            temp.append(l + 1)
-            temp.append(c + 1)
-            if temp in idxs:
-                print(*idxs[-1])
-                break
-            else:
-                idxs.append(temp)
-                temp = []
-        elif 0 < i < len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) and ladrilhos[i - 1][j - 1] == 1:
-            l = i - 1
-            c = j - 1
-            i -= 1
-            j -= 1
-            print(l + 1, c + 1)
-            temp.append(l + 1)
-            temp.append(c + 1)
-            if temp in idxs:
-                print(*idxs[-1])
-                break
-            else:
-                idxs.append(temp)
-                temp = []
+                if len(idxs) == uns:
+                    print(*idxs[-1])
+                    break
         sleep(1)
+    print(len(idxs))
+    print(*idxs)
 
 
 robo()
+
+"""
+3 5
+1 1
+1 0 0 0 1
+1 0 0 1 1
+1 1 1 1 0
+
+
+4 7
+3 4
+0 0 1 1 1 1 1
+1 1 1 0 0 0 1
+1 0 0 1 0 1 1
+1 1 0 1 1 1 0
+"""
