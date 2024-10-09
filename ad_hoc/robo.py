@@ -149,7 +149,6 @@ def robo():
                     if len(idxs) == uns:
                         # print(idxs[-1])
                         break
-            # Canto inferior esquerdo
             elif i == len(ladrilhos) - 1 and j == 0 and ladrilhos[i - 1][j] == 1:
                 l = i - 1
                 c = j
@@ -185,7 +184,6 @@ def robo():
                     if len(idxs) == uns:
                         # print(idxs[-1])
                         break
-            # Canto inferior direito
             elif i == len(ladrilhos) - 1 and j == len(ladrilhos[i]) - 1 and ladrilhos[i][j - 1] == 1:
                 l = i
                 c = j - 1
@@ -307,23 +305,6 @@ def robo():
                     if len(idxs) == uns:
                         # print(idxs[-1])
                         break
-            elif i == len(ladrilhos) - 1 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i - 1][j] == 1:
-                l = i - 1
-                c = j
-                i -= 1
-                # print(l + 1, c + 1)
-                temp.append(l + 1)
-                temp.append(c + 1)
-                if temp in idxs:
-                    # print(*idxs[-1])
-                    i += 2
-                    temp = []
-                else:
-                    idxs.append(temp)
-                    temp = []
-                    if len(idxs) == uns:
-                        # print(idxs[-1])
-                        break
             # Borda lateral esquerda --------------------
             elif len(ladrilhos) > i > 0 == j and ladrilhos[i + 1][j] == 1:
                 l = i + 1
@@ -335,6 +316,23 @@ def robo():
                 if temp in idxs:
                     # print(*idxs[-1])
                     i -= 2
+                    temp = []
+                else:
+                    idxs.append(temp)
+                    temp = []
+                    if len(idxs) == uns:
+                        # print(idxs[-1])
+                        break
+            elif len(ladrilhos) > i > 0 == j and ladrilhos[i - 1][j] == 1:
+                l = i - 1
+                c = j
+                i -= 1
+                # print(l + 1, c + 1)
+                temp.append(l + 1)
+                temp.append(c + 1)
+                if temp in idxs:
+                    # print(*idxs[-1])
+                    i += 2
                     temp = []
                 else:
                     idxs.append(temp)
