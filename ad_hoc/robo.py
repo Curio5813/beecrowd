@@ -219,7 +219,7 @@ def robo():
                     if len(idxs) == uns:
                         # print(idxs[-1])
                         break
-            elif i == 0 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i + 1][j] == 1:
+            elif i == 0 and 0 < j < len(ladrilhos[i]) - 1 and ladrilhos[i - 1][j] == 1:
                 l = i + 1
                 c = j
                 i += 1
