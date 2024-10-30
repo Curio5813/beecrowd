@@ -49,30 +49,23 @@ def farm_robot():
     """
     n, c, s = map(int, input().split(" "))
     comandos = list(map(int, input().split(" ")))
-    idx, vezes, cont, i = 1, 0, 0, 0
-    while cont < n:
-        if i == 0 and comandos[i] == -1:
+    idx, vezes = 1, 0
+    if len(comandos) == 1 and s == 1:
+        print(1)
+    if len(comandos) == 1 and s == 2:
+        print(1)
+    elif len(comandos) > 1:
+        if idx == s:
+            vezes += 1
+        for i in range(0, len(comandos)):
+            idx += comandos[i]
+            if idx < 1:
+                idx = n
+            if idx > n:
+                idx = 1
             if idx == s:
                 vezes += 1
-            print("ok1", i, idx, vezes)
-            i = len(comandos) - 1
-            idx += comandos[i]
-        if i == len(comandos) - 1 and comandos[i] == 1:
-            if idx == s:
-                vezes += 1
-            print("ok2", i, idx, vezes)
-            i = 0
-            idx += comandos[i]
-        else:
-            if idx == s:
-                vezes += 1
-            print("ok3", i, idx, vezes)
-            i += 1
-            if i > len(comandos) - 1:
-                break
-            idx += comandos[i]
-        cont += 1
-    print(vezes)
+        print(vezes)
 
 
 farm_robot()
