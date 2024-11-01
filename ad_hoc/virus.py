@@ -65,5 +65,4 @@ def virus():
         except EOFError:
             break
 
-
 virus()
