@@ -1,3 +1,6 @@
+from numpy.f2py.capi_maps import c2capi_map
+
+
 def catalogo_de_musicas():
     """
     Joyce é uma menina que gosta muito de ouvir música, e possui uma
@@ -63,36 +66,29 @@ def catalogo_de_musicas():
     :return:
     """
     n = int(input())
-    caminhos, cont, j, idx, maior, qtd = [], 0, 0, 0, 0, []
+    caminhos, cont, maximo, pasta = [], 0, 0, []
     for i in range(n):
-        caminho = list(input().split("/"))
-        caminhos.append(caminho)
-    for i in range(0, len(caminhos)):
-        idx = len(caminhos[i])
-        if idx > maior:
-            maior = idx
-    for i in range(0, len(caminhos)):
-        if len(caminhos[i]) < maior:
-            while len(caminhos[i]) < maior:
-                caminhos[i].append(0)
-    caminhos.sort()
+        caminho = input().split("/")
+        caminhos.extend(caminho)
     print(caminhos)
-    idx = 0
     for i in range(0, len(caminhos)):
-        while j <= len(caminhos) - 1:
-            while caminhos[j][idx] in caminhos[i]:
+        for j in range(0, len(caminhos)):
+            if caminhos[i] == caminhos[j] and i != j:
                 cont += 1
-                j += 1
-                if j <= len(caminhos[i]) - 1:
-                    break
-            else:
-                qtd.append(cont)
-                idx += 1
-                if idx >= maior:
-                    idx = 0
-                    break
-                cont = 0
-    print(qtd)
+                if cont > maximo:
+                    if caminhos[i] not in pasta:
+                        pasta.append(caminhos[i])
+    caminhos.reverse()
+
 
 
 catalogo_de_musicas()
+
+
+
+"""
+3
+Rock/AngraCarryOn.mp3
+MPB/Caetano/Sampa.mp3
+MPB/Cartola/Alvorada.mp3
+"""
