@@ -78,17 +78,25 @@ def catalogo_de_musicas():
                 if cont > maximo:
                     if caminhos[i] not in pasta:
                         pasta.append(caminhos[i])
+                    maximo = cont
+        cont = 0
+        maximo = 0
     caminhos.reverse()
-
+    for i in range(0, len(pasta)):
+        if caminhos[i] in pasta:
+            caminhos.pop(i)
+    print(caminhos)
 
 
 catalogo_de_musicas()
 
 
-
 """
-3
-Rock/AngraCarryOn.mp3
-MPB/Caetano/Sampa.mp3
-MPB/Cartola/Alvorada.mp3
+6
+delta/india/juliet/lima
+bravo/echo
+bravo/foxtrot
+charlie/hotel
+delta/india/kilo
+bravo/golf
 """
