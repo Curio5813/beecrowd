@@ -62,22 +62,32 @@ def digitando_no_telefone_celular():
     """
     while True:
         try:
-            j, k, cont, dicionario, teclas = 0, 0, 0, [], []
+            cont, dicionario, teclas, k, flag, total = 0, [], [], 1, 0, []
             n = int(input())
             for i in range(n):
                 palavra = input()
                 dicionario.append(palavra)
-            for i in range(1, len(dicionario)):
-                while dicionario[k][j] == dicionario[i][j]:
-                    if j >= len(dicionario[i]) - 1 or k >= len(dicionario) - 1:
+            for i in range(0, len(dicionario)):
+                for j in range(0, len(dicionario)):
+                    while dicionario[i][k] == dicionario[j][k] and i != j:
+                        print(dicionario[i][k])
+                        cont += 1
+                        k += 1
+                        if k >= len(dicionario[i]) - 1 or k >= len(dicionario[j]) - 1:
+                            flag = 1
+                            break
+                    if flag == 1:
                         teclas.append(cont)
+                        k = 0
                         cont = 0
-                        j = 0
-                        break
-                    cont += 1
-                    j += 1
-                k += 1
-            print(teclas)
+                        flag = 0
+                    else:
+                        teclas.append(cont)
+                        k = 0
+                        cont = 0
+                total.append(teclas)
+                teclas = []
+            print(total)
         except EOFError:
             break
 
