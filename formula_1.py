@@ -71,10 +71,11 @@ def formula_1():
             s = int(input())
             for i in range(s):
                 si.append(list(map(int, input().split(" "))))
+                si[i].pop(0)
             for i in range(0, len(p)):
                 for j in range(0, len(p[i])):
                     for k in range(0, len(si)):
-                        pilotos[index(p[i][j]) - 1] += si[j][k + 1]
+                        pilotos[p[i][j] - 1] += si[j][k]
                 pontos.append(pilotos)
                 primeiros.append(pilotos.index(max(pilotos)) + 1)
             print(pontos)
