@@ -59,10 +59,8 @@ def formula_1():
     :return:
     """
     while True:
-        p, si, pontuacao, pilotos, primeiros, pontos = [], [], 0, [], [], []
+        p, si, pontuacao, pilotos, primeiros, pontos, todos = [], [], 0, [], [], [], []
         g, piloto = map(int, input().split(" "))
-        for i in range(piloto):
-            pilotos.append(0)
         if g == piloto == 0:
             break
         else:
@@ -71,16 +69,18 @@ def formula_1():
             s = int(input())
             for i in range(s):
                 si.append(list(map(int, input().split(" "))))
+                for j in range(piloto):
+                    pilotos.append(0)
+                todos.append(pilotos)
                 si[i].pop(0)
+            print(todos)
             for i in range(0, len(p)):
                 for j in range(0, len(p[i])):
-                    for k in range(0, len(si)):
-                        pilotos[p[i][j] - 1] += si[j][k]
+                    pilotos[p[i][j] - 1] += si[i][j]
                 pontos.append(pilotos)
                 primeiros.append(pilotos.index(max(pilotos)) + 1)
-            print(pontos)
-            print(len(pontos))
-            print(pilotos.index(max(pilotos)) + 1)
+                print(pontos)
+                print(pilotos.index(max(pilotos)) + 1)
 
 
 formula_1()
