@@ -71,10 +71,18 @@ def formula_1():
                 si[i].pop(0)
             for i in range(0, len(si)):
                 for j in range(0, len(si[i])):
+                    while len(si[i]) < piloto:
+                        si[i].append(0)
+                    else:
+                        break
+            print(si)
+            for i in range(0, len(si)):
+                for j in range(0, len(si[i])):
                     for k in range(0, len(p)):
-                        pilotos[p[k][j] - 1] += si[i][j]
+                        n = p[k][j] - 1
+                        pilotos[k] += si[i][n]
                 pontos.append(pilotos)
-                # print(pontos)
+                print(pontos)
                 maximo = max(pilotos)
                 for j in range(0, len(pilotos)):
                     if pilotos[j] == maximo:
