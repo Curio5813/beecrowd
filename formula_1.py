@@ -1,6 +1,3 @@
-from operator import index
-
-
 def formula_1():
     """
     A temporada de Fórmula 1 consiste de uma série de corridas, conhecidas
@@ -59,8 +56,10 @@ def formula_1():
     :return:
     """
     while True:
-        p, si, pontuacao, pilotos, primeiros, pontos, todos = [], [], 0, [], [], [], []
+        p, si, pontuacao, pilotos, pontos, k = [], [], 0, [], [], 0
         g, piloto = map(int, input().split(" "))
+        for i in range(piloto):
+            pilotos.append(0)
         if g == piloto == 0:
             break
         else:
@@ -69,18 +68,21 @@ def formula_1():
             s = int(input())
             for i in range(s):
                 si.append(list(map(int, input().split(" "))))
+                si[i].pop(0)
+            for i in range(0, len(si)):
+                for j in range(0, len(si[i])):
+                    for k in range(0, len(p)):
+                        pilotos[p[k][j] - 1] += si[i][j]
+                pontos.append(pilotos)
+                # print(pontos)
+                maximo = max(pilotos)
+                for j in range(0, len(pilotos)):
+                    if pilotos[j] == maximo:
+                        print(f"{j + 1}", end=" ")
+                print("")
+                pilotos = []
                 for j in range(piloto):
                     pilotos.append(0)
-                todos.append(pilotos)
-                si[i].pop(0)
-            print(todos)
-            for i in range(0, len(p)):
-                for j in range(0, len(p[i])):
-                    pilotos[p[i][j] - 1] += si[i][j]
-                pontos.append(pilotos)
-                primeiros.append(pilotos.index(max(pilotos)) + 1)
-                print(pontos)
-                print(pilotos.index(max(pilotos)) + 1)
 
 
 formula_1()
