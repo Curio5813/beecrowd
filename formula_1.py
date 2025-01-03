@@ -56,7 +56,7 @@ def formula_1():
     :return:
     """
     while True:
-        p, si, pontuacao, pilotos, pontos, k = [], [], 0, [], [], 0
+        p, si, pontuacao, pilotos, pontos, k, n = [], [], 0, [], [], 0, 0
         g, piloto = map(int, input().split(" "))
         for i in range(piloto):
             pilotos.append(0)
@@ -80,9 +80,11 @@ def formula_1():
                 for j in range(0, len(si[i])):
                     for k in range(0, len(p)):
                         n = p[k][j] - 1
-                        pilotos[k] += si[i][n]
-                pontos.append(pilotos)
-                print(pontos)
+                        pontos = si[i][n]
+                        idx = si[i].index(pontos)
+                        print(idx, n)
+                        pilotos[idx] += pontos
+                print(pilotos)
                 maximo = max(pilotos)
                 for j in range(0, len(pilotos)):
                     if pilotos[j] == maximo:
