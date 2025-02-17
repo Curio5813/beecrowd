@@ -37,28 +37,48 @@ def torre_de_hanoi_novamente():
     :return:
     """
     t = int(input())
-    q_perfeito, somas, bolas, a = [], 0, 0, 1
+    lista, q_perfeito, somas, bolas, idas, a, b = [], [], 0, 0, 0, 1, 0
     for i in range(t):
         n = int(input())
-        while len(q_perfeito) < 4:
-            # print(a)
-            # sleep(1)
-            somas += a
+        for j in range(n):
+            for k in range(n):
+                lista.append(0)
+                break
+            q_perfeito.append(lista)
+            lista = []
+        while a <= 12:
+            q_perfeito[b].append(a)
             bolas += 1
             a += 1
-            while sqrt(somas) == int(sqrt(somas)):
-                somas += a
-                if sqrt(somas) != int(sqrt(somas)):
-                    somas -= a
-                    q_perfeito.append(somas)
-                    q_perfeito.append(a)
-                    break
-                bolas += 1
+            q_perfeito[b].append(a)
+            raiz_q = sqrt(sum(q_perfeito[b][-2:]))
+            raiz_int = int(sqrt(sum(q_perfeito[b][-2:])))
+            # print(q_perfeito, q_perfeito[b][-2:], raiz_q, raiz_int)
+            # sleep(4)
+            if raiz_q != raiz_int and b < n:
+                raiz_q = sqrt(sum(q_perfeito[b][-2:]))
+                raiz_int = int(sqrt(sum(q_perfeito[b][-2:])))
+                q_perfeito[b].pop()
+                b += 1
+                q_perfeito[b].append(a)
+                b = 0
                 a += 1
-                # print(a)
-                # sleep(1)
-            print(q_perfeito)
-        print(bolas)
+                q_perfeito[b].append(a)
+                b += 1
+                while raiz_q != raiz_int and b < n:
+                    b += 1
+                    if b >= n:
+                        b = 0
+                    a += 1
+                    q_perfeito[b].append(a)
+                    while raiz_q == raiz_int:
+                        raiz_q = sqrt(sum(q_perfeito[b][-2:]))
+                        raiz_int = int(sqrt(sum(q_perfeito[b][-2:])))
+                        q_perfeito[b].append(a)
+                        a += 1
+                    print(q_perfeito, b)
+                    sleep(3)
+        print(q_perfeito)
 
 
 torre_de_hanoi_novamente()
