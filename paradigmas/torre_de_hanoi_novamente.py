@@ -37,8 +37,8 @@ def torre_de_hanoi_novamente():
     :return:
     """
     t = int(input())
-    lista, q_perfeito, bola, idx = [], [], 1, 0
     for i in range(t):
+        lista, q_perfeito = [], []
         n = int(input())
         for j in range(n):
             for k in range(n):
@@ -46,53 +46,65 @@ def torre_de_hanoi_novamente():
                 break
             q_perfeito.append(lista)
             lista = []
-        while bola < 12:
+        bola, idx, idx2, vezes, passos, q, flag = 1, 0, 0, 0, 0, 0, 0
+        while passos < 2:
             if bola == 1:
-                print("ok0")
+                # print("ok0")
                 q_perfeito[idx].append(bola)
                 bola += 1
                 q_perfeito[idx].append(bola)
             raiz_q = sqrt(sum(q_perfeito[idx][-2:]))
             raiz_int = int(sqrt(sum(q_perfeito[idx][-2:])))
-            print(q_perfeito, idx, raiz_q, raiz_int)
-            sleep(3)
+            # print(q_perfeito, idx, raiz_q, raiz_int)
+            # sleep(3)
             while raiz_q != raiz_int:
-                print("ok1")
+                # print("ok1")
                 q_perfeito[idx].pop()
                 idx += 1
-                q_perfeito[idx].append(bola)
-                bola += 1
-                idx = 0
-                print(q_perfeito, idx, raiz_q, raiz_int)
-                print(q_perfeito[idx][-2:])
-                sleep(3)
+                if idx >= n:
+                    q_perfeito[idx].append(bola)
+                    bola += 1
+                    idx = 0
+                else:
+                    q_perfeito[idx].append(bola)
+                    bola += 1
+                    idx = 0
+                # print(q_perfeito, idx, raiz_q, raiz_int)
+                # print(q_perfeito[idx][-2:])
+                # sleep(3)
                 raiz_q = sqrt(sum(q_perfeito[idx][-2:]))
                 raiz_int = int(sqrt(sum(q_perfeito[idx][-2:])))
             while raiz_q == raiz_int:
-                print("ok2")
+                # print("ok2")
                 q_perfeito[idx].append(bola)
                 bola += 1
-                print(q_perfeito, idx, raiz_q, raiz_int)
-                print(q_perfeito[idx][-2:])
-                sleep(3)
+                # print(q_perfeito, idx, raiz_q, raiz_int)
+                # print(q_perfeito[idx][-2:])
+                # sleep(3)
                 raiz_q = sqrt(sum(q_perfeito[idx][-2:]))
                 raiz_int = int(sqrt(sum(q_perfeito[idx][-2:])))
                 if raiz_q != raiz_int:
                     bola -= 1
                 while raiz_q != raiz_int:
-                    print("ok3")
+                    # print("ok3")
                     q_perfeito[idx].pop()
                     idx += 1
-                    q_perfeito[idx].append(bola)
-                    print(q_perfeito, idx, raiz_q, raiz_int)
-                    print(q_perfeito[idx][-2:])
-                    sleep(3)
+                    if idx >= n:
+                        idx = 0
+                        q_perfeito[idx].append(bola)
+                    else:
+                        q_perfeito[idx].append(bola)
+                    # print(q_perfeito, idx, raiz_q, raiz_int)
+                    # print(q_perfeito[idx][-2:])
+                    # sleep(3)
                     raiz_q = sqrt(sum(q_perfeito[idx][-2:]))
                     raiz_int = int(sqrt(sum(q_perfeito[idx][-2:])))
                     if raiz_q == raiz_int:
                         bola += 1
                         break
-        print(q_perfeito)
+                    print(q_perfeito)
+                    sleep(3)
+        print(bola)
 
 
 torre_de_hanoi_novamente()
