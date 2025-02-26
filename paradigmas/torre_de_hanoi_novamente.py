@@ -109,9 +109,7 @@ def torre_de_hanoi_novamente():
                                 q_perfeito[idx].append(bola)
                                 vezes += 1
                                 if vezes >= 5000 and q_perfeito[idx][-2] == 0:
-                                    idx += 1
-                                    if idx == 0:
-                                        idx = 0
+                                    idx = 0
                                     vezes = 0
                                     flag = 1
                                     passos = 0
@@ -120,9 +118,7 @@ def torre_de_hanoi_novamente():
                                 q_perfeito[idx].append(bola)
                                 vezes += 1
                                 if vezes >= 5000 and q_perfeito[idx][-2] == 0:
-                                    idx += 1
-                                    if idx >= n:
-                                        idx = 0
+                                    idx = 0
                                     vezes = 0
                                     flag = 1
                                     passos = 0
