@@ -66,6 +66,8 @@ def obras_da_china():
             if i == 0:
                 total1 += func[i] * custo[0] + func[i] * custo[1] + func[i] * custo[2]
             if i > 0:
+                if func[i - 1] == func[i]:
+                    total1 += func[i] * custo[2]
                 if func[i - 1] > func[i]:
                     manter = func[i - 1] - func[i]
                     total1 += (func[i] + manter) * custo[2] + manter * custo[3]
@@ -76,6 +78,8 @@ def obras_da_china():
             if i == 0:
                 total2 += func[i] * custo[0] + func[i] * custo[1] + func[i] * custo[2]
             if i > 0:
+                if func[i - 1] == func[i]:
+                    total1 += func[i] * custo[2]
                 if func[i - 1] > func[i]:
                     demissao = func[i - 1] - func[i]
                     total2 += demissao * custo[1] + func[i] * custo[2]
