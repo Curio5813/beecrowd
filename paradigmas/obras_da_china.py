@@ -64,7 +64,7 @@ def obras_da_china():
         total1, total2, demissao, admissao = 0, 0, 0, 0
         for i in range(0, len(func)):
             if i == 0:
-                total1 += func[i] * custo[0] + func[i] * custo[1] + func[i] * custo[2]
+                total1 += func[i] * custo[0] + func[i] * custo[2]
             if i > 0:
                 if func[i - 1] == func[i]:
                     total1 += func[i] * custo[2]
@@ -76,7 +76,7 @@ def obras_da_china():
                     total1 += admissao * custo[0] + func[i] * custo[2]
         for i in range(0, len(func)):
             if i == 0:
-                total2 += func[i] * custo[0] + func[i] * custo[1] + func[i] * custo[2]
+                total2 += func[i] * custo[0] + func[i] * custo[2]
             if i > 0:
                 if func[i - 1] == func[i]:
                     total1 += func[i] * custo[2]
@@ -92,6 +92,7 @@ def obras_da_china():
             print(total1)
         elif total2 <= total1:
             print(total2)
+        print("")
 
 
 obras_da_china()
