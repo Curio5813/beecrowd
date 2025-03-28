@@ -53,7 +53,7 @@ def torneios_em_sequencia():
             if n == 2:
                 if torneios[0] == torneios[1]:
                     print("Try again later, Denis...")
-            if n >= 3:
+            if n >= 3 and m > 3:
                 if torneios[0] == torneios[1] or torneios[0] == torneios[2] or torneios[0] == torneios[1] + torneios[2]:
                     print("Try again later, Denis...")
                     flag = 1
