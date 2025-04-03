@@ -50,7 +50,7 @@ def o_iogurte_divino():
             for i in range(t):
                 n, x = map(int, input().split(" "))
                 (iogurtes, gostosura, volume, gostosuras, volumes,
-                 garrafa, valor, maiores) = [], [], [], [], [], 0, 0, []
+                 valor, maiores) = [], [], [], [], [], 0, []
                 for j in range(n):
                     iogurte1 = list(map(int, input().split(" ")))
                     iogurtes.extend(iogurte1)
