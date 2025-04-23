@@ -28,12 +28,9 @@ def tapetes():
     """
     entrada = list(map(int, input().split(" ")))
     l, n = entrada[0], entrada[1]
-    tapete, areas = 0, 0
-    for i in range(n):
-        tapete += 1
-        areas += 1
-        if tapete == n - 1:
-            break
+    areas = 0
+    tapete = n - 1
+    areas += tapete
     areas += (l - tapete) ** 2
     print(areas)
 
