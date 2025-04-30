@@ -15,23 +15,36 @@ def consulta_e_alteracao():
     tipo dois imprima o MDC de todas as posições do vetor que estão no intervalo AB
     :return:
     """
-    n, q = map(int, input().split(" "))
-    v = list(map(int, input().split(" ")))
-    for i in range(q):
-        soma, somas, mdc = 0, [], 0
-        dados = list(map(int, input().split(" ")))
-        while len(dados) != 3:
-            dados = list(map(int, input().split(" ")))
-        if dados[0] == dados[1]:
-            soma = dados[0] + dados[2]
-            mdc = gcd(v[dados[0] - 1], v[dados[0] - 1])
-        for k in range(dados[0] - 1, dados[1]):
-            soma += v[k] + dados[2]
-            somas.append(soma)
-            if len(somas) >= 2:
-                mdc = gcd(somas[0], somas[1])
-                somas = []
-        print(mdc)
+    while True:
+        try:
+            entrada1 = input().strip().split(" ")
+            n, q = int(entrada1[0]), int(entrada1[1])
+            entrada2 = input().strip().split(" ")
+            v = []
+            for i in range(0, len(entrada2)):
+                v.append(int(entrada2[i]))
+            for i in range(q):
+                mdc, dados, flag = 0, [], 0
+                entrada3 = input().strip().split(" ")
+                for j in range(0, len(entrada3)):
+                    dados.append(int(entrada3[j]))
+                for j in range(0, len(dados)):
+                    if dados[0] == 1:
+                        for p in range(dados[1] - 1, dados[2]):
+                            v[p] += dados[3]
+                        # print(v)
+                        break
+                    if dados[0] == 2:
+                        # print(v)
+                        res = gcd(v[dados[1] - 1], v[dados[1]])
+                        for p in range(dados[1], dados[2]):
+                            mdc = gcd(res, v[p])
+                            res = mdc
+                        print(mdc)
+                        break
+        except EOFError:
+            break
 
 
 consulta_e_alteracao()
+
