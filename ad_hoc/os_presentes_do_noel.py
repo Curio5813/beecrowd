@@ -45,18 +45,18 @@ def os_presentes_do_noel():
     presentes, bonus = 0, 1
     contagem = Counter(acoes_crianca)
 
-    for i, (acoes, qtd) in enumerate(sorted(contagem.items()))    :
+    for i, (acoes, iguais) in enumerate(sorted(contagem.items()))    :
         if i == 0:
             if acoes == 1:
                 presentes += 1
             else:
-                presentes += qtd
+                presentes += iguais
             bonus += 1
         else:
             if acoes == 1:
                 presentes += bonus
             else:
-                presentes += qtd * bonus
+                presentes += iguais * bonus
             bonus += 1
     print(presentes)
 
