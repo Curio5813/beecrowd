@@ -1,4 +1,4 @@
-from copy import deepcopy
+from collections import Counter
 
 
 def os_presentes_do_noel():
@@ -42,37 +42,22 @@ def os_presentes_do_noel():
     """
     n = int(input())
     acoes_crianca = list(map(int, input().strip().split(" ")))
-    temp, pares, presentes, bonus = [], [], 0, 1
-    acoes_crianca.sort()
-    for i in range(0, len(acoes_crianca)):
+    presentes, bonus = 0, 1
+    contagem = Counter(acoes_crianca)
+
+    for i, (acoes, qtd) in enumerate(sorted(contagem.items()))    :
         if i == 0:
-            temp.append(acoes_crianca[i])
-            temp.append(acoes_crianca.count(acoes_crianca[i]))
-            pares.append(temp)
-        if i > 0:
-            temp.append(acoes_crianca[i])
-            temp.append(acoes_crianca.count(acoes_crianca[i]))
-            if temp not in pares:
-                pares.append(temp)
-        temp = []
-    for i in range(0, len(pares)):
-        for j in range(0, len(pares[i])):
-            if i ==0 and pares[i][1] == 1:
+            if acoes == 1:
                 presentes += 1
-                bonus += 1
-                break
-            elif i == 0 and pares[i][1] > 1:
-                presentes += pares[i][1]
-                bonus += 1
-                break
-            elif i > 0 and pares[i][1] > 1:
-                presentes += pares[i][1] * bonus
-                bonus += 1
-                break
-            elif i > 0 and pares[i][1] == 1:
+            else:
+                presentes += qtd
+            bonus += 1
+        else:
+            if acoes == 1:
                 presentes += bonus
-                bonus += 1
-                break
+            else:
+                presentes += qtd * bonus
+            bonus += 1
     print(presentes)
 
 
