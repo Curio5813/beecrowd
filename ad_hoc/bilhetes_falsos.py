@@ -7,7 +7,7 @@ def bilhetes_falsos():
     lida para a audiência. O evento foi um sucesso – mais pessoas mostraram
     interesse em sua poesia do que você esperava – porém alguns de seus críticos
     disseram que tamanho público esteve presente graças à comida, e não graças
-     a sua poesia.
+    a sua poesia.
 
     Independente do motivo, no dia seguinte você descobriu o motivo pelo qual o
     salão esteve tão cheio: o diretor da escola lhe confidenciou que diversos dos
