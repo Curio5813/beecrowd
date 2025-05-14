@@ -54,21 +54,16 @@ def outra_crise():
     n, t = entrada[0], entrada[1]
     while n != 0 and t != 0:
         workers = list(map(int, input().strip().split(" ")))
-        workers.sort()
-        temp, worker = [], 0
-        for i in range(0, len(workers)):
-            workers[i] += 1
-        # print(workers)
-        for i in range(0, len(workers)):
-            if workers[i] not in temp:
-                temp.append(workers[i])
-                if workers.count(workers[i]) == 1:
-                    worker += 1
-        if worker == 0:
-            quorum = ceil(len(workers) * (t/100))
+        worker = 0
+        if workers.count(0) == len(workers):
+            quorum = round(len(workers) * (t/100))
             print(quorum)
         else:
-            quorum = floor(worker * (t / 100))
+            for i in range(0, len(workers)):
+                if i not in workers :
+                    print(i)
+                    worker += 1
+            quorum = round(worker * (t/100))
             print(quorum)
         entrada = list(map(int, input().strip().split(" ")))
         n, t = entrada[0], entrada[1]
