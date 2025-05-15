@@ -1,5 +1,6 @@
 from math import ceil, floor
 from copy import deepcopy
+from traceback import print_tb
 
 
 def outra_crise():
@@ -57,18 +58,19 @@ def outra_crise():
     while n != 0 and t != 0:
         workers = list(map(int, input().strip().split(" ")))
         worker = 0
-        if workers.count(0) == len(workers):
-            quorum = round(len(workers) * (t/100))
+        for i in range(0, len(workers)):
+            workers[i] += 1
+        if workers.count(1) == len(workers):
+            worker = len(workers)
+            quorum = round(worker * (t/100))
             print(quorum)
         else:
             for i in range(0, len(workers)):
-                if i >= len(workers) - 1:
-                    break
-                if workers[i] == 0:
-                    workers.pop(i)
-            for i in range(0, len(workers)):
                 if i + 1 not in workers:
+                    print(i + 1, end=" ")
                     worker += 1
+            print()
+            # print(worker)
             quorum = round(worker * (t/100))
             print(quorum)
         entrada = list(map(int, input().strip().split(" ")))
@@ -85,6 +87,8 @@ outra_crise()
 0 0 0
 14 60
 0 0 1 1 2 2 2 5 7 5 7 5 7 5
+7 68
+0 0 1 1 2 2 3
 60 37
 0 1 2 3 3 3 6 2 2 9 10 9 9 13 1 1 16 17 18 17 17 21 16 16 24 25 24 24 28 0 0 31 32 33 34 33 33 37 32 32 40 41 40 40 44 31 31 47 48 49 48 48 52 47 47 55 56 55 55 59
 1035 70
