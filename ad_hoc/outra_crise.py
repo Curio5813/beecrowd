@@ -56,7 +56,6 @@ def outra_crise():
     n, t = entrada[0], entrada[1]
     while n != 0 and t != 0:
         workers = list(map(int, input().strip().split(" ")))
-        workers.sort()
         worker = 0
         if workers.count(0) == len(workers):
             quorum = round(len(workers) * (t/100))
