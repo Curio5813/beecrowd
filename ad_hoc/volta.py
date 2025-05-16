@@ -1,5 +1,6 @@
 from math import ceil
 
+
 def volta():
     """
     No automobilismo é bastante comum que o líder de uma prova, em determinado
