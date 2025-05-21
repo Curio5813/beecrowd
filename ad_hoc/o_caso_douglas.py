@@ -1,3 +1,6 @@
+from math import sqrt
+
+
 def o_caso_douglas():
     """
     No bairro do Bronx, existe um prolífico ladrão de carros, conhecido pela
@@ -25,17 +28,16 @@ def o_caso_douglas():
     n = int(input())
     for i in range(n):
         numero = int(input())
-        # print(numero)
+        numero += 1
         if numero % 7 != 0:
             print("No")
-        elif numero % 7 == 0:
+        elif numero % 7 == 0 and numero % 2 == 1:
             numero += 2
-            # print(numero)
             for j in range(2, numero + 1):
                 if numero % j == 0 and j != numero:
                     print("No")
                     break
-                if numero % j == 0 and j == numero:
+                elif numero % j == 0 and j == numero:
                     print("Yes")
 
 
