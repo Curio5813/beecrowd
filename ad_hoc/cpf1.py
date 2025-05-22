@@ -40,12 +40,16 @@ def cpf1():
     while True:
         try:
             cpf = input()
-            digitos, flag = [], 0
+            digitos = []
             for i in range(0, len(cpf)):
                 if cpf[i] in "1234567890":
                     digitos.append(int(cpf[i]))
-            if sum(digitos) % 11 == 0:
-                soma1, soma2 = 0, 0
+            # print(digitos)
+            # print(sum(digitos))
+            if sum(digitos) % 11 == 0 and sum(digitos) >= 11 or sum(digitos) == 0:
+                print("CPF valido")
+            else:
+                soma1, soma2, flag = 0, 0, 0
                 for j in range(0, len(digitos) - 2):
                     # print(j + 1)
                     soma1 += digitos[j] * (j + 1)
@@ -58,10 +62,10 @@ def cpf1():
                 # print(soma2)
                 if soma2 % 11 == 10 and digitos[10] == 0 or soma2 % 11 == digitos[10]:
                     flag = 1
-            if flag == 1:
-                print("CPF valido")
-            else:
-                print("CPF invalido")
+                if flag == 1:
+                    print("CPF valido")
+                else:
+                    print("CPF invalido")
             cont += 1
         except EOFError:
             break
