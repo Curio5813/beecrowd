@@ -36,37 +36,42 @@ def cpf1():
     Se o CPF informado for válido, escreva "CPF valido". Caso contrário, escreva "CPF invalido".
     :return:
     """
-    cont = 0
     while True:
         try:
             cpf = input()
-            digitos = []
+            if cpf == "":
+                break
+            digitos, flag, flag1, flag2 = [], 0, 0, 0
             for i in range(0, len(cpf)):
                 if cpf[i] in "1234567890":
                     digitos.append(int(cpf[i]))
-            # print(digitos)
             # print(sum(digitos))
-            if sum(digitos) % 11 == 0 and sum(digitos) >= 11 or sum(digitos) == 0:
-                print("CPF valido")
-            else:
-                soma1, soma2, flag = 0, 0, 0
+            if sum(digitos) >= 11 and sum(digitos) % 11 == 0 or sum(digitos) == 0:
+                flag = 1
+            if flag == 1 or flag == 0:
+                soma1, soma2  = 0, 0
                 for j in range(0, len(digitos) - 2):
                     # print(j + 1)
                     soma1 += digitos[j] * (j + 1)
-                # print(soma1)
-                if soma1 % 11 == 10 and digitos[9] == 0 or soma1 % 11 == digitos[9]:
-                    flag = 1
+                # print(soma1, soma1 % 11, digitos[9])
+                if soma1 % 11 == digitos[9] or soma1 % 11 == 10 and digitos[9] == 0:
+                    flag1 = 1
+                else:
+                    flag1 = 0
+                k = 0
                 for j in range(len(digitos) - 2, 0, -1):
                     # print(j)
-                    soma2 += digitos[j] * j
-                # print(soma2)
-                if soma2 % 11 == 10 and digitos[10] == 0 or soma2 % 11 == digitos[10]:
-                    flag = 1
-                if flag == 1:
+                    soma2 += digitos[k] * j
+                    k += 1
+                # print(soma2, soma2 % 11, digitos[10])
+                if soma2 % 11 == digitos[10] or soma1 % 11 == 10 and digitos[10] == 0:
+                    flag2 = 1
+                else:
+                    flag2 = 0
+                if flag1 == 1 and flag2 == 1:
                     print("CPF valido")
                 else:
                     print("CPF invalido")
-            cont += 1
         except EOFError:
             break
 
