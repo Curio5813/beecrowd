@@ -66,5 +66,4 @@ def loteria_de_fim_de_semana():
         n, c, k = entrada[0], entrada[1], entrada[2]
 
 
-
 loteria_de_fim_de_semana()
