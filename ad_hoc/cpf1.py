@@ -48,7 +48,7 @@ def cpf1():
             # print(sum(digitos))
             if sum(digitos) >= 11 and sum(digitos) % 11 == 0 or sum(digitos) == 0:
                 flag = 1
-            if flag == 1 or flag == 0:
+            if flag == 1:
                 soma1, soma2  = 0, 0
                 for j in range(0, len(digitos) - 2):
                     # print(j + 1)
