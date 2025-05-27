@@ -102,6 +102,7 @@ def dado():
                     if j >= p:
                         j = 0
                     while jogadores[j][1] == [1]:
+                        jogadores[j][1] = [0]
                         j += 1
                         if j >= p:
                             j = 0
