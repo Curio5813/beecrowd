@@ -61,54 +61,61 @@ def dado():
     :return:
     """
     while True:
-        p, s = map(int, input().split(" "))
-        if p == 0 and s == 0:
-            break
-        soma, jogador = 0, []
-        j, parado = 0, []
-        t1, t2, t3 = map(int, input().split(" "))
-        print("Armadilhas:")
-        print(t1, t2, t3)
-        n = int(input())
-        for i in range(p):
-            jogador.append(0)
-        for i in range(n):
-            d1, d2 = map(int, input().split(" "))
-            soma = d1 + d2
-            jogador[j] += soma
-            if jogador[j] > s:
-                print("Ok0")
-                print(f"Jogador {j}:")
-                print(jogador[j])
-                print(j + 1)
-                break
-            if len(parado) > 0 and j == parado[0]:
-                print("Ok1")
-                parado.pop(0)
-                if j == p:
-                    j = 0
-                jogador[j] += soma
-                j += 1
-                print(f"Jogador {j}:")
-                print(jogador[j])
-            elif jogador[j] == t1 or jogador[j] == t2 or jogador[j] == t3:
-                print("Ok2")
-                if j in parado:
+        try:
+            entrada = list(map(int, input().strip().split(" ")))
+            if len(entrada) == 1:
+                s = 0
+                if p == 0 and s == 0:
+                    break
+            else:
+                p, s = entrada[0], entrada[1]
+                if p == 0 and s == 0:
+                    break
+            aramadilhas = list(map(int, input().strip().split(" ")))
+            # print(aramadilhas)
+            entrada2 = list(map(int, input().strip().split(" ")))
+            rodadas = entrada2[0]
+            temp, jogadores, j = [], [], 0
+            for i in range(p):
+                temp.append(0)
+                temp.append([0])
+                jogadores.append(temp)
+                temp = []
+            # print(jogadores)
+            # print(jogadores[0][1])
+            for i in range(rodadas):
+                dados = list(map(int, input().strip().split(" ")))
+                if len(dados) == 1:
+                    soma = dados[0]
+                else:
+                    soma = dados[0] + dados[1]
+                if jogadores[j][1] == [0]:
+                    jogadores[j][0] += soma
+                    if jogadores[j][0] in aramadilhas:
+                        jogadores[j][1] = [1]
+                    elif jogadores[j][0] > s:
+                        print(j + 1)
+                        break
+                elif jogadores[j][1] == [1]:
+                    jogadores[j][1] = [0]
                     j += 1
                     if j >= p:
                         j = 0
-                    while j in parado:
+                    while jogadores[j][1] == [1]:
                         j += 1
                         if j >= p:
                             j = 0
-                parado.append(j)
-                print(f"Jogador {j}:")
-                print(jogador[j])
-            else:
-                print(f"Jogador {j}:")
-                print(jogador[j])
-            print(parado)
-            print(jogador)
+                    else:
+                        jogadores[j][0] += soma
+                        if jogadores[j][0] > s:
+                            print(j + 1)
+                            break
+                # print(jogadores)
+                j += 1
+                if j > p - 1:
+                    j = 0
+        except EOFError:
+            break
 
 
 dado()
