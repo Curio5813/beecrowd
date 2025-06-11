@@ -1,5 +1,4 @@
 from math import ceil, floor
-from collections import Counter
 
 
 def outra_crise():
@@ -56,23 +55,19 @@ def outra_crise():
     n, t = entrada[0], entrada[1]
     while n != 0 and t != 0:
         workers = list(map(int, input().strip().split(" ")))
-        workers = dict(Counter(sorted(workers)))
+        votos = []
+        for i in range(n):
+            votos.append(0)
         quorum = ceil(n * (t/100))
-        print(workers)
-        worker, qtd, cont = 0, 0, 0
-        for qtd in workers.values():
-            worker += qtd
-            cont += 1
-            if worker > quorum:
-                while worker > quorum:
-                    worker -= 1
-                else:
-                    cont += 1
-                    break
-        if cont == 1:
-            print(worker)
-        else:
-            print(cont)
+        print(quorum)
+        cont = 0
+        for i in range(0, len(workers)):
+            if workers[i] == 0:
+                votos[0] += 1
+            else:
+                votos[workers[i]] += 1
+        print(votos)
+        print(cont)
         entrada = list(map(int, input().strip().split(" ")))
         n, t = entrada[0], entrada[1]
 
