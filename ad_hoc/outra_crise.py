@@ -1,6 +1,5 @@
 from math import ceil, floor
-from copy import deepcopy
-from traceback import print_tb
+from collections import Counter
 
 
 def outra_crise():
@@ -57,59 +56,25 @@ def outra_crise():
     n, t = entrada[0], entrada[1]
     while n != 0 and t != 0:
         workers = list(map(int, input().strip().split(" ")))
-        temp, worker, chief = [], 0, 0
-        for i in range(0, len(workers)):
-            workers[i] += 1
-        if workers.count(workers[0]) == len(workers):
-            quorum = round(len(workers) * (t/100))
-            print(quorum)
+        workers = dict(Counter(sorted(workers)))
+        quorum = ceil(n * (t/100))
+        print(workers)
+        worker, qtd, cont = 0, 0, 0
+        for qtd in workers.values():
+            worker += qtd
+            cont += 1
+            if worker > quorum:
+                while worker > quorum:
+                    worker -= 1
+                else:
+                    cont += 1
+                    break
+        if cont == 1:
+            print(worker)
         else:
-            for i in range(0, len(workers)):
-                if i + 1 not in workers:
-                    # print(i + 1, end=" ")
-                    worker += 1
-                    if i < len(workers) - 1 and workers[i] not in temp:
-                        temp.append(workers[i])
-            chief = n - worker - len(temp)
-            peticoes = chief
-            quorum = ceil(peticoes * (t/100))
-            # print(temp, chief)
-            print(quorum)
+            print(cont)
         entrada = list(map(int, input().strip().split(" ")))
         n, t = entrada[0], entrada[1]
 
 
 outra_crise()
-
-
-"""
-3 100
-0 0 0
-3 50
-0 0 0
-14 60
-0 0 1 1 2 2 2 5 7 5 7 5 7 5
-1 73
-0
-4 50
-0 0 1 1
-3 86
-0 1 1
-13 85
-0 0 0 0 0 3 3 4 2 4 5 4 1
-1 89
-0
-11 86
-0 0 0 2 1 0 0 0 4 6 5
-13 90
-0 0 2 2 3 1 2 4 0 5 7 2 9
-13 90
-0 0 0 0 1 2 0 2 4 5 5 3 2
-13 45
-0 0 1 1 2 2 3 3 4 4 5 5 6
-7 68
-0 0 1 1 2 2 3
-1 81
-0
-0 0
-"""
