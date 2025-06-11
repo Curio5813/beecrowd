@@ -59,15 +59,14 @@ def outra_crise():
         for i in range(n):
             votos.append(0)
         quorum = ceil(n * (t/100))
-        print(quorum)
-        cont = 0
         for i in range(0, len(workers)):
             if workers[i] == 0:
                 votos[0] += 1
             else:
                 votos[workers[i]] += 1
+        contagem, worker = 0, 0
         print(votos)
-        print(cont)
+        print(contagem, quorum)
         entrada = list(map(int, input().strip().split(" ")))
         n, t = entrada[0], entrada[1]
 
