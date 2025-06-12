@@ -56,7 +56,7 @@ def o_castelo_de_neve_de_sansa():
         if i == (k - 1) and castelo[i] > castelo[i + 1]:
             print("Ok1", k - 1)
             flag = 1
-            k = k * cont
+            k += const
             print(k)
     if flag == 1:
         print("beautiful")
