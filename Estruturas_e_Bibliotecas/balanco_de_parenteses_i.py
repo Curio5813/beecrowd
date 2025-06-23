@@ -48,11 +48,3 @@ def balanco_de_parenteses_i():
 
 
 balanco_de_parenteses_i()
-
-"""
-a+(b*c)-2-a 
-(a+b*(2-c)-2+a)*2 
-(a*b-(2+c) 
-2*(3-a))  
-)3+b*(2-c)( 
-"""
