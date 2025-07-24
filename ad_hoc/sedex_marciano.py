@@ -1,4 +1,4 @@
-from math import  sqrt, pi
+from math import sqrt, pi
 
 
 def sedex_marciano():
