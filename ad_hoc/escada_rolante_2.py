@@ -38,7 +38,7 @@ def escada_rolante_2():
     if tempo_total >= pessoas * 10 + 10:
         tempo1 = pessoas * 10
     tempo2 = tempo_total
-    for i in range(1, len(instantes) - 1):
+    for i in range(1, len(instantes)):
         if instantes[i] - instantes[i - 1] >= 10:
             tempo2 += 10
             tempo2 -= instantes[i] - instantes[i - 1]
