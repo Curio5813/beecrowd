@@ -56,11 +56,3 @@ def maior_numero_de_um_algarismo():
 
 
 maior_numero_de_um_algarismo()
-
-"""
-111 2
-22 55
-123 222
-12 4
-0 0
-"""
