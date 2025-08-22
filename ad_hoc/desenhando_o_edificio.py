@@ -58,11 +58,11 @@ def desenhando_o_edificio():
                         if j == len(andares_vermelhos):
                             break
                     elif i > 0 and andares_azuis[i] < andares_vermelhos[j]:
-                        numero_andares += 2
+                        numero_andares += 1
                         j += 1
                         if j == len(andares_vermelhos):
-                            break
-                    elif i == len(andares_azuis) - 1 and andares_azuis[i] > andares_vermelhos[j]:
+                            j -= 1
+                    elif i == len(andares_azuis) - 1 and andares_azuis[i] < andares_vermelhos[j]:
                         numero_andares += 2
                         break
             elif maximo in andares_azuis and len(andares_azuis) < len(andares_vermelhos):
