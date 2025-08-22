@@ -94,11 +94,10 @@ def desenhando_o_edificio():
                         if j == len(andares_azuis):
                             break
                     elif i > 0 and andares_vermelhos[i] < andares_azuis[j]:
-                        numero_andares += 2
+                        numero_andares += 1
                         j += 1
                         if j == len(andares_azuis):
-                            numero_andares += 1
-                            break
+                            numero_andares -= 1
                     elif i == len(andares_vermelhos) - 1 and andares_vermelhos[i] > andares_azuis[j]:
                         numero_andares += 2
                         break
