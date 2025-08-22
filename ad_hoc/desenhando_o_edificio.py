@@ -44,6 +44,9 @@ def desenhando_o_edificio():
         andares_altura.sort()
         andares_altura.reverse()
         maximo = max(andares_altura)
+        print(andares_vermelhos)
+        print(andares_azuis)
+        print(andares_altura)
         if len(andares_azuis) == 0 or len(andares_vermelhos) == 0:
             print(1)
         else:
@@ -106,14 +109,12 @@ def desenhando_o_edificio():
                         j += 1
                         if j == len(andares_vermelhos):
                             break
-                    elif i > 0 and andares_azuis[i] > andares_vermelhos[j]:
+                    elif i > 0 and andares_azuis[i] < andares_vermelhos[j]:
                         numero_andares += 1
                         j += 1
-                        if j == len(andares_vermelhos) and andares_azuis[i + 1] < andares_vermelhos[j - 1]:
-                            numero_andares += 1
-                            break
-                        else:
-                            break
+                    elif i == len(andares_azuis) - 1 and andares_azuis[i] > andares_vermelhos[j]:
+                        numero_andares += 2
+                        break
             elif maximo in andares_vermelhos and len(andares_vermelhos) == len(andares_azuis):
                 for i in range(0, len(andares_vermelhos)):
                     if i == 0:
