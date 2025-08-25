@@ -57,7 +57,6 @@ def supermercado2():
     m, n = entrada[0], entrada[1]
     while m != 0 and n != 0:
         lista_compra = list(map(int, input().strip().split()))
-        lista_compra.sort()
         corredor_supermercado, preco, maior, montante, montantes, usados = [], [], 0, 0, [], []
         for i in range(n):
             supermercado = list(input().strip().split())
