@@ -57,31 +57,59 @@ def supermercado2():
     m, n = entrada[0], entrada[1]
     while m != 0 and n != 0:
         lista_compra = list(map(int, input().strip().split()))
-        corredor_supermercado, preco, maior, montante, montantes, usados = [], [], 0, 0, [], []
+        corredor_supermercado, preco, maior, montante, montantes, cont = [], [], 0, 0, [], 0
         for i in range(n):
             supermercado = list(input().strip().split())
             corredor_supermercado.append(int(supermercado[0]))
             preco.append(float(supermercado[1]))
         for i in range(n):
-            j = 0
-            for k in range(i, n):
+            j, usados = 0, []
+            for k in range(0, n):
                 if corredor_supermercado[k] == lista_compra[j]:
-                    if preco[k] < maior and lista_compra[j] == usados[-1]:
-                        montante -= maior
-                        maior = preco[k]
-                        montante += maior
-                        usados.append(lista_compra[j])
-                    else:
+                    if len(usados) == 0:
                         maior = preco[k]
                         montante += preco[k]
                         usados.append(lista_compra[j])
+                    elif preco[k] < maior and lista_compra[j] == usados[-1] and len(usados) >= 2:
+                        # print("Ok2")
+                        montante -= maior
+                        montante += preco[k]
+                        maior = preco[k]
+                        usados.append(lista_compra[j])
+                    elif preco[k] < maior and lista_compra[j] == usados[-1] and len(usados) == 1:
+                        # print("Ok1")
+                        montante += preco[k]
+                        maior = preco[k]
+                        usados.append(lista_compra[j])
+                    elif preco[k] > maior or len(usados) == 1:
+                        montante += preco[k]
+                        maior = preco[k]
+                        usados.append(lista_compra[j])
+                    elif preco[k] > maior and lista_compra[j] != usados[-1]:
+                        montante += preco[k]
+                        maior = preco[k]
+                        usados.append(lista_compra[j])
+                    print(f'{corredor_supermercado[k]} {lista_compra[j]} {maior} {preco[j]} {montante:.2f} {usados}')
+                    j += 1
+                    if j == len(lista_compra):
+                            j -= 1
+                    if lista_compra.count(usados[-1]) > usados.count(usados[-1]):
+                        j -= 1
+                    if cont >= len(lista_compra) and j < 1:
                         j += 1
+                        cont = 0
+                        if j == len(lista_compra):
+                            j -= 1
+                    elif cont >= len(lista_compra) and j >= 1:
+                        j += 1
+                        cont = 0
                         if j == len(lista_compra):
                             j -= 1
             if montante > 0 and j >= len(lista_compra) - 1 and list(set(usados)) == list(set(lista_compra)):
                 montantes.append(montante)
             montante = 0
             maior = 0
+            cont += 1
         if len(montantes) > 0:
             print(f'{min(montantes):.2f}')
         else:
@@ -104,4 +132,27 @@ supermercado2()
 2 10.00
 20 20.00
 20 10.00
+4 8
+1 1 2 20
+2 0.29
+1 0.30
+20 0.15
+1 1.00
+5 0.05
+2 10.00
+20 20.00
+20 10.00
+2 5
+1 2
+3 1.00
+4 1.00
+2 0.01
+1 1.00
+2 1.50
+2 3
+1 2
+2 0.05
+1 10.00
+1 3.00
+0 0
 """
