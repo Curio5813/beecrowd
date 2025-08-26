@@ -67,7 +67,6 @@ def supermercado2():
             cont += 1
             for k in range(n):
                 if corredor_supermercado[k] == lista_compra[j]:
-                    # print(f"{corredor_supermercado[k]} {lista_compra[j]} {preco[k]} {montante:.2f} {usados}")
                     if len(usados) == 0:
                         maior = preco[k]
                         montante += preco[k]
