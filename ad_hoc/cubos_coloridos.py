@@ -68,7 +68,7 @@ def cubos_coloridos():
                     if cubos[i][k][j] not in cubos[prox][0]:
                         print(cubos[i][k][j], cubos[prox][0])
                         igual = False
-                if not igual:
+                if igual:
                     flag = 0
             if flag == 1:
                 diferentes += 1
