@@ -58,15 +58,14 @@ def cubos_coloridos():
             temp = [opostos1, opostos2]
             cubos.append(temp)
         diferentes, flag = 0, 0
-        n_cubos = len(cubos)
         for i in range(len(cubos)):
-            prox = (i + 1) % n_cubos
+            prox = (i + 1) % 2
             flag = 1
             for k in range(len(cubos[prox])):
                 igual = True
                 for j in range(0, len(cubos[prox][k])):
-                    if cubos[i][k][j] not in cubos[prox][0]:
-                        print(cubos[i][k][j], cubos[prox][0])
+                    if cubos[i][k][j] not in cubos[prox][k]:
+                        print(cubos[i][k][j], cubos[prox][k])
                         igual = False
                 if igual:
                     flag = 0
