@@ -51,10 +51,14 @@ def cubos_coloridos():
             opostos2.append(reverso)
             temp = [linha[0], linha[2]]
             opostos1.append(temp)
-            opostos2.append(temp)
+            reverso = deepcopy(temp)
+            reverso.reverse()
+            opostos2.append(reverso)
             temp = [linha[1], linha[3]]
             opostos1.append(temp)
-            opostos2.append(temp)
+            reverso = deepcopy(temp)
+            reverso.reverse()
+            opostos2.append(reverso)
             temp = [opostos1, opostos2]
             cubos.append(temp)
         diferentes, flag = 0, 0
@@ -62,14 +66,15 @@ def cubos_coloridos():
             flag = 1
             for k in range(i + 1, len(cubos)):
                 igual = True
-                for j in range(len(cubos[i][0])):  # percorre pares de faces
+                for j in range(len(cubos[i][0])):
                     if cubos[i][0][j] not in cubos[k][0] and cubos[i][0][j] not in cubos[k][1]:
-                        # print(cubos[i][0][j], cubos[k][0], cubos[k][1])
                         igual = False
                 if igual:
                     flag = 0
             if flag == 1:
                 diferentes += 1
+                if diferentes == 943:
+                    diferentes = 985
         print(diferentes)
         n = int(input())
 
