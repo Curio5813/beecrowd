@@ -59,13 +59,13 @@ def cubos_coloridos():
             cubos.append(temp)
         diferentes, flag = 0, 0
         for i in range(len(cubos)):
-            prox = (i + 1) % 2
+            prox = (i + 1) % len(cubos)
             flag = 1
-            for k in range(len(cubos[prox])):
+            for k in range(i + 1, len(cubos)):
                 igual = True
-                for j in range(0, len(cubos[prox][k])):
-                    if cubos[i][k][j] not in cubos[prox][k]:
-                        print(cubos[i][k][j], cubos[prox][k])
+                for j in range(len(cubos[i][0])):  # percorre pares de faces
+                    if cubos[i][0][j] not in cubos[k][0] and cubos[i][0][j] not in cubos[k][1]:
+                        print(cubos[i][0][j], cubos[k][0], cubos[k][1])
                         igual = False
                 if igual:
                     flag = 0
