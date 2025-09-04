@@ -69,8 +69,10 @@ def cubos_coloridos():
                 for j in range(len(cubos[i][0])):
                     if cubos[i][0][j] not in cubos[k][0] and cubos[i][0][j] not in cubos[k][1]:
                         igual = False
+                        break
                 if igual:
                     flag = 0
+                    break
             if flag == 1:
                 diferentes += 1
                 if diferentes == 943:
