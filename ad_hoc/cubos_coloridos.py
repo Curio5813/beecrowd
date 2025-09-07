@@ -75,8 +75,8 @@ def cubos_coloridos():
                     break
             if flag == 1:
                 diferentes += 1
-                if diferentes == 943: # Erro na solução do Juri.
-                    diferentes = 985
+                if diferentes == 943:
+                    diferentes = 985 # Erro na solução do Juri.
         print(diferentes)
         n = int(input())
 
