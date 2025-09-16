@@ -43,21 +43,28 @@ def simulador():
     soma.
     :return:
     """
-    instrucoes, cont = [], 0
+    instrucoes = []
     while True:
         try:
-            instrucao = list(input().strip().split(" "))
-            instrucoes.append(instrucao)
+            linha = input().strip()
         except EOFError:
             break
-    print(instrucoes)
+        if linha == "":
+            break
+        instrucoes.append(linha.split())
+    memoria = {}
+    for instr in instrucoes:
+        var = instr[0]
+        if len(instr) == 3:
+            valor = int(instr[2])
+        else:
+            x = instr[2]
+            y = instr[4]
+            valor = (memoria[x] if x in memoria else int(x)) + \
+                    (memoria[y] if y in memoria else int(y))
+        memoria[var] = valor
+    ultima_var = instrucoes[-1][0]
+    print(memoria[ultima_var])
 
 
 simulador()
-
-"""
-a := 2
-b := 1
-c := a + b
-d := a + b
-"""
