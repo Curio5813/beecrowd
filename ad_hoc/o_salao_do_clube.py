@@ -1,5 +1,4 @@
 from copy import deepcopy
-from http.client import responses
 
 
 def o_salao_do_clube():
@@ -66,11 +65,15 @@ def o_salao_do_clube():
                 invertidas.reverse()
                 for i in range(0, len(invertidas)):
                     for j in range(idx, len(tabuas)):
-                        if i == 0 and invertidas[i] == comprimento1:
+                        if i == 0 and invertidas[i] == comprimento2:
                             numero_tabuas += 1
                             soma += invertidas[i]
+                            if soma == area_salao:
+                                respostas.append(numero_tabuas)
+                                caso1 = True
+                                break
                             break
-                        elif i > 0 and invertidas[i] == comprimento1:
+                        elif invertidas[i] == comprimento1:
                             numero_tabuas += 1
                             soma += invertidas[i]
                             if soma == area_salao:
@@ -79,7 +82,7 @@ def o_salao_do_clube():
                                 break
                             idx = j + 1
                             break
-                        elif i > 0 and invertidas[i] + tabuas[j] == comprimento1:
+                        elif invertidas[i] + tabuas[j] == comprimento1:
                             numero_tabuas += 2
                             soma += invertidas[i] + tabuas[j]
                             if soma == area_salao:
@@ -94,15 +97,15 @@ def o_salao_do_clube():
                 numero_tabuas, soma, idx, caso1 = 0, 0, 0, False
                 for i in range(0, len(invertidas)):
                     for j in range(idx, len(tabuas)):
-                        # print(invertidas[i], tabuas[j], soma)
                         if i == 0 and invertidas[i] == comprimento2:
                             numero_tabuas += 1
                             soma += invertidas[i]
                             if soma == area_salao:
+                                respostas.append(numero_tabuas)
                                 caso1 = True
                                 break
                             break
-                        elif i > 0 and invertidas[i] == comprimento2:
+                        elif invertidas[i] == comprimento2:
                             numero_tabuas += 1
                             soma += invertidas[i]
                             if soma == area_salao:
@@ -111,7 +114,7 @@ def o_salao_do_clube():
                                 break
                             idx = j + 1
                             break
-                        elif i > 0 and invertidas[i] + tabuas[j] == comprimento2:
+                        elif invertidas[i] + tabuas[j] == comprimento2:
                             numero_tabuas += 2
                             soma += invertidas[i] + tabuas[j]
                             if soma == area_salao:
@@ -125,31 +128,9 @@ def o_salao_do_clube():
                     if caso1:
                         break
                 if caso1:
-                    print(respostas)
                     print(min(respostas))
                 if not caso1:
                     print("impossivel")
 
 
 o_salao_do_clube()
-
-
-"""
-4 5
-100
-10
-1 2 2 2 2 3 3 4 4 5
-5 4
-100
-7
-4 5 4 4 4 4 3
-4 5
-99
-4
-4 4 4 4
-3 2
-100
-7
-2 4 1 4 2 4 4
-0 0
-"""
