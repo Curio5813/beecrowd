@@ -49,88 +49,85 @@ def o_salao_do_clube():
     while comprimento1 != 0 and comprimento2 != 0:
         entrada = input().strip().split(" ")
         comprimento1, comprimento2 = int(entrada[0]), int(entrada[1])
-        area_salao = comprimento1 * comprimento2
+        area = comprimento1 * comprimento2 * 100
         largura = int(input().strip())
         qt_tabuas = int(input())
-        if (comprimento1 * comprimento2 * 100) % largura != 0:
+        if area % largura != 0:
             print("impossivel")
         else:
             numero_tabuas, soma, idx, caso1, respostas = 0, 0, 0, False, []
             tabuas = list(map(int, input().split(" ")))
-            if sum(tabuas) < area_salao:
-                print("impossivel")
-            else:
-                tabuas.sort()
-                invertidas = deepcopy(tabuas)
-                invertidas.reverse()
-                for i in range(0, len(invertidas)):
-                    for j in range(idx, len(tabuas)):
-                        if i == 0 and invertidas[i] == comprimento2:
-                            numero_tabuas += 1
-                            soma += invertidas[i]
-                            if soma == area_salao:
-                                respostas.append(numero_tabuas)
-                                caso1 = True
-                                break
+            tabuas.sort()
+            invertidas = deepcopy(tabuas)
+            invertidas.reverse()
+            for i in range(0, len(invertidas)):
+                for j in range(idx, len(tabuas)):
+                    if i == 0 and invertidas[i] == comprimento2:
+                        numero_tabuas += 1
+                        soma += invertidas[i]
+                        if soma * largura == area:
+                            respostas.append(numero_tabuas)
+                            caso1 = True
                             break
-                        elif invertidas[i] == comprimento1:
-                            numero_tabuas += 1
-                            soma += invertidas[i]
-                            if soma == area_salao:
-                                respostas.append(numero_tabuas)
-                                caso1 = True
-                                break
-                            idx = j + 1
-                            break
-                        elif invertidas[i] + tabuas[j] == comprimento1:
-                            numero_tabuas += 2
-                            soma += invertidas[i] + tabuas[j]
-                            if soma == area_salao:
-                                respostas.append(numero_tabuas)
-                                caso1 = True
-                                break
-                            idx = j + 1
-                        else:
-                            break
-                    if caso1:
                         break
-                numero_tabuas, soma, idx, caso1 = 0, 0, 0, False
-                for i in range(0, len(invertidas)):
-                    for j in range(idx, len(tabuas)):
-                        if i == 0 and invertidas[i] == comprimento2:
-                            numero_tabuas += 1
-                            soma += invertidas[i]
-                            if soma == area_salao:
-                                respostas.append(numero_tabuas)
-                                caso1 = True
-                                break
+                    elif invertidas[i] == comprimento1:
+                        numero_tabuas += 1
+                        soma += invertidas[i]
+                        if soma * largura == area:
+                            respostas.append(numero_tabuas)
+                            caso1 = True
                             break
-                        elif invertidas[i] == comprimento2:
-                            numero_tabuas += 1
-                            soma += invertidas[i]
-                            if soma == area_salao:
-                                respostas.append(numero_tabuas)
-                                caso1 = True
-                                break
-                            idx = j + 1
+                        idx = j + 1
+                        break
+                    elif invertidas[i] + tabuas[j] == comprimento1:
+                        numero_tabuas += 2
+                        soma += invertidas[i] + tabuas[j]
+                        if soma * largura == area:
+                            respostas.append(numero_tabuas)
+                            caso1 = True
                             break
-                        elif invertidas[i] + tabuas[j] == comprimento2:
-                            numero_tabuas += 2
-                            soma += invertidas[i] + tabuas[j]
-                            if soma == area_salao:
-                                respostas.append(numero_tabuas)
-                                caso1 = True
-                                break
-                            idx = j + 1
-                            break
-                        else:
-                            break
-                    if caso1:
+                        idx = j + 1
+                    else:
                         break
                 if caso1:
-                    print(min(respostas))
-                if not caso1:
-                    print("impossivel")
+                    break
+            numero_tabuas, soma, idx, caso1 = 0, 0, 0, False
+            for i in range(0, len(invertidas)):
+                for j in range(idx, len(tabuas)):
+                    if i == 0 and invertidas[i] == comprimento2:
+                        numero_tabuas += 1
+                        soma += invertidas[i]
+                        if soma * largura == area:
+                            respostas.append(numero_tabuas)
+                            caso1 = True
+                            break
+                        break
+                    elif invertidas[i] == comprimento2:
+                        numero_tabuas += 1
+                        soma += invertidas[i]
+                        if soma * largura == area:
+                            respostas.append(numero_tabuas)
+                            caso1 = True
+                            break
+                        idx = j + 1
+                        break
+                    elif invertidas[i] + tabuas[j] == comprimento2:
+                        numero_tabuas += 2
+                        soma += invertidas[i] + tabuas[j]
+                        if soma * largura == area:
+                            respostas.append(numero_tabuas)
+                            caso1 = True
+                            break
+                        idx = j + 1
+                        break
+                    else:
+                        break
+                if caso1:
+                    break
+            if caso1:
+                print(min(respostas))
+            if not caso1:
+                print("impossivel")
 
 
 o_salao_do_clube()
