@@ -44,16 +44,23 @@ def o_culpado():
         qual o aluno que terminou se entregando.
     :return:
     """
-    n = int(input().strip())
-    while n != 0:
-        alunos = list(map(int, input().strip().split(" ")))
-        s = int(input().strip())
-        alunos_x = alunos[s - 1:] + alunos[0:s -1]
-        for i in range(0, len(alunos_x)):
-            if alunos_x[i] == alunos[alunos.index(alunos_x[i])]:
-                print(alunos_x[i])
-                break
+    while True:
         n = int(input().strip())
+        if n == 0:
+            break
+        alunos = list(map(int, input().strip().split(" ")))
+        i = int(input().strip()) - 1
+        while i < len(alunos):
+            if i == len(alunos) - 1:
+                if alunos[i] == i + 1:
+                    print(alunos[i])
+                    break
+                else:
+                    i = alunos[i] - 1
+            if alunos[i] == i + 1:
+                print(alunos[i])
+                break
+            i = alunos[i] - 1
 
 
 o_culpado()
