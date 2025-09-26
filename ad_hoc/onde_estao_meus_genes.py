@@ -44,23 +44,26 @@ def onde_estao_meus_genes():
     das consultas.
     :return:
     """
-    caso_teste = 1
-    qtd_genes = int(input())
-    while qtd_genes != 0:
-        genes = [x for x in range(1, qtd_genes + 1)]
-        inversoes = int(input())
-        for k in range(inversoes):
-            i, j = map(int, input().split())
-            i -= 1
-            genes = genes[0:i] + list(reversed(genes[i:j])) + genes[j:]
-        buscas = int(input())
-        print(genes)
-        print(f"Genome {caso_teste}")
-        for i in range(buscas):
+    teste = 1
+    while True:
+        n = int(input())
+        if n == 0:
+            break
+        genes = [i for i in range(1, n + 1)]
+        numero_inversoes = int(input())
+        inversoes = []
+        for i in range(numero_inversoes):
+            inversao = list(map(int, input().split(" ")))
+            inversoes.append(inversao)
+        for i in range(0, len(inversoes)):
+            inversoes[i][0] -= 1
+            genes[inversoes[i][0]:inversoes[i][1]] = reversed(genes[inversoes[i][0]:inversoes[i][1]])
+        print(f"Genome {teste}")
+        query = int(input())
+        for i in range(query):
             busca = int(input())
             print(genes.index(busca) + 1)
-        caso_teste += 1
-        qtd_genes = int(input())
+        teste += 1
 
 
 onde_estao_meus_genes()
