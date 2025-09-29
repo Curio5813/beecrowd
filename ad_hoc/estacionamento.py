@@ -1,3 +1,6 @@
+from zipapp import create_archive
+
+
 def estacionamento():
     """
     Um estacionamento utiliza um terreno em que os veículos têm que
@@ -50,37 +53,19 @@ def estacionamento():
         try:
             dados = list(map(int, input().split(" ")))
             tamanho, eventos = dados[0], dados[1]
-            carros, cont = {}, 0
+            espaco, faturamento, carros = tamanho, 0, []
             for i in range(eventos):
                 evento = input().split(" ")
-                str_cont = str(cont)
-                evento[0] += str_cont
-                chave = evento[0]
-                if chave not in carros:
-                    carros[chave] = []
-                if len(evento) == 3:
-                    placa = evento[1]
-                    comprimento = evento[2]
-                    carros[evento[0]].append(placa)
-                    carros[evento[0]].append(int(comprimento))
-                if len(evento) == 2:
-                    placa = evento[1]
-                    comprimento = 0
-                    carros[evento[0]].append(placa)
-                    carros[evento[0]].append(int(comprimento))
-                cont += 1
-            faturamento, espaco = 0, tamanho
-            for chave, valor in carros.items():
-                if chave[0] == 'C' and valor[1] <= espaco:
+                carros.append(evento)
+                if evento[0] == 'C' and int(evento[2]) <= espaco:
+                    espaco -= int(evento[2])
                     faturamento += 10
-                    espaco -= valor[1]
-                elif chave[0] == 'S':
-                    placa_saida = valor[0]
-                    for c, v in carros.items():
-                        if v[0] == placa_saida and v[1] != 0:
-                            espaco += v[1]
+                elif evento[0] == 'S':
+                    for j in range(0, len(carros)):
+                        if carros[j][1] == evento[1] and carros[j][0] == 'C':
+                            espaco += int(carros[j][2])
+                            carros.remove(carros[j])
                             break
-                    espaco += valor[1]
             print(faturamento)
         except EOFError:
             break
