@@ -48,51 +48,39 @@ def estacionamento():
     """
     while True:
         try:
-            lista, situacao, ferro_velho, verdadeiro, cont, faturamento = [], [], [], 0, 0, 0
-            dados1 = list(map(int, input().split(" ")))
-            c, n = dados1[0], dados1[1]
-            tam = c
-            for i in range(n):
-                dados2 = input().split(" ")
-                if dados2[0] == "C":
-                    p_e, q = int(dados2[1]), int(dados2[2])
-                    print(tam)
-                    if tam >= q:
-                        cont += 1
-                        tam -= q
-                        lista.append("Normal")
-                        lista.append(p_e)
-                        lista.append(q)
-                        situacao.append(lista)
-                        lista = []
-                    elif tam < q:
-                        for j in range(0, len(ferro_velho)):
-                            if p_e == ferro_velho[j][1]:
-                                verdadeiro = 1
-                                break
-                        if verdadeiro == 0:
-                            lista.append("Ferro-Velho")
-                            lista.append(p_e)
-                            ferro_velho.append(lista)
-                            lista = []
-                if dados2[0] == "S":
-                    p_s = int(dados2[1])
-                    for j in range(0, len(situacao)):
-                        if situacao[j][1] == p_s:
-                            tam += situacao[j][2]
-                            situacao[j][1] = 0
-                            verdadeiro = 1
+            dados = list(map(int, input().split(" ")))
+            tamanho, eventos = dados[0], dados[1]
+            carros, cont = {}, 0
+            for i in range(eventos):
+                evento = input().split(" ")
+                str_cont = str(cont)
+                evento[0] += str_cont
+                chave = evento[0]
+                if chave not in carros:
+                    carros[chave] = []
+                if len(evento) == 3:
+                    placa = evento[1]
+                    comprimento = evento[2]
+                    carros[evento[0]].append(placa)
+                    carros[evento[0]].append(int(comprimento))
+                if len(evento) == 2:
+                    placa = evento[1]
+                    comprimento = 0
+                    carros[evento[0]].append(placa)
+                    carros[evento[0]].append(int(comprimento))
+                cont += 1
+            faturamento, espaco = 0, tamanho
+            for chave, valor in carros.items():
+                if chave[0] == 'C' and valor[1] <= espaco:
+                    faturamento += 10
+                    espaco -= valor[1]
+                elif chave[0] == 'S':
+                    placa_saida = valor[0]
+                    for c, v in carros.items():
+                        if v[0] == placa_saida and v[1] != 0:
+                            espaco += v[1]
                             break
-                    if verdadeiro == 0:
-                        for k in range(0, len(ferro_velho)):
-                            if ferro_velho[k][1] == p_s:
-                                ferro_velho[k][1] = 0
-                                cont += 1
-                                break
-                    verdadeiro = 0
-            print(situacao)
-            print(ferro_velho)
-            faturamento = cont * 10
+                    espaco += valor[1]
             print(faturamento)
         except EOFError:
             break
