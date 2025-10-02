@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def festas_de_sao_petersburgo():
     """
     São Petersburgo tornou-se após o fim da cortina de ferro, no
@@ -38,47 +41,47 @@ def festas_de_sao_petersburgo():
     :return:
     """
     while True:
-        festa, pares, amigos, amizades, talvez_festa, nao_festa, respostas = [], [], 0, [], [], [], []
         try:
-            n, m, t = map(int, input().split(" "))
-            for i in range(1, n + 1):
-                festa.append(i)
-            # print(festa)
-            for i in range(m):
+            comunidade, festa, amigos, temp, cont, amizades = (
+                [], [], [], [], 0, defaultdict(list))
+            pessoas, relacoes, minimo = map(int, input().split(" "))
+            for i in range(1, pessoas + 1):
+                comunidade.append(i)
+
+            for i in range(relacoes):
                 par = list(map(int, input().split(" ")))
-                pares.append(par)
-            # print(pares)
-            for i in range(0, len(festa)):
-                for k in range(0, len(pares)):
-                    if festa[i] == pares[k][0]:
-                        amigos += 1
-                    elif festa[i] == pares[k][1]:
-                        amigos += 1
-                amizades.append(amigos)
-                amigos = 0
-            for i in range(0, len(amizades)):
-                if amizades[i] >= t:
-                    talvez_festa.append(i + 1)
+                amigos.append(par)
+            n, j = 0, 0
+            while n < len(comunidade):
+                for j in range(0, len(amigos)):
+                    if comunidade[n] == amigos[j][0] and amigos[j][1] not in amizades[comunidade[n]]:
+                        amizades[comunidade[n]].append(amigos[j][1])
+                        cont += 1
+                    elif comunidade[n] == amigos[j][1] and amigos[j][0] not in amizades[comunidade[n]]:
+                        amizades[comunidade[n]].append(amigos[j][0])
+                        cont += 1
+                amizades[comunidade[n]].append(str(cont))
+                n += 1
+                cont = 0
+            amizades = dict(amizades)
+            print(amizades)
+            convidados, atende = [], True
+            chaves = sorted(amizades.keys())
+            for k, v in amizades.items():
+                if int(amizades[k][-1]) < minimo:
+                    atende = False
                 else:
-                    nao_festa.append(i + 1)
-            # print(amizades)
-            # print(talvez_festa)
-            # print(nao_festa)
-            for i in range(0, len(talvez_festa)):
-                for k in range(0, len(pares)):
-                    if talvez_festa[i] in pares[k] and pares[k][0] in nao_festa or pares[k][1] in nao_festa:
-                        if talvez_festa[i] == pares[k][0]:
-                            amizades[festa.index(pares[k][0])] -= 1
-                        elif talvez_festa[i] == pares[k][1]:
-                            amizades[festa.index(pares[k][1])] -= 1
-            for i in range(0, len(amizades)):
-                if amizades[i] >= t:
-                    respostas.append(i + 1)
-            if len(respostas) == 0:
+                    atende = True
+                    break
+            if not atende:
                 print(0)
             else:
-                print(*respostas)
-            # print(amizades)
+                for i in range(len(chaves) - 1):
+                    k = chaves[i]
+                    prox = chaves[i + 1]
+                    if set(amizades[k]) & set(amizades[prox]):
+                        convidados.append(k)
+            print(*convidados)
         except EOFError:
             break
 
@@ -87,15 +90,11 @@ festas_de_sao_petersburgo()
 
 
 """
-6 10 2
-3 1
-6 5
-1 2
+6 6 2
+1 3
+3 5
+2 3
 2 4
-4 3
-1 6
-4 3
-1 6
-1 6
-1 6
+4 6
+6 2
 """
