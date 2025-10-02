@@ -47,7 +47,6 @@ def festas_de_sao_petersburgo():
             pessoas, relacoes, minimo = map(int, input().split(" "))
             for i in range(1, pessoas + 1):
                 comunidade.append(i)
-
             for i in range(relacoes):
                 par = list(map(int, input().split(" ")))
                 amigos.append(par)
@@ -67,21 +66,23 @@ def festas_de_sao_petersburgo():
             print(amizades)
             convidados, atende = [], True
             chaves = sorted(amizades.keys())
-            for k, v in amizades.items():
-                if int(amizades[k][-1]) < minimo:
-                    atende = False
-                else:
-                    atende = True
-                    break
-            if not atende:
+            for i in range(len(chaves)):
+                k = chaves[i]
+                if amizades[k][-1] == '0' or int(amizades[k][-1]) < minimo:
+                    continue
+                for j in range(i + 1, len(chaves)):
+                    prox = chaves[j]
+                    if amizades[prox][-1] == '0' or int(amizades[prox][-1]) < minimo:
+                        continue
+                    amigos_prox = amizades[prox][:-1]
+                    if k in amigos_prox:
+                        convidados.append(k)
+                        break
+            convidados = sorted(set(convidados))
+            if not convidados:
                 print(0)
             else:
-                for i in range(len(chaves) - 1):
-                    k = chaves[i]
-                    prox = chaves[i + 1]
-                    if set(amizades[k]) & set(amizades[prox]):
-                        convidados.append(k)
-            print(*convidados)
+                print(*convidados)
         except EOFError:
             break
 
