@@ -64,7 +64,7 @@ def festas_de_sao_petersburgo():
                 cont = 0
             amizades = dict(amizades)
             print(amizades)
-            convidados, atende = [], True
+            convidados = []
             chaves = sorted(amizades.keys())
             for i in range(len(chaves)):
                 k = chaves[i]
