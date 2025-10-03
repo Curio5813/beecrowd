@@ -26,102 +26,36 @@ def desenhando_o_edificio():
     mais alto com as condições mencionadas.
     :return:
     """
-    n = int(input())
-    while n > 0:
-        andares_azuis, andares_vermelhos, andares_altura, numero_andares, j = [], [], [], 0, 0
-        pisos_disponiveis = int(input())
-        for i in range(pisos_disponiveis):
-            andares = int(input())
-            if andares > 0:
-                andares_azuis.append(andares)
-            elif andares < 0:
-                andares_vermelhos.append(abs(andares))
-            andares_altura.append(abs(andares))
-        andares_azuis.sort()
-        andares_azuis.reverse()
-        andares_vermelhos.sort()
-        andares_vermelhos.reverse()
-        andares_altura.sort()
-        andares_altura.reverse()
-        maximo = max(andares_altura)
-        # print(andares_vermelhos)
-        # print(andares_azuis)
-        # print(andares_altura)
-        if len(andares_azuis) == 0 or len(andares_vermelhos) == 0:
-            print(1)
-        else:
-            if maximo in andares_azuis and len(andares_azuis) > len(andares_vermelhos):
-                for i in range(0, len(andares_azuis)):
-                    if i == 0:
-                        numero_andares += 2
-                        j += 1
-                        if j == len(andares_vermelhos):
-                            break
-                    elif i > 0 and andares_azuis[i] < andares_vermelhos[j]:
-                        numero_andares += 1
-                        j += 1
-                        if j == len(andares_vermelhos):
-                            j -= 1
-                    elif i == len(andares_azuis) - 1 and andares_azuis[i] < andares_vermelhos[j]:
-                        numero_andares += 2
-                        break
-            elif maximo in andares_azuis and len(andares_azuis) < len(andares_vermelhos):
-                for i in range(0, len(andares_vermelhos)):
-                    if i == 0:
-                        numero_andares += 2
-                        j += 1
-                        if j == len(andares_azuis):
-                            break
-                    elif i > 0 and andares_vermelhos[i] > andares_azuis[j]:
-                        numero_andares += 1
-                        j += 1
-                        if j == len(andares_azuis):
-                            j -= 1
-                    elif j == len(andares_azuis) and andares_vermelhos[i + 1] < andares_azuis[j - 1]:
-                        numero_andares += 2
-                        break
-            elif maximo in andares_azuis and len(andares_azuis) == len(andares_vermelhos):
-                for i in range(0, len(andares_azuis)):
-                    if i == 0:
-                        numero_andares += 2
-                    elif i > 0 and andares_azuis[i] > andares_vermelhos[i]:
-                        numero_andares += 2
-            elif maximo in andares_vermelhos and len(andares_vermelhos) > len(andares_azuis):
-                for i in range(0, len(andares_vermelhos)):
-                    if i == 0:
-                        numero_andares += 2
-                        j += 1
-                        if j == len(andares_azuis):
-                            break
-                    elif i > 0 and andares_vermelhos[i] < andares_azuis[j]:
-                        numero_andares += 1
-                        j += 1
-                        if j == len(andares_azuis):
-                            numero_andares -= 1
-                    elif i == len(andares_vermelhos) - 1 and andares_vermelhos[i] > andares_azuis[j]:
-                        numero_andares += 2
-                        break
-            elif maximo in andares_vermelhos and len(andares_vermelhos) < len(andares_azuis):
-                for i in range(0, len(andares_azuis)):
-                    if i == 0:
-                        numero_andares += 2
-                        j += 1
-                        if j == len(andares_vermelhos):
-                            break
-                    elif i > 0 and andares_azuis[i] < andares_vermelhos[j]:
-                        numero_andares += 1
-                        j += 1
-                    elif i == len(andares_azuis) - 1 and andares_azuis[i] > andares_vermelhos[j]:
-                        numero_andares += 2
-                        break
-            elif maximo in andares_vermelhos and len(andares_vermelhos) == len(andares_azuis):
-                for i in range(0, len(andares_vermelhos)):
-                    if i == 0:
-                        numero_andares += 2
-                    elif i > 0 and andares_vermelhos[i] > andares_azuis[i]:
-                        numero_andares += 2
-            print(numero_andares)
-        n -= 1
+    while True:
+        try:
+            n = int(input())
+            for i in range(n):
+                andares = []
+                pisos_disponiveis = int(input())
+                for j in range(pisos_disponiveis):
+                    andar = int(input())
+                    andares.append(andar)
+                andares.sort()
+                for j in range(len(andares)):
+                    for k in range(len(andares)):
+                        if abs(andares[j]) < abs(andares[k]):
+                            andares[j], andares[k] = andares[k], andares[j]
+                piso, pisos = 0, 0
+                for j in range(len(andares)):
+                    if j == 0:
+                        piso = andares[j]
+                        pisos += 1
+                    if j > 0 and piso > 0:
+                        if andares[j] < piso:
+                            piso = andares[j]
+                            pisos += 1
+                    elif j > 0 > piso:
+                        if andares[j] > piso:
+                            piso = andares[j]
+                            pisos += 1
+                print(pisos)
+        except EOFError:
+            break
 
 
 desenhando_o_edificio()
