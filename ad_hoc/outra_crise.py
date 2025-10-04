@@ -51,26 +51,46 @@ def outra_crise():
     uma petição.
     :return:
     """
-    entrada = list(map(int, input().strip().split(" ")))
-    n, t = entrada[0], entrada[1]
+    n, t = map(int, input().strip().split(" "))
     while n != 0 and t != 0:
         workers = list(map(int, input().strip().split(" ")))
-        votos = []
-        for i in range(n):
-            votos.append(0)
+        workers.sort()
+        print(workers)
         quorum = ceil(n * (t/100))
         print(quorum)
+        votos_qulificado = []
         for i in range(0, len(workers)):
-            if workers[i] == 0:
-                votos[0] += 1
-            else:
-                votos[workers[i]] += 1
-        contagem, worker = 0, 0
-        print(votos)
-        print(sum(votos[6:]))
-        print(contagem, quorum)
-        entrada = list(map(int, input().strip().split(" ")))
-        n, t = entrada[0], entrada[1]
+            if i == len(workers) - 2 and workers[i + 1] - workers[i] <= 1:
+                votos_qulificado.append(workers[i])
+                votos_qulificado.append(workers[i + 1])
+                break
+            if i < len(workers) - 1:
+                if workers[i + 1] - workers[i] <= 1:
+                    votos_qulificado.append(workers[i])
+                elif workers[i + 1] - workers[i] > 1:
+                    votos_qulificado.append(workers[i])
+                    break
+        idx, votos, qtd = 1, 0, 0
+        votos_qulificado.reverse()
+        print(len(votos_qulificado))
+        donos = workers.count(0)
+        print(donos)
+        print(votos_qulificado)
+        chefes = list(set(votos_qulificado))
+        chefes.reverse()
+        print(chefes)
+        for i in range(0, len(votos_qulificado)):
+            qtd += 1
+            votos += votos_qulificado[i]
+            for j in range(idx, len(chefes)):
+                print(chefes[j])
+                if votos >= quorum:
+                    break
+            idx += 1
+            if votos >= quorum:
+                break
+        print(qtd + donos)
+        n, t = map(int, input().strip().split(" "))
 
 
 outra_crise()
