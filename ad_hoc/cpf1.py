@@ -41,48 +41,28 @@ def cpf1():
             cpf = input()
             if cpf == "":
                 break
-            digitos, flag, flag1, flag2 = [], 0, 0, 0
+            digitos, soma1, soma2, k = [], 0, 0, 0
             for i in range(0, len(cpf)):
-                if cpf[i] in "1234567890":
+                if cpf[i] in "0123456789":
                     digitos.append(int(cpf[i]))
-            # print(sum(digitos))
-            if sum(digitos) >= 11 and sum(digitos) % 11 == 0 or sum(digitos) == 0:
-                flag = 1
-            if flag == 1:
-                soma1, soma2  = 0, 0
-                for j in range(0, len(digitos) - 2):
-                    # print(j + 1)
-                    soma1 += digitos[j] * (j + 1)
-                # print(soma1, soma1 % 11, digitos[9])
-                if soma1 % 11 == digitos[9] or soma1 % 11 == 10 and digitos[9] == 0:
-                    flag1 = 1
-                else:
-                    flag1 = 0
-                k = 0
-                for j in range(len(digitos) - 2, 0, -1):
-                    # print(j)
-                    soma2 += digitos[k] * j
-                    k += 1
-                # print(soma2, soma2 % 11, digitos[10])
-                if soma2 % 11 == digitos[10] or soma1 % 11 == 10 and digitos[10] == 0:
-                    flag2 = 1
-                else:
-                    flag2 = 0
-                if flag1 == 1 and flag2 == 1:
-                    print("CPF valido")
-                else:
-                    print("CPF invalido")
+            for i in range(0, len(digitos) - 2):
+                soma1 += digitos[i] * (i + 1)
+            for i in range(len(digitos) - 2, 0, -1):
+                soma2 += digitos[k] * i
+                k += 1
+            teste1 = soma1 % 11
+            teste2 = soma2 % 11
+            flag1, flag2 = False, False
+            if teste1 == 10 and digitos[9] == 0 or teste1 == digitos[9]:
+                flag1 = True
+            if teste2 == 10 and digitos[10] == 0 or teste2 == digitos[10]:
+                flag2 = True
+            if flag1 and flag2:
+                print("CPF valido")
+            else:
+                print("CPF invalido")
         except EOFError:
             break
 
 
 cpf1()
-
-
-"""
-048.856.829-63
-733.184.680-96
-227.518.471-08
-092.844.842-86
-098.447.895-55
-"""
