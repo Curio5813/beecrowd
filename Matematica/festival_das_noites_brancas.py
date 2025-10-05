@@ -1,8 +1,3 @@
-from sys import setrecursionlimit
-
-
-setrecursionlimit(1000000000)
-
 def festival_das_noites_brancas():
     """
     Esta função, dado uma sequência de numeros binários, calcula
@@ -18,29 +13,29 @@ def festival_das_noites_brancas():
     cartão para a pessoa entrar no teatro.
     :return:
     """
-    t = int(input())
-    a, b, p, fibo, ordemm = 0, 1, 1, [], 0
-    for i in range(500_000):
-        a = b
-        b = p
-        p = a + b
-        fibo.append(a)
-    for i in range(t):
-        binario = input()
-        ordem = int(binario, 2)
-        num = fibo[ordem - 1]
-        num = str(num)
-        if len(num) == 1:
-            print(f"00{num}")
-        elif len(num) == 2:
-            print(f"0{num}")
-        elif len(num) == 3:
-            print(num)
-        elif len(num) > 3:
-            num = num[::-1]
-            num = num[0:3]
-            num = num[::-1]
-            print(num)
+    while True:
+        t = int(input())
+        for i in range(t):
+            binario = input()
+            ordem = int(binario, 2)
+            a, b = 0, 1
+            p = a + b
+            for j in range(1, ordem + 1):
+                a = b
+                b = p
+                p = a + b
+            if len(str(a)) == 1:
+                print(f"00{a}")
+            elif len(str(a)) == 2:
+                print(f"0{a}")
+            elif len(str(a)) == 3:
+                print(a)
+            elif len(str(a)) > 3:
+                num = str(a)
+                num = num[::-1]
+                num = num[0:3]
+                num = num[::-1]
+                print(num)
 
 
 festival_das_noites_brancas()
