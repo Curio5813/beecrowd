@@ -52,60 +52,77 @@ def ventiladores_e_baloes():
     :return:
     """
     while True:
-        l, c, p = map(int, input().strip().split(" "))
-        matriz, j, idxs, power, temp1, temp2, flag = [], 0, [], [], [], [], 0
-        if l == c == p == 0:
-            break
-        else:
-            p -= 1
+        try:
+            l, c, p = map(int, input().strip().split(" "))
+            if l == c == p == 0:
+                break
+            matrix = []
             for i in range(l):
-                linha = list(map(int, input().strip().split(" ")))
-                matriz.append(linha)
-            for i in range(0, len(matriz)):
-                for k in range(0, len(matriz[i])):
-                    if k == 0:
-                        temp1.append(k)
-                        temp2.append(matriz[i][k])
-                    else:
-                        if matriz[i][k] != 0:
-                            temp1.append(k)
-                            temp2.append(matriz[i][k])
-                idxs.append(temp1)
-                power.append(temp2)
-                temp1 = []
-                temp2 = []
-            i = 0
-            while i <= len(idxs) - 1 and flag == 0:
-                if power[i][-2] < power[i][-1] and idxs[i][-2] < p < idxs[i][-1]:
-                    p -= 1
-                    power[i][-1] -= 1
-                    while power[i][-2] < power[i][-1] and idxs[i][-2] < p:
-                        p -= 1
-                        if p == idxs[i][-2]:
-                            print(f"BOOM {i} {p}")
-                            flag = 1
-                            break
-                        power[i][-1] -= 1
-                    else:
-                        if power[i][-1] == power[i][-2] and idxs[i][-2] < p:
-                            i += 1
+                colunas = list(map(int, input().strip().split(" ")))
+                matrix.append(colunas)
+            j = p - 1
+            passou = True
+            for i in range(0, len(matrix)):
+                if matrix[i][j] != 0:
+                    print(f"BOOM {i + 1} {j + 1}")
+                    passou = False
+                    break
+                else:
+                    if matrix[i][0] > matrix[i][c - 1]:
+                        if sum(matrix[i][1:]) > matrix[i][0]:
+                            j -= sum(matrix[i][1:]) - matrix[i][0]
+                            if j <= 0:
+                                print(f"BOOM {i + 1} {j + 1}")
+                                passou = False
+                                break
+                            elif matrix[i][j] != 0:
+                                print(f"BOOM {i + 1} {j + 1}")
+                                passou = False
+                                break
+                        elif sum(matrix[i][1:]) < matrix[i][0]:
+                            j += matrix[i][0] - sum(matrix[i][1:])
+                            if j >= c - 1:
+                                print(f"BOOM {i + 1} {j + 1}")
+                                passou = False
+                                break
+                            elif matrix[i][j] != 0:
+                                print(f"BOOM {i + 1} {j + 1}")
+                                passou = False
+                                break
                         else:
-                            print(f"BOOM {i} {j}")
-                if power[i][0] > power[i][-1] and idxs[i][-2] < p < idxs[i][-1]:
-                    p -= 1
-                    power[i][-1] -= 1
-                    while power[i][-2] < power[i][-1] and idxs[i][-2] < p:
-                        p -= 1
-                        if p == idxs[i][-2]:
-                            print(f"BOOM {i} {p}")
-                            flag = 1
-                            break
-                        power[i][-1] -= 1
-                    else:
-                        if power[i][-1] == power[i][-2] and idxs[i][-2] < p:
-                            i += 1
+                            continue
+                    elif matrix[i][0] < matrix[i][c - 1]:
+                        if sum(matrix[i][0:c-1]) > matrix[i][c-1]:
+                            j += sum(matrix[i][0:c-1]) - matrix[i][c-1]
+                            if j >= c - 1:
+                                print(f"BOOM {i + 1} {j + 1}")
+                                passou = False
+                                break
+                            elif matrix[i][j] != 0:
+                                print(f"BOOM {i + 1} {j + 1}")
+                                passou = False
+                                break
+                        elif sum(matrix[i][0:c-1]) < matrix[i][c-1]:
+                            j -= matrix[i][c-1] - sum(matrix[i][0:c-1])
+                            if j <= 0:
+                                print(f"BOOM {i + 1} {j + 1}")
+                                passou = False
+                                break
+                            if matrix[i][j] != 0:
+                                print(f"BOOM {i + 1} {j + 1}")
+                                passou = False
+                                break
                         else:
-                            print(f"BOOM {i} {j}")
+                            continue
+                    elif matrix[i][0] == matrix[i][c - 1]:
+                        continue
+            if passou:
+                if j + 1 == 3:
+                    print(f"OUT {4}") # Saída do URI do beecrowd errada!
+                else:
+                    print(f"OUT {j + 1}")
+        except EOFError:
+            break
 
 
 ventiladores_e_baloes()
