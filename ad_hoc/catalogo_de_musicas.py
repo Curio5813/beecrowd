@@ -1,6 +1,3 @@
-from numpy.f2py.capi_maps import c2capi_map
-
-
 def catalogo_de_musicas():
     """
     Joyce é uma menina que gosta muito de ouvir música, e possui uma
@@ -66,37 +63,30 @@ def catalogo_de_musicas():
     :return:
     """
     n = int(input())
-    caminhos, cont, maximo, pasta = [], 0, 0, []
+    caminhos, barras, palavras, caracteres = [], 0, 0, 0
     for i in range(n):
         caminho = input().split("/")
-        caminhos.extend(caminho)
+        caminhos.append(caminho)
     print(caminhos)
     for i in range(0, len(caminhos)):
-        for j in range(0, len(caminhos)):
-            if caminhos[i] == caminhos[j] and i != j:
-                cont += 1
-                if cont > maximo:
-                    if caminhos[i] not in pasta:
-                        pasta.append(caminhos[i])
-                    maximo = cont
-        cont = 0
-        maximo = 0
-    caminhos.reverse()
-    for i in range(0, len(pasta)):
-        if caminhos[i] in pasta:
-            caminhos.pop(i)
-    print(caminhos)
+        barras += len(caminhos[i]) - 1
+        for j in range(0, len(caminhos[i])):
+            palavras += len(caminhos[i][j])
+            print(palavras)
+            for k in range(0, len(caminhos[i][j])):
+                caracteres += 1
+    print(barras)
+    print(caracteres)
+    print(caracteres + barras)
+
 
 
 catalogo_de_musicas()
 
 
 """
-6
-delta/india/juliet/lima
-bravo/echo
-bravo/foxtrot
-charlie/hotel
-delta/india/kilo
-bravo/golf
+3
+Rock/AngraCarryOn.mp3
+MPB/Caetano/Sampa.mp3
+MPB/Cartola/Alvorada.mp3
 """
