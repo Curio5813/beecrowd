@@ -41,18 +41,9 @@ def permutacoes_ambiguas():
         lista = []
         for i in range(1, n + 1):
             lista.append(i)
-        permutacao = list(map(int, input().split(" ")))
-        # print(lista)
-        # print(permutacao)
-        i, cont = 0, 0
-        while cont < len(permutacao):
-            lista[i], lista[permutacao[i] - 1] = lista[permutacao[i] - 1], lista[lista[i] - 1]
-            if lista[i] == lista[permutacao[i] - 1]:
-                lista[i] = permutacao[i]
-            i = lista.index(lista[i]) + 1
-            cont += 1
-        # print(lista)
-        # print(permutacao)
+        permutacao = list(map(int, input().split()))
+        for i in range(len(lista)):
+            lista[permutacao[i] - 1] = i + 1
         if lista == permutacao:
             print("ambiguous")
         else:
