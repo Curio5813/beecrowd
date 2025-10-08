@@ -44,10 +44,13 @@ def permutacoes_ambiguas():
         permutacao = list(map(int, input().split(" ")))
         # print(lista)
         # print(permutacao)
-        for i in range(len(lista)):
-            if i >= len(lista) / 2:
-                break
+        i, cont = 0, 0
+        while cont < len(permutacao):
             lista[i], lista[permutacao[i] - 1] = lista[permutacao[i] - 1], lista[lista[i] - 1]
+            if lista[i] == lista[permutacao[i] - 1]:
+                lista[i] = permutacao[i]
+            i = lista.index(lista[i]) + 1
+            cont += 1
         # print(lista)
         # print(permutacao)
         if lista == permutacao:
