@@ -38,22 +38,12 @@ def fechadura():
     pinos = list(map(int, input().split()))
     movimentos = 0
     for i in range(0, len(pinos)):
-        if i == 0 and pinos[i] < m and i < len(pinos) - 1:
+        if pinos[i] < m and i < len(pinos) - 1:
             while pinos[i] < m:
                 pinos[i] += 1
                 pinos[i + 1] += 1
                 movimentos += 1
-        elif i == 0 and pinos[i] > m and i < len(pinos) - 1:
-            while pinos[i] > m:
-                pinos[i] -= 1
-                pinos[i + 1] -= 1
-                movimentos += 1
-        if 0 < i < len(pinos) - 1 and pinos[i] < m:
-            while pinos[i] < m:
-                pinos[i] += 1
-                pinos[i + 1] += 1
-                movimentos += 1
-        elif 0 < i < len(pinos) - 1 and pinos[i] > m:
+        elif pinos[i] > m and i < len(pinos) - 1:
             while pinos[i] > m:
                 pinos[i] -= 1
                 pinos[i + 1] -= 1
