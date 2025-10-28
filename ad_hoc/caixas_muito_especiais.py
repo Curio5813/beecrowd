@@ -48,26 +48,26 @@ def caixas_muito_especiais():
         n, m = map(int, input().split())
         if n == 0:
             break
-        item = list(map(int, input().split()))
-        item.sort()
-        menor_lado_item = item[0]
+        item = sorted(list(map(int, input().split())))
         volume_item = item[0] * item[1] * item[2]
-        volumes_caixas, menores_lado = [], []
+        caixas, volumes_caixas, menores_sobras_lados, menores_sobras_diagonais, menores_sobras_volumes = [], [], [], [], []
         for i in range(m):
-            caixa = list(map(int, input().split()))
-            caixa.sort()
-            menores_lado.append(caixa[0])
+            caixa = sorted(list(map(int, input().split())))
+            caixas.append(caixa)
+            print(caixas[i], item)
             volume_caixa = caixa[0] * caixa[1] * caixa[2]
-            volumes_caixas.append(volume_caixa)
-        menor_sobra, menor_lado, volumes_sobra = volumes_caixas[0] - volume_item, menores_lado[0], []
-        for i in range(0, len(volumes_caixas)):
-            if menor_lado_item <= menores_lado[i] and volumes_caixas[i] >= volume_item:
-                volume_sobra = volumes_caixas[i] - volume_item
-                print(volumes_caixas[i], menores_lado[i], menor_lado, menor_sobra)
-                if menores_lado[i] <= menor_lado and volume_sobra <= menor_sobra:
-                    volumes_sobra.append(volume_sobra)
-                    menor_lado = menores_lado[i]
-                    menor_sobra = volume_sobra
+            menor_sobra_volume = volume_caixa - volume_item
+            menor_sobra_lado_menor = caixas[i][0] - item[0]
+            menor_sobra_lado_meio = caixas[i][1] - item[1]
+            menor_sobra_lado_maior = caixas[i][2] - item[2]
+            menor_sobra_diagonal = sqrt(caixas[i][0] ** 2 + caixas[i][1] ** 2 + caixas[i][2] ** 2) - sqrt(item[0] ** 2 + item[1] ** 2 + item[2] ** 2)
+            menor_sobra_lado_total = menor_sobra_lado_menor + menor_sobra_lado_meio + menor_sobra_lado_maior
+            menores_sobras_lados.append(menor_sobra_lado_total)
+            menores_sobras_diagonais.append(menor_sobra_diagonal)
+            menores_sobras_volumes.append(menor_sobra_volume)
+        volumes_sobra = []
+        for i in range(0, len(menores_sobras_lados)):
+            print(menores_sobras_volumes[i], menores_sobras_lados[i], menores_sobras_diagonais[i])
         if not volumes_sobra:
             print('impossible')
         else:
