@@ -1,4 +1,4 @@
-from math import sqrt, floor
+from math import sqrt
 
 
 def caixas_muito_especiais():
