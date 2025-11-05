@@ -59,7 +59,7 @@ def robo_colecionador():
             linha = list(input().split())
             arena.extend(linha)
         instrucoes = input()
-        copas = 0
+        copas, flag = 0, False
         for i in range(0, len(instrucoes)):
             for j in range(0, len(arena)):
                 for k in range(0, len(arena[j])):
@@ -76,6 +76,7 @@ def robo_colecionador():
                             if arena[j][k] == '*':
                                 copas += 1
                             arena[j] = arena[j][:k] + 'N' + arena[j][k + 1:]
+                        flag = True
                         break
                     elif arena[j][k] == 'S' and instrucoes[i] == 'D':
                         arena[j] = arena[j][:k] + 'O' + arena[j][k+1:]
@@ -90,6 +91,7 @@ def robo_colecionador():
                             if arena[j][k] == '*':
                                 copas += 1
                             arena[j] = arena[j][:k] + 'S' + arena[j][k + 1:]
+                        flag = True
                         break
                     elif arena[j][k] == 'L' and instrucoes[i] == 'D':
                         arena[j] = arena[j][:k] + 'S' + arena[j][k+1:]
@@ -104,6 +106,7 @@ def robo_colecionador():
                             if arena[j][k] == '*':
                                 copas += 1
                             arena[j] = arena[j][:k] + 'L' + arena[j][k + 1:]
+                        flag = True
                         break
                     elif arena[j][k] == 'O' and instrucoes[i] == 'D':
                         arena[j] = arena[j][:k] + 'N' + arena[j][k+1:]
@@ -118,7 +121,11 @@ def robo_colecionador():
                             if arena[j][k] == '*':
                                 copas += 1
                             arena[j] = arena[j][:k] + 'O' + arena[j][k + 1:]
+                        flag = True
                         break
+                if flag:
+                    flag = False
+                    break
         print(copas)
 
 
