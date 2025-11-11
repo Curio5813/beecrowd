@@ -27,6 +27,7 @@ def estados_do_norte():
         if estado in estados[i]:
             print("Regiao Norte")
             flag = True
+            break
     if not flag:
         print("Outra regiao")
 
