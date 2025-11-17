@@ -33,66 +33,33 @@ def campeonato_02():
     as suas partidas antes de se enfrentarem: oitavas, quartas, semifinal ou final.
     :return:
     """
-    oitavas = list(map(int, input().split()))
-    master_kung, master_fu, fase = 0, 0, 8
-    for i in range(len(oitavas)):
-        if oitavas[i] == 1:
-            master_kung = oitavas.index(oitavas[i]) + 1
-        if oitavas[i] == 9:
-            master_fu = oitavas.index(oitavas[i]) + 1
-    if master_kung < master_fu and abs(master_kung - master_fu) == 1 and master_kung in [2, 4, 6, 8, 10, 12, 14]:
+    oitvas = list(map(int, input().split()))
+    master_kung, master_fu, temp, pares =  0, 0, [], []
+    for i in range(1, len(oitvas), 2):
+        temp.append(oitvas[i - 1])
+        temp.append(oitvas[i])
+        pares.append(temp)
+        temp = []
+    for i in range(len(pares)):
+        if 1 in pares[i]:
+            master_kung = i + 1
+        if 9 in pares[i]:
+            master_fu = i + 1
+    distancia = abs(master_fu - master_kung)
+    if distancia == 0:
+        print("oitavas")
+    elif distancia == 1 and 1 <= master_fu <= 2 and 1 <= master_kung <= 2 or 3 <= master_fu <= 4 and 3 <= master_kung <= 4:
+        print("quartas")
+    elif distancia == 1 and 5 <= master_fu <= 6 and 5 <= master_kung <= 6 or 7 <= master_fu <= 8 and 7 <= master_kung <= 8:
+        print("quartas")
+    elif 2 <= distancia <= 3 and 1 <= master_fu <= 2 and 3 <= master_kung <= 4 or 5 <= master_fu <= 6 and 7 <= master_kung <= 8:
         print("semifinal")
-    elif master_kung > master_fu and abs(master_kung - master_fu) == 1 and master_fu in [2, 4, 6, 8, 10, 12, 14]:
+    elif 2 <= distancia <= 3 and 1 <= master_kung <= 2 and 3 <= master_fu <= 4 or 5 <= master_kung <= 6 and 7 <= master_fu <= 8:
         print("semifinal")
+    elif distancia >= 4:
+        print("final")
     else:
-        if master_fu > master_kung > 8:
-            while abs(master_kung - master_fu) > 1:
-                master_kung += 1
-                master_fu -= 1
-                fase //= 2
-        elif master_fu > master_kung <= 8:
-            while abs(master_kung - master_fu) > 1:
-                master_kung += 1
-                master_fu -= 1
-                fase //= 2
-        elif master_fu < master_kung > 8:
-            while abs(master_kung - master_fu) > 1:
-                master_kung -= 1
-                master_fu += 1
-                fase //= 2
-        elif master_fu < master_kung <= 8:
-            while abs(master_kung - master_fu) > 1:
-                master_kung -= 1
-                master_fu += 1
-                fase //= 2
-        elif 8 < master_kung > master_fu > 8:
-            while abs(master_kung - master_fu) > 1:
-                master_kung -= 1
-                master_fu += 1
-                fase //= 2
-        elif 8 < master_fu > master_kung > 8:
-            while abs(master_kung - master_fu) > 1:
-                master_kung += 1
-                master_fu -= 1
-                fase //= 2
-        elif master_fu > master_kung <= 8:
-            while abs(master_kung - master_fu) > 1:
-                master_kung += 1
-                master_fu -= 1
-                fase //= 2
-        elif master_kung > master_fu <= 8:
-            while abs(master_kung - master_fu) > 1:
-                master_kung -= 1
-                master_fu += 1
-                fase //= 2
-        if fase == 0:
-            print("final")
-        elif fase == 2:
-            print("semifinal")
-        elif fase == 4:
-            print("quartas")
-        elif fase == 8:
-            print("oitavas")
+        print("semifinal")
 
 
 if __name__ == '__main__':
