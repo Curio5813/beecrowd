@@ -43,48 +43,31 @@ def o_tabuleiro_esburacado():
         if mov_cavalo[i] == 1:
             pos_cavalo[0] += 1
             pos_cavalo[1] += 2
-            if pos_cavalo in buracos:
-                caiu = True
         elif mov_cavalo[i] == 8:
             pos_cavalo[0] -= 1
             pos_cavalo[1] += 2
-            if pos_cavalo in buracos:
-                caiu = True
         elif mov_cavalo[i] == 2:
             pos_cavalo[0] += 2
             pos_cavalo[1] += 1
-            if pos_cavalo in buracos:
-                caiu = True
         elif mov_cavalo[i] == 7:
             pos_cavalo[0] -= 2
             pos_cavalo[1] += 1
-            if pos_cavalo in buracos:
-                caiu = True
         elif mov_cavalo[i] == 3:
             pos_cavalo[0] += 2
             pos_cavalo[1] -= 1
-            if pos_cavalo in buracos:
-                caiu = True
         elif mov_cavalo[i] == 6:
             pos_cavalo[0] -= 2
             pos_cavalo[1] -= 1
-            if pos_cavalo in buracos:
-                caiu = True
         elif mov_cavalo[i] == 4:
             pos_cavalo[0] += 1
             pos_cavalo[1] -= 2
-            if pos_cavalo in buracos:
-                caiu = True
         elif mov_cavalo[i] == 5:
             pos_cavalo[0] -= 1
             pos_cavalo[1] -= 2
-            if pos_cavalo in buracos:
-                caiu = True
-        if caiu:
+        if pos_cavalo in buracos:
             movimentos += 1
             break
-        if not caiu:
-            movimentos += 1
+        movimentos += 1
     print(movimentos)
 
 
