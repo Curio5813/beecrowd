@@ -29,72 +29,16 @@ def museu_virtual_3d():
             n, m = map(int, input().split())
             valores_modelos = list(map(int, input().split()))
             valores_modelos.reverse()
-            a, b, p = 0, 1, 1
-            fibonacci = []
-            for i in range(30):
-                fibonacci.append(b)
-                a = b
-                b = p
-                p = a + b
-            valor_total, cont = 0, 0
-            fibonacci.reverse()
-            # print(valores_modelos)
-            # print(fibonacci)
-            idx = 0
+            total, cont = 0, 0
             for i in range(len(valores_modelos)):
-                if i == 0 and valores_modelos[i] in fibonacci:
-                    idx = fibonacci.index(valores_modelos[i])
-                    valor_total += valores_modelos[i]
-                    cont += 1
-                    if cont == m:
-                        break
-                elif i > 0:
-                    idx += 1
-                    valores_modelos[i] = fibonacci[idx]
-                    valor_total += valores_modelos[i]
-                    cont += 1
-                    if cont == m:
-                        break
-                else:
+                if cont == m:
                     break
-            for i in range(len(valores_modelos)):
-                if i == 0 and valores_modelos[i] not in fibonacci:
-                    for j in range(len(valores_modelos)):
-                        if valores_modelos[j] in fibonacci:
-                            idx = fibonacci.index(valores_modelos[j])
-                            valor_total += valores_modelos[j - 1]
-                            nova = idx - j
-                            valores_modelos = fibonacci[nova::]
-                            cont += 1
-                            if cont == m:
-                                break
-                            break
-                elif i > 0:
-                    if i > len(valores_modelos) - 1:
-                        break
-                    valor_total += valores_modelos[i]
-                    cont += 1
-                    if cont == m:
-                        break
-                else:
-                    break
-            # print(valores_modelos)
-            print(valor_total)
+                total += valores_modelos[i]
+                cont += 1
+            print(total)
         except EOFError:
             break
 
 
 if __name__ == '__main__':
     museu_virtual_3d()
-
-
-"""
-4 2
-0 0 2 3
-7 1
-33 44 55 789 790 791 987
-5 2
-4 7 55 55 56
-5 5
-4 7 55 67 56
-"""
