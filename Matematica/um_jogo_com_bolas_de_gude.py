@@ -35,21 +35,12 @@ def um_jogo_com_bolas_de_gude():
         if n == 0:
             break
         bacias = list(map(int, input().strip().split(" ")))
-        rodadas, i = 0, 0
-        while sum(bacias) > 0:
-            if i == 0:
-                rodadas += bacias[i]
-                bacias[i] = 0
-                i += 1
-            elif i > 0:
-                if bacias[i] == 0:
-                    while bacias[i] == 0:
-                        i += 1
-                while bacias[i] > 0 and i != 0:
-                    bacias[i] -= 1
-                    rodadas += 1
-                    for i in range(i - 1, -1, -1):
-                        bacias[i] += 1
+        cont, rodadas, i, p_dois = 0, 0, 0, 1
+        while cont < len(bacias):
+            rodadas += bacias[i] * p_dois
+            i += 1
+            p_dois *= 2
+            cont += 1
         print(rodadas)
 
 
