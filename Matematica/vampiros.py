@@ -53,7 +53,7 @@ def vampiros():
                 tem = ev2
                 ev2 = 0
                 ev1 = 0
-                while tem >= 0:
+                while tem > 0:
                     tem -= d
                     ev2 += 1
                     ev1 += 1
