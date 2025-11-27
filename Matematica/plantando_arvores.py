@@ -29,13 +29,17 @@ def plantando_arvores():
     cresc_arvores = list(map(int, input().strip().split(" ")))
     cresc_arvores.sort()
     cresc_arvores.reverse()
-    dias, diff = cresc_arvores[0] + 1, 0
+    dias, comparar,diff = 0, cresc_arvores[0], 0
     # print(cresc_arvores)
     for i in range(1, len(cresc_arvores)):
-        if cresc_arvores[i - 1] < (cresc_arvores[i] + 1):
-            diff = cresc_arvores[i] + 1 - cresc_arvores[i - 1]
-            dias += diff
-        # print(cresc_arvores[i] + 2, cresc_arvores[i - 1] + 1, diff)
+        if i == 1 and comparar + 1 >= cresc_arvores[i] + i + 1:
+            dias += comparar + 1
+        if i == 1 and comparar + 1 < cresc_arvores[i] + i + 1:
+            dias += cresc_arvores[i] + i + 1
+            comparar = cresc_arvores[i] + i + 1
+        if i > 1 and comparar + 1 < cresc_arvores[i] + i + 1:
+            dias += cresc_arvores[i] + i + 1 - (comparar + 1)
+            comparar = cresc_arvores[i] + i + 1
     print(dias + 1)
 
 
@@ -48,4 +52,6 @@ if __name__ == "__main__":
 2 3 4 3
 6
 39 38 9 35 39 20
+6
+20 18 18 18 18 18
 """

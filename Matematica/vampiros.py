@@ -39,27 +39,34 @@ def vampiros():
     """
     while True:
         ev1, ev2, at, d = map(int, input().split(" "))
-        p = at / 6
-        q = 1 - p
-        p1 = 0
+        dado, p1, soma_p = 1, 0, 0
         if ev1 == 0 and ev2 == 0 and at == 0 and d == 0:
             break
-        if at == 3:
-            p1 = (ev2 / (ev1 + ev2))  # É similar com a probabilidade de um jogo com moeda justa
-        elif at != 3:  # É similar com a probabilidade de um jogo com moeda viciada
-            if d == 1:
-                p1 = (1 - ((p / q) ** ev2)) / (1 - ((p / q) ** (ev1 + ev2)))
-            elif d > 1:
-                tem = ev1
-                ev2 = 0
-                ev1 = 0
-                while tem > 0:
-                    tem -= d
-                    ev2 -= 1
-                    ev1 += 1
-                p1 = (1 - ((p / q) ** ev2)) / (1 - ((p / q) ** (ev1 + ev2)))
+        if d <= at:
+            while d <= at:
+                p1 = ev1 / (ev1 + ev2)
+                ev2 -= d
+                ev1 += d
+                soma_p += p1
+                dado += 1
+        elif d > at:
+            while  > at:
+                p1 = ev2 / (ev1 + ev2)
+                ev2 += d
+                ev1 -= d
+                soma_p -= p1
+                dado += 1
+        print(soma_p)
         p1 *= 100
         print(f"{(100 - p1):.1f}")
 
 
 vampiros()
+
+"""
+1 1 3 1
+1 2 1 1
+8 5 3 1
+7 5 2 4
+0 0 0 0
+"""
