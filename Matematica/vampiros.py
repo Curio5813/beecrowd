@@ -39,24 +39,25 @@ def vampiros():
     """
     while True:
         ev1, ev2, at, d = map(int, input().split(" "))
-        dado, p1, soma_p = 1, 0, 0
+        p = at / 6
+        q = 1 - p
+        p1 = 0
         if ev1 == 0 and ev2 == 0 and at == 0 and d == 0:
             break
-        if d <= at:
-            while d <= at:
-                p1 = ev1 / (ev1 + ev2)
-                ev2 -= d
-                ev1 += d
-                soma_p += p1
-                dado += 1
-        elif d > at:
-            while  > at:
-                p1 = ev2 / (ev1 + ev2)
-                ev2 += d
-                ev1 -= d
-                soma_p -= p1
-                dado += 1
-        print(soma_p)
+        if at == 3:
+            p1 = (ev2 / (ev1 + ev2))
+        elif at != 3:
+            if d == 1:
+                p1 = (1 - ((p / q) ** ev2)) / (1 - ((p / q) ** (ev1 + ev2)))
+            elif d > 1:
+                tem = ev2
+                ev2 = 0
+                ev1 = 0
+                while tem >= 0:
+                    tem -= d
+                    ev2 += 1
+                    ev1 += 1
+                p1 = (1 - ((p / q) ** ev2)) / (1 - ((p / q) ** (ev1 + ev2)))
         p1 *= 100
         print(f"{(100 - p1):.1f}")
 
