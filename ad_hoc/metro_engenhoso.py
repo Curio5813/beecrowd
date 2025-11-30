@@ -46,77 +46,60 @@ def metro_engenhoso():
     da estação inicial usando o metrô, ou 'N' caso contrário.
     :return:
     """
-    cont = 0
     while True:
         entrada = list(map(int, input().split(" ")))
         t, q = entrada[0], entrada[1]
         distancia_total, divisores, somas, resposta, respostas = 0, [], [], "", []
-        cont += 1
         if t == q == 0:
             break
-        if cont != 34 and cont != 35 and cont != 36:
-            estacoes_teletransporte = list(map(int, input().split(" ")))
-            for i in range(0, len(estacoes_teletransporte)):
-                estacoes_teletransporte[i] = abs(estacoes_teletransporte[i])
-            estacoes_teletransporte.sort()
-            # print(estacoes_teletransporte)
-            for i in range(q):
-                entrada = list(map(int, input().split(" ")))
-                s, d = entrada[0], entrada[1]
-                # Fazendo a interpolação da distânica absoluta entre a estação inicial e final
-                distancia_total = abs(s + d)
-                for k in range(2, distancia_total + 1):
-                    if distancia_total % k == 0 and k not in divisores:
-                        divisores.append(k)
-                # Achando os fatores primos que são divisores de cada interpolação
-                # feita para achar seus multiplos
+        estacoes_teletransporte = list(map(int, input().split(" ")))
+        for i in range(0, len(estacoes_teletransporte)):
+            estacoes_teletransporte[i] = abs(estacoes_teletransporte[i])
+        estacoes_teletransporte.sort()
+        # print(estacoes_teletransporte)
+        for i in range(q):
+            entrada = list(map(int, input().split(" ")))
+            s, d = entrada[0], entrada[1]
+            # Fazendo a interpolação da distânica absoluta entre a estação inicial e final
+            distancia_total = abs(s + d)
+            for k in range(2, distancia_total + 1):
+                if distancia_total % k == 0 and k not in divisores:
+                    divisores.append(k)
+            # Achando os fatores primos que são divisores de cada interpolação
+            # feita para achar seus multiplos
+            for k in range(0, len(divisores)):
+                for j in range(0, len(divisores)):
+                    # Interpolando estações intermediárias
+                    soma = divisores[k] + divisores[j]
+                    if soma not in somas:
+                        somas.append(soma)
+            somas.sort()
+            if i == q - 1:
                 for k in range(0, len(divisores)):
-                    for j in range(0, len(divisores)):
-                        # Interpolando estações intermediárias
-                        soma = divisores[k] + divisores[j]
-                        if soma not in somas:
-                            somas.append(soma)
-                somas.sort()
-                if i == q - 1:
-                    for k in range(0, len(divisores)):
-                        if divisores[k] in estacoes_teletransporte or somas[k] in divisores and \
-                                somas[k] not in estacoes_teletransporte:
-                            resposta += "Y"
-                            divisores = []
-                            somas = []
-                            break
-                    else:
-                        resposta += "N"
+                    if divisores[k] in estacoes_teletransporte or somas[k] in divisores and \
+                            somas[k] not in estacoes_teletransporte:
+                        resposta += "Y"
                         divisores = []
                         somas = []
+                        break
                 else:
-                    for k in range(0, len(divisores)):
-                        if divisores[k] in estacoes_teletransporte or somas[k] in divisores and \
-                                somas[k] not in estacoes_teletransporte:
-                            resposta += "Y "
-                            divisores = []
-                            somas = []
-                            break
-                    else:
-                        resposta += "N "
+                    resposta += "N"
+                    divisores = []
+                    somas = []
+            else:
+                for k in range(0, len(divisores)):
+                    if divisores[k] in estacoes_teletransporte or somas[k] in divisores and \
+                            somas[k] not in estacoes_teletransporte:
+                        resposta += "Y "
                         divisores = []
                         somas = []
+                        break
+                else:
+                    resposta += "N "
+                    divisores = []
+                    somas = []
         respostas.append(resposta)
-        if cont == 8:
-            print("N Y N N Y Y Y Y N Y")
-        if cont == 20:
-            print("Y Y Y Y Y N Y Y N Y")
-        if cont == 25:
-            print("Y Y Y Y Y Y Y Y N Y")
-        if cont == 34:
-            print("Y Y N N N Y Y Y Y N")
-        if cont == 35:
-            print("Y Y Y Y Y N N Y Y N")
-        if cont == 36:
-            print("Y Y Y N N Y Y Y Y Y")
-        elif cont != 8 and cont != 20 and cont != 25 and cont != 31 and cont != 32 \
-                and cont != 33 and cont != 34 and cont != 35 and cont != 36:
-            print(resposta)
+        print(resposta)
         print(end="")
 
 
