@@ -37,7 +37,7 @@ def cordao_de_led():
     i, j = 0, 1,
     while True:
         while i < len(pedacos):
-            # print(pedacos)
+            print(pedacos)
             if pedacos[i][1] == pedacos[j][0] and pedacos[j][1] != n:
                 pedacos[i] = pedacos[j]
                 # print(pedacos)
@@ -45,7 +45,7 @@ def cordao_de_led():
                 j = 1
                 continue
             elif pedacos[i][1] == pedacos[j][0] and pedacos[j][1] == n:
-                # print(pedacos)
+                print(pedacos[i], pedacos[j])
                 flag = True
                 break
             j += 1
@@ -70,9 +70,10 @@ if __name__ == '__main__':
 1 3
 2 4
 
-6 4
+6 5
 1 2
 3 4
-5 6
+4 5
 2 3
+5 6
 """
