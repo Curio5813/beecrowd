@@ -39,7 +39,7 @@ def cordao_de_led():
     flag = False
     # print(pedacos)
     remendos = deepcopy(pedacos)
-    i, j, cont = 0, 1, 0
+    i, j = 0, 1,
     while True:
         while i < len(remendos):
             # print(remendos)
@@ -53,7 +53,6 @@ def cordao_de_led():
                 # print(remendos)
                 flag = True
                 break
-            cont += 1
             j += 1
             if j > len(remendos) - 1:
                 break
