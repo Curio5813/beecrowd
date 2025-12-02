@@ -1,6 +1,3 @@
-from copy import deepcopy
-
-
 def cordao_de_led():
     """
     Mariazinha quer montar sua árvore de Natal com os cordões de led
@@ -37,30 +34,28 @@ def cordao_de_led():
         pedaco = sorted(list(map(int, input().split())))
         pedacos.append(pedaco)
     flag = False
-    # print(pedacos)
-    remendos = deepcopy(pedacos)
     i, j = 0, 1,
     while True:
-        while i < len(remendos):
-            # print(remendos)
-            if remendos[i][1] == remendos[j][0] and remendos[j][1] != n:
-                remendos[i] = remendos[j]
-                # print(remendos)
+        while i < len(pedacos):
+            # print(pedacos)
+            if pedacos[i][1] == pedacos[j][0] and pedacos[j][1] != n:
+                pedacos[i] = pedacos[j]
+                # print(pedacos)
                 i = 0
                 j = 1
                 continue
-            elif remendos[i][1] == remendos[j][0] and remendos[j][1] == n:
-                # print(remendos)
+            elif pedacos[i][1] == pedacos[j][0] and pedacos[j][1] == n:
+                # print(pedacos)
                 flag = True
                 break
             j += 1
-            if j > len(remendos) - 1:
+            if j > len(pedacos) - 1:
                 break
         i += 1
         if flag:
             print("COMPLETO")
             break
-        if j > len(remendos) - 1:
+        if j > len(pedacos) - 1:
             break
     if not flag:
         print("INCOMPLETO")
