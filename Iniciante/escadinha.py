@@ -8,20 +8,25 @@ def escadinha():
     """
     cont1, cont2 = 1, 1
     n = int(input())
-    nx = list(map(int, input().split(" ")))
-    if len(nx) >= 3:
-        for i in range(0, len(nx)):
-            if i == len(nx) - 2:
-                if cont1 > 1:
-                    cont2 += 1
+    numeros = list(map(int, input().split(" ")))
+    escadinhas, diff, i = 0, [], 1
+    while i <= len(numeros) - 1:
+        for j in range(i, len(numeros)):
+            diferenca = numeros[j] - numeros[j - 1]
+            if len(diff) > 0 and diferenca == diff[-1]:
+                diff.append(diferenca)
+                i += 1
+                continue
+            else:
+                diff.append(diferenca)
+                escadinhas += 1
+                i += 1
                 break
-            if nx[i] - abs(nx[i + 1]) == nx[i + 1] - abs(nx[i + 2]):
-                cont1 += 1
-            elif nx[i] - abs(nx[i + 1]) != nx[i + 1] - abs(nx[i + 2]):
-                if cont1 > 1:
-                    cont2 += 1
-                cont1 = 1
-    print(cont2)
+    if len(diff) == 0:
+        print(1)
+    else:
+        print(escadinhas)
 
 
-escadinha()
+if __name__ == '__main__':
+    escadinha()
