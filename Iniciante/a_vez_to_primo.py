@@ -58,6 +58,8 @@ def a_vez_to_primo():
             n_primos.add(j)
         else:
             primos.append(i)
+    primos.sort()
+    primos.reverse()
     for i in range(n):
         flag = False
         rodada = list(input().split())
@@ -65,7 +67,6 @@ def a_vez_to_primo():
         chegar = int(rodada[1])
         if chegar != 1:
             idx = jogadores.index(jogador)
-            temp_idx = idx
             # print(pontos, chegar, idx)
             while chegar != 1:
                 if chegar in primos:
