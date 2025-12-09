@@ -6,7 +6,6 @@ def escadinha():
     única escadinha que é ele próprio.
     :return:
     """
-    cont1, cont2 = 1, 1
     n = int(input())
     numeros = list(map(int, input().split(" ")))
     escadinhas, diff, i = 0, [], 1
