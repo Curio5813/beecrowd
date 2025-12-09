@@ -64,48 +64,42 @@ def a_vez_to_primo():
         jogador = rodada[0]
         chegar = int(rodada[1])
         if chegar != 1:
+            idx = jogadores.index(jogador)
+            temp_idx = idx
+            # print(pontos, chegar, idx)
             while chegar != 1:
-                # print(pontos)
-                idx = jogadores.index(jogador)
-                temp_idx = idx
                 if chegar in primos:
-                    # print(chegar)
                     pontos[idx] += 1
                     idx += 1
                     if idx >= len(jogadores):
                         idx = 0
-                        while idx != temp_idx:
-                            pontos[idx] += chegar
-                            idx += 1
-                    else:
-                        while idx != temp_idx:
-                            pontos[idx] += chegar
-                            idx += 1
-                            if idx >= len(jogadores):
-                                idx = 0
+                    pontos[idx] += chegar
+                    idx += 1
+                    if idx >= len(jogadores):
+                        idx = 0
+                    pontos[idx] += chegar
                     break
                 if not flag:
                     for j in range(len(primos)):
-                        # print(chegar, primos[j])
+                        if primos[j] == chegar:
+                            break
                         if chegar / primos[j] == 2:
-                            # print(chegar, primos[j])
                             pontos[idx] += 2
                             idx += 1
-                            if idx >=len(jogadores):
+                            if idx >= len(jogadores):
                                 idx = 0
                             pontos[idx] += 1
                             idx += 1
-                            if idx == temp_idx:
-                                break
                             if idx >= len(jogadores):
                                 idx = 0
-                            if idx != temp_idx:
-                                pontos[idx] += chegar
+                            pontos[idx] += chegar
                             chegar = 1
                             flag = True
                             break
                         elif sqrt(chegar) % 2 == 0 or sqrt(chegar) % sqrt(2) == 0:
-                            while chegar != 4:
+                            # print(pontos, chegar, idx)
+                            while chegar >= 2:
+                                # print(pontos, chegar, idx)
                                 chegar //= 2
                                 idx += 1
                                 if idx >= len(jogadores):
@@ -122,14 +116,23 @@ def a_vez_to_primo():
                             chegar = 1
                             flag = True
                             break
-                    if not flag:
-                        # print(chegar)
-                        chegar += 1
-                        flag = False
-                    if chegar == 1:
-                        break
+                if chegar == 1:
+                    break
+                if not flag:
+                    chegar += 1
+                    idx += 1
+                    if idx >= len(jogadores):
+                        idx = 0
+                    flag = False
     print(*pontos)
 
 
 if __name__ == '__main__':
     a_vez_to_primo()
+
+"""
+3
+O 13
+I 14
+E 15
+"""
