@@ -13,14 +13,12 @@ def excel_bugado():
     """
     while True:
         try:
+            colunas = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+                       "T", "U", "V", "W", "X", "Y", "Z"]
             s = input()
-            while len(s) > 3:
+            if len(s) > 3:
                 print("Essa coluna nao existe Tobias!")
-                s = input()
-            colunas = []
-            for i in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
-                colunas.append(i)
-            if len(s) == 1:
+            elif len(s) == 1:
                 idx = colunas.index(s) + 1
                 print(idx)
             elif len(s) == 2:
