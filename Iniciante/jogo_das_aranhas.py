@@ -26,18 +26,27 @@ def jogo_das_aranhas():
         aux += 1
         i = aux
         aranhas_mortas = []
-        aranhas = [x for x in range(1, n * 2 + 1)]
+        aranhas = deepcopy(aux_aranhas)
         while True:
-            if len(aranhas) == n:
-                break
             if i >= len(aranhas):
-                while i >= len(aranhas):
-                    i -= n
-            # print(aux, i, aranhas_mortas, aranhas)
-            aranhas_mortas.append(aranhas[i])
-            aranhas.pop(i - 1)
-            print(aux, i, aranhas_mortas, aranhas)
-            i += n
+                i = len(aranhas)
+                cont = i - 1
+                while cont < aux:
+                    i += 1
+                    if i >= len(aranhas):
+                        i = 0
+                    cont += 1
+            if len(aranhas_mortas) == n:
+                break
+            aranhas_mortas.append(aranhas[i - 1])
+            aranhas.remove(aranhas[i - 1])
+            cont = 0
+            while cont < aux:
+                i += 1
+                if i >= len(aranhas):
+                    i = 0
+                cont += 1
+            print(aux, aranhas_mortas, aranhas, i)
         aranhas_mortas.sort()
         print(aux, aranhas_mortas)
     print(aux)
