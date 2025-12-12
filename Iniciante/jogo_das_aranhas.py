@@ -1,6 +1,4 @@
-from time import time
-
-start = time()
+from copy import deepcopy
 
 
 def jogo_das_aranhas():
@@ -19,30 +17,33 @@ def jogo_das_aranhas():
     :return:
     """
     n = int(input())
-    aranhas, marrons, vermelhas, aux = [], [], [], []
-
-    for i in range(1, n * 2 + 1):
-        aranhas.append(i)
-        aux.append(i)
-        if i <= n:
-            vermelhas.append(i)
-        if i > n:
-            marrons.append(i)
-    for k in range(2, 2_000_000_000 + 1):
-        j = k
+    aranhas = [x for x in range(1, n * 2 + 1)]
+    aux_aranhas = deepcopy(aranhas)
+    i = n
+    aux = i
+    aranhas_mortas = []
+    while aranhas_mortas != aux_aranhas[n:]:
+        aux += 1
+        i = aux
+        aranhas_mortas = []
+        aranhas = [x for x in range(1, n * 2 + 1)]
         while True:
             if len(aranhas) == n:
                 break
-            while k <= len(aranhas):
-                aranhas.pop(k - 1)
-                k += j
-            k = k - len(aranhas) - 1
-        if aranhas == vermelhas:
-            return print(j)
-        elif aranhas != vermelhas:
-            aranhas = aux
+            if i >= len(aranhas):
+                while i >= len(aranhas):
+                    i -= n
+            # print(aux, i, aranhas_mortas, aranhas)
+            aranhas_mortas.append(aranhas[i])
+            aranhas.pop(i - 1)
+            print(aux, i, aranhas_mortas, aranhas)
+            i += n
+        aranhas_mortas.sort()
+        print(aux, aranhas_mortas)
+    print(aux)
 
 
-jogo_das_aranhas()
-end = time()
-print(f"{(end - start) / 60}")
+if __name__ == '__main__':
+    jogo_das_aranhas()
+
+
