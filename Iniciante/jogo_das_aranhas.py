@@ -31,9 +31,6 @@ def jogo_das_aranhas():
                 i -= len(aranhas)
                 while i > len(aranhas):
                     i -= len(aranhas)
-                    if i <= 0:
-                        while i <= 0:
-                            i += 1
             if len(aranhas_mortas) == n and all(a in aux_aranhas[n:] for a in aranhas_mortas):
                 return print(aux)
             if aranhas[i - 1]  <= n:
@@ -43,9 +40,6 @@ def jogo_das_aranhas():
             i -= 1
             if i <= 0:
                 i += aux
-            if i > len(aranhas):
-                while i > len(aranhas):
-                    i -= len(aranhas)
             i += aux
         aranhas_mortas.sort()
 
