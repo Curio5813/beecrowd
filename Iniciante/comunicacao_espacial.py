@@ -51,7 +51,7 @@ def comunicacao_espacial():
     for i in range(len(dts)):
         if min(dts[i]) <= 20:
             print("A")
-        elif 20 <= min(dts[i]) <= 50:
+        elif 20 < min(dts[i]) <= 50:
             print("M")
         else:
             print("B")
