@@ -42,17 +42,16 @@ def chuva_caindo():
         print(f"{h:.9f} {h:.9f}")
     else:
         if l == h:
-            vazamento = l + k * t2 + (t2/l) * k
-            print(f"{l:.9f} {vazamento:.9f}")
-        else:
-            vazamento = h + k * t2 + (t2 / h) * k
-            print(f"{vazamento:.9f} {vazamento:.9f}")
+            print(t2 / t1, (t2/t1), (t2/t1) / l)
+            vazamento = l + t2/t1 + (t2/t1) / l
+            print(f"{l:.9f} {vazamento:.6f}")
 
 
 if __name__ == '__main__':
     chuva_caindo()
 
 """
-80.00 0.50 2.00 1.50 80.00
+80.00 0.50 2.00 1.50 80.00 => 80.000000 80.759403
 150.00 1.00 100.00 150.00 100.00
+70.00 0.50 2.00 1.50 80.00 => 80.884569168 80.884569168
 """
