@@ -61,47 +61,74 @@ def dado():
     :return:
     """
     while True:
-        entrada = list(map(int, input().strip().split(" ")))
-        p, s = entrada[0], entrada[1]
+        p, s = map(int, input().strip().split(" "))
+        jogador = {}
+        for i in range(1, p + 1):
+            jogador[i] = 0
+        # print(jogador)
         if p == 0 and s == 0:
             break
         aramadilhas = list(map(int, input().strip().split(" ")))
-        # print(aramadilhas)
         rodadas = int(input())
-        temp, jogadores, j = [], [], 0
-        for i in range(p):
-            temp.append(0)
-            temp.append([0])
-            jogadores.append(temp)
-            temp = []
-        for i in range(rodadas):
-            dados = list(map(int, input().strip().split(" ")))
-            soma = dados[0] + dados[1]
-            if jogadores[j][1] == [0]:
-                jogadores[j][0] += soma
-                if jogadores[j][0] in aramadilhas:
-                    jogadores[j][1] = [1]
-                elif jogadores[j][0] > s:
-                    print(j + 1)
+        chaves, cont, par, preso, temp, flag = 1, 0, rodadas, [], [], False
+        while rodadas > 0:
+            dados = sum(list(map(int, input().strip().split())))
+            print(jogador, dados, chaves, preso, temp, cont, flag)
+            if jogador[chaves] + dados in aramadilhas and chaves not in preso:
+                preso.append(chaves)
+                temp.append(dados)
+            if chaves in preso and cont < par and flag == False:
+                cont += p
+                if cont >= par:
+                    cont = 0
+                    chaves += 1
+                    if chaves > len(jogador):
+                        chaves = 1
+                        flag = True
+            if flag:
+                jogador[chaves] += temp[preso.index(chaves)]
+                temp.remove(temp[preso.index(chaves)])
+                preso.remove(chaves)
+                chaves += 1
+                jogador[chaves] += dados
+                print(jogador, dados, chaves, preso, temp, cont, flag)
+                if jogador[chaves] > s:
                     break
-            elif jogadores[j][1] == [1]:
-                jogadores[j][1] = [0]
-                j += 1
-                if j >= p:
-                    j = 0
-                while jogadores[j][1] == [1]:
-                    jogadores[j][1] = [0]
-                    j += 1
-                    if j >= p:
-                        j = 0
-                else:
-                    jogadores[j][0] += soma
-                    if jogadores[j][0] > s:
-                        print(j + 1)
-                        break
-            j += 1
-            if j > p - 1:
-                j = 0
+            else:
+                jogador[chaves] += dados
+                print(jogador, dados, chaves, preso, temp, cont, flag)
+                if jogador[chaves] > s:
+                    print(chaves)
+                    break
+            chaves += 1
+            if chaves > len(jogador):
+                chaves = 1
+            rodadas -= 1
+        print(jogador)
 
 
-dado()
+
+if __name__ == "__main__":
+    dado()
+
+
+"""
+2 10
+2 4 8
+4
+1 1
+3 4
+1 2
+6 5
+3 7
+4 5 7
+7
+1 2
+2 2
+2 1
+1 1
+1 2
+1 1
+1 1
+0 0
+"""
