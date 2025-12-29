@@ -70,42 +70,30 @@ def dado():
             break
         aramadilhas = list(map(int, input().strip().split(" ")))
         rodadas = int(input())
-        chaves, cont, par, preso, temp, flag = 1, 0, rodadas, [], [], False
-        while rodadas > 0:
+        chaves, cont, preso, = 1, 0, []
+        for i in range(rodadas):
             dados = sum(list(map(int, input().strip().split())))
-            print(jogador, dados, chaves, preso, temp, cont, flag)
+            print(jogador, preso, chaves, cont,dados)
             if jogador[chaves] + dados in aramadilhas and chaves not in preso:
                 preso.append(chaves)
-                temp.append(dados)
-            if chaves in preso and cont < par and flag == False:
-                cont += p
-                if cont >= par:
-                    cont = 0
-                    chaves += 1
-                    if chaves > len(jogador):
-                        chaves = 1
-                        flag = True
-            if flag:
-                jogador[chaves] += temp[preso.index(chaves)]
-                temp.remove(temp[preso.index(chaves)])
+                jogador[chaves] += dados
+            if chaves in preso and cont < 2:
+                cont += 1
+            if chaves in preso and cont == 2:
                 preso.remove(chaves)
+                cont = 0
                 chaves += 1
+                if chaves > len(jogador):
+                    chaves = 1
+            if chaves not in preso:
                 jogador[chaves] += dados
-                print(jogador, dados, chaves, preso, temp, cont, flag)
                 if jogador[chaves] > s:
-                    break
-            else:
-                jogador[chaves] += dados
-                print(jogador, dados, chaves, preso, temp, cont, flag)
-                if jogador[chaves] > s:
-                    print(chaves)
+                    primeira_chave = max(jogador, key=lambda k: jogador[k])
+                    print(primeira_chave, jogador, preso, chaves, cont,dados)
                     break
             chaves += 1
             if chaves > len(jogador):
                 chaves = 1
-            rodadas -= 1
-        print(jogador)
-
 
 
 if __name__ == "__main__":
@@ -130,5 +118,71 @@ if __name__ == "__main__":
 1 2
 1 1
 1 1
+3 10
+2 4 8
+11
+1 1
+1 1 
+1 1
+1 1
+1 1
+1 1
+2 2
+2 2
+2 2
+1 1
+1 2
+2 10
+2 4 8
+8
+1 1
+1 1
+1 1 
+1 1
+2 2
+2 2
+1 1
+2 2
+2 10
+2 4 8
+4
+1 1
+3 4
+1 2
+6 5
+3 7
+4 5 7
+7
+1 2
+2 2
+2 1
+1 1
+1 2
+1 1
+1 1
+5 20
+2 4 7
+8
+2 4
+1 1
+2 2
+4 5
+6 1
+1 4
+3 6
+6 6
+2 40
+2 9 5
+10
+1 1
+1 1
+6 6
+6 6
+4 4
+4 4
+1 1
+5 5
+1 1
+6 6
 0 0
 """
