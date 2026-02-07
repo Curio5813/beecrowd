@@ -66,21 +66,20 @@ def catalogo_de_livros():
     livros.reverse()
     print(livros)
     for i in range(conjuntos):
+        a = 1
         for j in range(a, len(livros)):
             cont += 1
             primeiro = livros[0][c]
             if cont == 5:
                 c += 1
-                if c > len(livros[j]) * len(livros[j]):
-                    c = 0
-                a = 0
                 b = 0
                 cont = -1
                 break
-            for k in range(b, len(livros[j])):
-                print(primeiro, livros[j][k])
-                valor += primeiro + livros[j][k]
-                break
+            else:
+                for k in range(b, len(livros[j])):
+                    print(primeiro, livros[j][k])
+                    valor += primeiro + livros[j][k]
+                    break
     print(valor)
 
 
