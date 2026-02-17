@@ -42,42 +42,31 @@ def futebol():
             for i in range(len(resultados)):
                 diff = resultados[i][0] - resultados[i][1]
                 diffs.append(diff)
+            diffs.sort()
             diffs.reverse()
             for i in range(len(diffs)):
-                if diffs[i] < 0:
+                if diffs[i] > 0:
                     pontos += 3
                 elif diffs[i] == 0 and gols_comprado >= 1:
                     pontos += 3
                     gols_comprado -= 1
                 elif diffs[i] == 0 and gols_comprado == 0:
                     pontos += 1
-                else:
+                elif diffs[i] < 0 and gols_comprado == 0:
+                    break
+                elif diffs[i] < 0 < gols_comprado:
                     cont = 0
-                    while diffs[i] > 0:
+                    while gols_comprado > 0:
                         cont += 1
                         gols_comprado -= 1
-                        if gols_comprado == 0:
-                            break
-                        if diffs[i] + cont >= 1:
+                        if diffs[i] + cont > 0:
                             pontos += 3
+                            break
+                    if diffs[i] + cont == 0:
+                        pontos += 1
             print(pontos)
         except EOFError:
             break
 
 
 futebol()
-
-"""
-2 1
-1 1
-1 1
-3 2
-1 3
-3 1
-2 2
-4 10
-1 1
-2 2
-1 3
-0 4
-"""
