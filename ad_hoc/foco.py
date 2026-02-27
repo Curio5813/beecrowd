@@ -41,14 +41,12 @@ def foco():
             intervalos.sort()
             print(intervalos)
             for i in range(len(intervalos)):
-                for j in range(len(intervalos)):
-                    if j >= len(intervalos) - 1:
-                        break
+                for j in range(i, len(intervalos)):
                     if i != j:
-                        if idx < intervalos[i][1]:
+                        print(intervalos[i], intervalos[j])
+                        if (intervalos[i][0] < intervalos[j][0] and intervalos[i][1] < intervalos[j][1]
+                                and intervalos[i][1] < intervalos[j][0]):
                             fotos += 1
-                            idx = intervalos[i][1]
-                            print(idx)
                             break
             print(fotos)
         except EOFError:
@@ -56,3 +54,16 @@ def foco():
 
 
 foco()
+
+"""
+3
+1 3
+2 5
+4 6
+5
+1 2
+5 6
+3 4
+5 6
+1 2
+"""
