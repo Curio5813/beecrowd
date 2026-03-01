@@ -75,8 +75,6 @@ def matriz_de_quadrados():
                     maior = temp
             maiores.append(maior)
             maior = 0
-        maiores.sort()
-        maiores.reverse()
         print(f"Quadrado da matriz #{num + time}:")
         for j in range(len(completa[0])):
             for k in range(len(completa)):
@@ -84,6 +82,8 @@ def matriz_de_quadrados():
                     print(f"{completa[k][j]:>{maiores[k]}}")
                     break
                 print(f"{completa[k][j]:>{maiores[k]}}", end=" ")
+        if i != casos - 1:
+            print()
 
 
 matriz_de_quadrados()
