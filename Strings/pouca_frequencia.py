@@ -48,14 +48,16 @@ def pouca_frequencia():
                 flag = True
             if j == len(presenca) - 1 and flag == False and percentual < 0.75:
                 nao_farao_exames.append(alunos[j])
-                print(*nao_farao_exames)
+                flag = True
                 break
-            if j == len(presenca) - 1 and flag == True and len(nao_farao_exames) > 0:
-                if alunos[j] not in nao_farao_exames and percentual < 0.75:
-                    nao_farao_exames.append(alunos[j])
-                print(*nao_farao_exames)
-            if not flag:
-                print()
+            if j == len(presenca) - 1 and flag == True and percentual < 0.75:
+                nao_farao_exames.append(alunos[j])
+                flag = True
+                break
+        if flag:
+            print(*nao_farao_exames)
+        if not flag:
+            print(*nao_farao_exames)
 
 
 pouca_frequencia()
