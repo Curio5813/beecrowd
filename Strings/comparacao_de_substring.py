@@ -17,58 +17,46 @@ def comparacao_de_substring():
     """
     while True:
         try:
-            tam, maior = 0, 0
             string1 = input()
             string2 = input()
-            if len(string1) <= len(string2):
-                for i in range(0, len(string1)):
-                    for k in range(0, len(string2)):
-                        if string1[i] == string2[k]:
-                            a = i
-                            b = k
-                            while string1[a] == string2[b]:
-                                if a >= len(string1) - 1 or b >= len(string2) - 1:
-                                    if len(string1) > 1 and len(string2) > 1 and string1[a] == string2[b]:
-                                        tam += 1
-                                        break
-                                    else:
-                                        tam += 1
-                                        break
-                                tam += 1
-                                a += 1
-                                b += 1
-                        if tam > maior:
-                            maior = tam
-                            tam = 0
-                            break
-                        else:
-                            tam = 0
-            if len(string2) < len(string1):
-                for i in range(0, len(string2)):
-                    for k in range(0, len(string1)):
-                        if string2[i] == string1[k]:
-                            a = i
-                            b = k
-                            while string2[a] == string1[b]:
-                                if a >= len(string2) - 1 or b >= len(string1) - 1:
-                                    if len(string2) > 1 and len(string1) > 1 and string2[a] == string1[b]:
-                                        tam += 1
-                                        break
-                                    else:
-                                        tam += 1
-                                        break
-                                tam += 1
-                                a += 1
-                                b += 1
-                        if tam > maior:
-                            maior = tam
-                            tam = 0
-                            break
-                        else:
-                            tam = 0
-            print(maior)
+            cont1, cont2, distaciancias = 0, 0, []
+            for i in range(0, len(string1)):
+                for j in range(cont1, len(string2)):
+                    if string1[i] == string2[j]:
+                        cont1 += 1
+                        cont2 += 1
+                        distaciancias.append(cont2)
+                        print(string1[i], string2[j], distaciancias)
+                        break
+                    else:
+                        cont1 += 1
+                        cont2 = 0
+                else:
+                    cont1 = 0
+            #print(string1)
+            #print(string2)
+            # print(distaciancias)
+            if distaciancias:
+                print(max(distaciancias))
+            else:
+                print(0)
         except EOFError:
             break
 
 
 comparacao_de_substring()
+
+"""
+abcdef
+cdofhij
+TWO
+FOUR
+abracadabra
+open
+Hey This java is hot
+Java is a new paradigm
+Find the longest common substring
+The substring can be any part of the String
+If there is no common substring, return 0
+The search is case sensitive
+"""

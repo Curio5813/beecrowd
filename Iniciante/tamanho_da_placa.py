@@ -8,10 +8,9 @@ def tamanho_da_placa():
     while True:
         try:
             x, y, m = list(map(int, input().split(" ")))
-            dim = x * y
             for i in range(m):
                 xi, yi = list(map(int, input().split(" ")))
-                if xi * yi <= dim:
+                if xi <= x and yi <= y or xi <= y and yi <= x:
                     print("Sim")
                 else:
                     print("Nao")

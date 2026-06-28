@@ -6,7 +6,8 @@ def geometria_por_que_nao():
     while True:
         caminhos = input()
         (x, y, m, i, base, altura, area, reta_h,
-         sobras1, sobras2, sobras3, pontos_y , achados) = (0, 0, 0, 0, 0, 0, 0, 0, [], [], [], [], [])
+         sobras1, sobras2, sobras3, pontos_x, pontos_y , achados) = (0, 0, 0, 0, 0, 0, 0, 0,
+                                                                     [], [], [], [], [], [])
         if caminhos == "S":
             break
         else:
@@ -17,7 +18,7 @@ def geometria_por_que_nao():
                 if caminhos[j] == "U":
                     y += 1
             if x > 0:
-                m = y / x
+                m = round(y / x, 3)
             if m > 0 and x > 0 and y > 0:
                 x, y = 0, 0
                 while i < len(caminhos) - 1:
@@ -29,20 +30,20 @@ def geometria_por_que_nao():
                         i += 1
                         while caminhos[i] == "R":
                             i += 1
-                            if i >= len(caminhos) - 1:
-                                break
                             base += 1
                             x += 1
+                            if i >= len(caminhos) - 1:
+                                break
                     if caminhos[i] == "U":
                         altura += 1
                         y += 1
                         i += 1
                         while caminhos[i] == "U":
                             i += 1
-                            if i >= len(caminhos) - 1:
-                                break
                             altura += 1
                             y += 1
+                            if i >= len(caminhos) - 1:
+                                break
                     reta_h = base * m
                     if reta_h > altura:
                         altura_menor = reta_h - altura
@@ -52,15 +53,15 @@ def geometria_por_que_nao():
                         area += area1 + area2
                         area = round(area, 3)
                         sobras1.append(area2)
-                        # print(area, area2, base, base_menor, reta_h, altura, altura_menor, "Ok0")
+                        # print(area, area2, base, base_menor, reta_h, altura, altura_menor, x, y, "Ok0")
                         base = base_menor
                         altura = 0
                     elif reta_h <= altura:
                         base = base
-                        altura1 =base * m
+                        altura1 = base * m
                         area += altura1 * base / 2
                         area = round(area, 3)
-                        base2 = round(base - altura1, 3)
+                        base2 = round(abs(base - altura1), 3)
                         base3 = base - base2
                         altura2 = base2 * m
                         altura3 = base3 * m
@@ -68,6 +69,7 @@ def geometria_por_que_nao():
                         # print(area, area3, base, altura2, altura3, base2, base3, "Ok1")
                         sobras2.append(area3)
                         pontos_y.append(y)
+                        pontos_x.append(x)
                         altura2 = altura - altura1
                         altura -= altura2
                         altura = altura
@@ -75,7 +77,8 @@ def geometria_por_que_nao():
                         base = 0
                     if len(pontos_y) >= 2:
                         for n in range(0, len(pontos_y)):
-                            if pontos_y.count(pontos_y[n]) >= 2 and pontos_y[n] not in achados:
+                            if (pontos_y.count(pontos_y[n]) >= 2 and pontos_y[n] not in achados
+                                    and x >= 3):
                                 sobras3.append(sobras2[pontos_y.index(pontos_y[n])])
                                 achados.append(pontos_y[n])
                 # print(sobras1, sobras3)

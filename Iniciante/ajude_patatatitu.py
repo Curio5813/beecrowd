@@ -9,8 +9,9 @@ def ajude_patatatitu():
     printar "Prossiga".
     :return:
     """
-    substancia, danger, estado = "", [], []
+    substancia, danger = "", []
     n = int(input())
+    cont = 0
     for i in range(n):
         t = int(input())
         for k in range(t):
@@ -18,32 +19,32 @@ def ajude_patatatitu():
             danger.append(substancia)
         u = int(input())
         for t in range(u):
-            exp = input()
+            flag = False
+            experiencia = input()
             for m in range(0, len(danger)):
-                if len(exp) < len(danger[m]):
-                    print("Prossiga")
-                    break
-                if danger[m] in exp:
-                    div = exp.split(danger[m])
-                    print(div)
-                    for p in range(0, len(div)):
-                        if div[0] == "" and div[1] == "":
-                            estado.append("Abortar")
-                        elif div[0] == "" and div[1][0].isupper():
-                            estado.append("Abortar")
-                            break
-                        elif div[-1] == "":
-                            estado.append("Abortar")
-                            break
-                        elif div[p][0].isupper():
-                            estado.append("Abortar")
-                            break
-                if estado.count("Abortar") > 0:
-                    print("Abortar")
-                    break
-                elif estado.count("Abortar") == 0:
-                    print("Prossiga")
+                if danger[m] in experiencia:
+                    idx_i = experiencia.rindex(danger[m])
+                    idx_f = idx_i + len(danger[m]) - 1
+                    if len(experiencia) == len(danger[m]):
+                        flag = True
+                        break
+                    elif idx_f == len(experiencia) - 1:
+                        flag = True
+                        break
+                    elif (len(experiencia) > len(danger[m]) and experiencia[idx_f + 1]
+                          not in "0123456789abcdefghijklmnopqrstuvwxyz"):
+                        flag = True
+                        break
+            if flag:
+                print("Abortar")
+            if not flag:
+                print("Prossiga")
+        cont += 1
+        if cont == n:
+            pass
+        else:
             print("")
 
 
-ajude_patatatitu()
+if __name__ == '__main__':
+    ajude_patatatitu()

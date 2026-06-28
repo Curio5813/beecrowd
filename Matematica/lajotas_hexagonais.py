@@ -1,5 +1,11 @@
 def lajotas_hexagonais():
     """
+    O caminho para a escola de Maria é uma linha reta pavimentada
+    com lajotas hexagonais. A imagem abaixo mostra um exemplo do
+    caminho com 12 peças numeradas.
+
+    ![imagem](https://resources.beecrowd.com/gallery/images/novos/Hexagonal%20Tiles.png)
+
     Maria adora matemática. Ao ir para a escola, ela pisa sobre
     as lajotas do caminho de acordo com as seguintes regras:
 
@@ -8,6 +14,7 @@ def lajotas_hexagonais():
     presente no inicio do caminho. As outras peças são numeradas
     consecutivamente, de modo ascendente, a partir de 1, como mostrado
     na figura.
+
     Não é permitido voltar, isto é, ela não deve pisar em uma telha que
     tenha um número menor do que a telha que ela está pisando (quando ela
     decide ir para a escola, ela vai mesmo!). Ela sempre dá passos de uma
@@ -37,24 +44,13 @@ def lajotas_hexagonais():
     """
     while True:
         n = int(input())
-        lajotas, par, caminho, caminhos = [], [], [], []
-        for i in range(1, n + 1):
-            lajotas.append(i)
-            if i % 2 == 0:
-                par.append(i)
-        caminhos.append(lajotas)
-        caminhos.append(par)
-        for i in range(0, len(lajotas)):
-            for k in range(0, len(lajotas)):
-                if abs(lajotas[k] - lajotas[i]) <= 2 and lajotas[i] != lajotas[k]:
-                    caminho.append(lajotas[k])
-            if n not in caminho:
-                caminho.append(n)
-            if caminho not in caminhos:
-                caminhos.append(caminho)
-            caminho = []
-        print(caminhos)
-        print(len(caminhos))
+        if n == 0:
+            break
+        a, b, p = 0, 1, 1
+        for i in range(n):
+            a, b = b, p
+            p = a + b
+        print(b)
 
 
 lajotas_hexagonais()

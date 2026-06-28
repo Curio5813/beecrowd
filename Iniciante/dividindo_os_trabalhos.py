@@ -1,6 +1,3 @@
-from math import ceil, floor
-
-
 def dividindo_os_trabalhos():
     """
     A função printa o valor ótimo de trabalhos que deve ser
@@ -10,24 +7,28 @@ def dividindo_os_trabalhos():
     """
     while True:
         try:
-            rangel = 0
+            diferenca = []
             n = int(input())
-            trabalhos = list(map(int, input().split(" ")))
-            # print(len(trabalhos))
-            soma = sum(trabalhos)
-            # print(soma)
-            media = floor(soma / 2)
-            # print(media, end=" ")
+            trabalhos = list(map(int, input().split()))
             for i in range(0, len(trabalhos)):
-                rangel += trabalhos[i]
-                if rangel >= media:
-                    gugu = sum(trabalhos[i + 1::])
-                    # print(rangel, end=" ")
-                    # print(gugu, end=" ")
-                    print(abs(rangel - gugu))
+                rangel = sum(trabalhos[0:i + 1])
+                gugu = sum(trabalhos[i + 1:])
+                # print(rangel, gugu)
+                diff = abs(rangel - gugu)
+                if diff == 0:
+                    diferenca.append(diff)
                     break
+            print(min(diferenca))
         except EOFError:
             break
 
 
 dividindo_os_trabalhos()
+
+
+"""
+3
+2 3 5
+4
+1 2 2 6
+"""

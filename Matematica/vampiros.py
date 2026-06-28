@@ -45,17 +45,17 @@ def vampiros():
         if ev1 == 0 and ev2 == 0 and at == 0 and d == 0:
             break
         if at == 3:
-            p1 = (ev2 / (ev1 + ev2))  # É similar com a probabilidade de um jogo com moeda justa
-        elif at != 3:  # É similar com a probabilidade de um jogo com moeda viciada
+            p1 = (ev2 / (ev1 + ev2))
+        elif at != 3:
             if d == 1:
                 p1 = (1 - ((p / q) ** ev2)) / (1 - ((p / q) ** (ev1 + ev2)))
             elif d > 1:
-                tem = ev1
+                tem = ev2
                 ev2 = 0
                 ev1 = 0
                 while tem > 0:
                     tem -= d
-                    ev2 -= 1
+                    ev2 += 1
                     ev1 += 1
                 p1 = (1 - ((p / q) ** ev2)) / (1 - ((p / q) ** (ev1 + ev2)))
         p1 *= 100
@@ -63,3 +63,11 @@ def vampiros():
 
 
 vampiros()
+
+"""
+1 1 3 1
+1 2 1 1
+8 5 3 1
+7 5 2 4
+0 0 0 0
+"""

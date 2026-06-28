@@ -24,20 +24,28 @@ def fervendo_vegetais():
     t, n = input().split(" ")
     t, n = float(t), int(n)
     w = list(map(int, input().split(" ")))
-    maximo = max(w) / 1000
-    minimo = min(w) / 1000
-    total = maximo + minimo
-    c, aux = 0, total
-    while total >= t:
-        total = aux
-        c += 1
-        total /= c
-        total = round(total, 4)
-        if total < t:
-            c -= 1
+    w_total = sum(w)
+    p = w_total - w_total * t
+    cortes, pedacos = 0, 0
+    print(p)
+    for i in range(2, w_total + 1):
+        while w_total % i == 0 and w_total > p:
+            w_total //= i
+            cortes += i - 1
+            pedacos += i
+            print(cortes, pedacos, w_total)
+        if w_total <= p:
             break
+    print(pedacos - cortes)
 
-    print(c)
+
+if __name__ == '__main__':
+    fervendo_vegetais()
 
 
-fervendo_vegetais()
+"""
+0.99 3
+2000 3000 4000
+0.80 2
+1000 1400
+"""
