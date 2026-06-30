@@ -32,20 +32,26 @@ def lucro():
     :return:
     """
     while True:
-        dias = int(input())
-        custo = int(input())
-        receitas = []
-        lucros, maior = 0, 0
-        if dias >= 2:
+        try:
+            dias = int(input())
+            custo = int(input())
+            receitas = []
+            lucros, temp, maiores_lucros = 0, [], []
             for i in range(dias):
                 receitas.append(int(input()))
             for i in range(0, len(receitas)):
                 for j in range(i, len(receitas)):
                     lucros += (receitas[j] - custo)
-                    if maior < lucros:
-                        maior = lucros
-        else:
-            print(0)
+                    temp.append(lucros)
+                maiores_lucros.append(max(temp))
+                temp = []
+                lucros = 0
+            if max(maiores_lucros) > 0:
+                print(max(maiores_lucros))
+            else:
+                print(0)
+        except EOFError:
+            break
 
 
 if __name__ == '__main__':
