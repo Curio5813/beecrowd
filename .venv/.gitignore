@@ -1,0 +1,7 @@
+# Ambiente virtual
+venv/
+
+# Configurações do IDE (PyCharm / IntelliJ)
+.idea/
+*.iml
+*.xml
