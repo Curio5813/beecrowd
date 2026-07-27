@@ -1,3 +1,6 @@
+from collections import deque
+
+
 def atalhos_bloggo():
     """
     Você está ajudando a desenvolver um sistema de gerenciamento
@@ -54,28 +57,41 @@ def atalhos_bloggo():
     :return:
     """
     while True:
-        texto = input()
-        a, b, c, d = 0, 1, 0, 1
-        for i in texto:
-            if i == '*':
-                if i == '*' and c >= d:
-                    d = c
-                    c = texto.index(i)
-                    i = '</b>'
-                elif i == '*' and d > c:
-                    c = d
-                    d = texto.index(i)
-                    i = '<b>'
-            if i == '_':
-                if i == '_' and a >= b:
-                    b = a
-                    a = texto.index(i)
-                    i = '</i>'
-                elif i == '_' and a < b:
-                    a = b
-                    b = texto.index(i)
-                    i = '<i>'
-            print(i, end="")
+        try:
+            texto = input()
+            fila, flag1, flag2 = [], False, False
+            for i in texto:
+                if i == '*':
+                    if flag1 == False:
+                        fila.append('<b>')
+                        flag1 = True
+                    else:
+                        fila.append('</b>')
+                        flag1 = False
+                elif i == '_':
+                    if flag2 == False:
+                        fila.append('<i>')
+                        flag2 = True
+                    else:
+                        fila.append('</i>')
+                        flag2 = False
+            lista = deque(texto)
+            tamanho_original = len(texto)
+            caracteres_processados = 0
+
+            while caracteres_processados < tamanho_original:
+                if lista[0] == '*':
+                    lista[0] = fila.pop(0)
+                    lista.rotate(-1)
+                elif lista[0] == '_':
+                    lista[0] = fila.pop(0)
+                    lista.rotate(-1)
+                else:
+                    lista.rotate(-1)
+                caracteres_processados += 1
+            print("".join(lista))
+        except EOFError:
+            break
 
 
 atalhos_bloggo()
