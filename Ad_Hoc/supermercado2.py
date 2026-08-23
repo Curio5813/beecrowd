@@ -1,3 +1,6 @@
+import sys
+
+
 def supermercado2():
     """
     Sr. Jones é um marido exemplar. Todo sábado de manhã a Sra. Jones
@@ -53,13 +56,21 @@ def supermercado2():
     onde diferenças de arredondamento são significantes.
     :return:
     """
-    entrada = list(map(int, input().strip().split()))
-    m, n = entrada[0], entrada[1]
-    while m != 0 and n != 0:
+    for linha in iter(input, ""):
+        if linha.strip() == "":
+            break
+        entrada = linha.strip().split(" ")
+        m, n = int(entrada[0]), int(entrada[1])
+        if m == 0 and n == 0:
+            break
+        if linha.strip() == "":
+            break
         lista_compra = list(map(int, input().strip().split()))
         corredor_supermercado, preco, maior, montante, montantes, cont = [], [], 0, 0, [], 0
-        for i in range(n):
-            supermercado = list(input().strip().split())
+        for linha2 in iter(input, ""):
+            supermercado = linha2.strip().split()
+            if not supermercado:
+                break
             corredor_supermercado.append(int(supermercado[0]))
             preco.append(float(supermercado[1]))
         for i in range(n):
@@ -117,8 +128,6 @@ def supermercado2():
             print(f'{min(montantes):.2f}')
         else:
             print("Impossible")
-        entrada = list(map(int, input().strip().split()))
-        m, n = entrada[0], entrada[1]
 
 
 supermercado2()
