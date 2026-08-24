@@ -30,6 +30,7 @@ def sudoku():
     :return:
     """
     n = int(input())
+    n1 = n
     n *= 9
     cont, matriz_linha, matriz_coluna, linha, coluna, colunas = 0, [], [], [], [], []
     for i in range(0, n + 1):
@@ -40,6 +41,36 @@ def sudoku():
                 break
         linha.append(list(map(int, input().split())))
         cont += 1
+    (cont1, cont2, m, q, p, matriz, quadrado_sudo, quadrados,
+     matriz_quadrados) = 1, 0, 0, 0, 0, [], [], [], []
+    while m < n1:
+        q, p = 0, 0
+        while p < 3:
+            for j in range(0, len(matriz_linha[m][0])):
+                for k in range(q, len(matriz_linha[m][p]) + 3):
+                    if cont2 == 3 and cont2 != 0:
+                        quadrados.extend(quadrado_sudo)
+                        quadrado_sudo = []
+                        cont2 = 0
+                        break
+                    quadrado_sudo.append(matriz_linha[m][j][k])
+                    cont2 += 1
+                if cont1 % 3 == 0 and cont1 != 0:
+                    matriz.append(quadrados)
+                    quadrados = []
+                    if cont1 == 9:
+                        matriz_quadrados.append(matriz)
+                        matriz = []
+                        cont1 = 1
+                        break
+                cont1 += 1
+            q += 3
+            p += 1
+        m += 1
+    # print(matriz_linha)
+    # print(len(matriz_linha))
+    # print(matriz_quadrados)
+    # print(len(matriz_quadrados))
     for i in range(0, len(matriz_linha)):
         for j in range(0, len(matriz_linha[i])):
             for k in range(0, len(matriz_linha[i][j])):
@@ -49,32 +80,48 @@ def sudoku():
         matriz_coluna.append(colunas)
         colunas = []
     for i in range(0, len(matriz_linha)):
-        flag1, flag2 = True, True
+        flag1, flag2, flag3 = True, True, True
         for j in range(0, len(matriz_linha[i])):
             verificacao_1 = dict(Counter(matriz_linha[i][j]))
+            # print(verificacao_1)
             for chave in verificacao_1:
                 if verificacao_1[chave] > 1:
                     flag1 = False
             if not flag1:
-                print(f"Instancia {i + 1}")
-                print("NAO")
-                print()
-                flag1 = True
                 break
         for j in range(0, len(matriz_coluna[i])):
             verificacao_2 = dict(Counter(matriz_coluna[i][j]))
+            # print(verificacao_2)
             for chave in verificacao_2:
                 if verificacao_2[chave] > 1:
                     flag2 = False
             if not flag2:
-                print(f"Instancia {i + 1}")
-                print("NAO")
-                print()
                 break
-        if flag1 and flag2:
+        if flag1 == False or flag2 == False:
             print(f"Instancia {i + 1}")
-            print("SIM")
+            print("NAO")
             print()
+        if flag1 == True and flag2 == True:
+            for j in range(0, len(matriz_quadrados)):
+                for k in range(0, len(matriz_quadrados[j])):
+                    verificacao_3 = dict(Counter(matriz_quadrados[j][k]))
+                    print(verificacao_3)
+                    for chave in verificacao_3:
+                        if verificacao_3[chave] > 1:
+                            flag3 = False
+                            break
+                    if not flag3:
+                        break
+                if flag1 == True and flag2 == True and flag3 == True:
+                    print(f"Instancia {i + 1}")
+                    print("SIM")
+                    print()
+                    break
+                else:
+                    print(f"Instancia {i + 1}")
+                    print("NAO")
+                    print()
+                    break
 
 
 if __name__ == '__main__':
