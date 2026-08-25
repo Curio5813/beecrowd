@@ -33,6 +33,7 @@ def sudoku():
     n1 = n
     n *= 9
     cont, matriz_linha, matriz_coluna, linha, coluna, colunas = 0, [], [], [], [], []
+    # Entrada das matrizes do jogo de sudoku
     for i in range(0, n + 1):
         if  cont % 9 == 0 and cont != 0:
             matriz_linha.append(linha)
@@ -43,6 +44,7 @@ def sudoku():
         cont += 1
     (cont1, cont2, m, q, p, matriz, quadrado_sudo, quadrados,
      matriz_quadrados) = 1, 0, 0, 0, 0, [], [], [], []
+    # Mapeia os quadrados do jogo de sudoku
     while m < n1:
         q, p = 0, 0
         while p < 3:
@@ -67,10 +69,7 @@ def sudoku():
             q += 3
             p += 1
         m += 1
-    # print(matriz_linha)
-    # print(len(matriz_linha))
-    # print(matriz_quadrados)
-    # print(len(matriz_quadrados))
+    # Mapeia as colunas do jogo de sudoku
     for i in range(0, len(matriz_linha)):
         for j in range(0, len(matriz_linha[i])):
             for k in range(0, len(matriz_linha[i][j])):
@@ -79,49 +78,91 @@ def sudoku():
             coluna = []
         matriz_coluna.append(colunas)
         colunas = []
+    flag1, flag2, flag3, temp, temp2 = [], [], [], [], []
+    # Verifica de há erros nas linhas do jogo de sudoku
     for i in range(0, len(matriz_linha)):
-        flag1, flag2, flag3 = True, True, True
         for j in range(0, len(matriz_linha[i])):
             verificacao_1 = dict(Counter(matriz_linha[i][j]))
-            # print(verificacao_1)
             for chave in verificacao_1:
                 if verificacao_1[chave] > 1:
-                    flag1 = False
-            if not flag1:
+                    temp.append(False)
+                    break
+            if temp:
                 break
+        if not temp:
+            temp.append(True)
+            temp2.append(*temp)
+            temp = []
+        else:
+            temp2.append(*temp)
+            temp = []
+    flag1.append(temp2)
+    temp, temp2 = [], []
+    # Verifica se há erros nas colunas do jogo de sudoku
+    for i in range(0, len(matriz_coluna)):
         for j in range(0, len(matriz_coluna[i])):
             verificacao_2 = dict(Counter(matriz_coluna[i][j]))
-            # print(verificacao_2)
             for chave in verificacao_2:
                 if verificacao_2[chave] > 1:
-                    flag2 = False
-            if not flag2:
+                    temp.append(False)
+                    break
+            if temp:
                 break
-        if flag1 == False or flag2 == False:
-            print(f"Instancia {i + 1}")
-            print("NAO")
-            print()
-        if flag1 == True and flag2 == True:
-            for j in range(0, len(matriz_quadrados)):
-                for k in range(0, len(matriz_quadrados[j])):
-                    verificacao_3 = dict(Counter(matriz_quadrados[j][k]))
-                    print(verificacao_3)
-                    for chave in verificacao_3:
-                        if verificacao_3[chave] > 1:
-                            flag3 = False
-                            break
-                    if not flag3:
-                        break
-                if flag1 == True and flag2 == True and flag3 == True:
-                    print(f"Instancia {i + 1}")
-                    print("SIM")
-                    print()
+        if not temp:
+            temp.append(True)
+            temp2.append(*temp)
+            temp = []
+        if temp:
+            temp2.append(*temp)
+            temp = []
+    flag2.append(temp2)
+    temp, temp2 = [], []
+    # Verifica se há erros nos quadrados do jogo de sudoku
+    for i in range(0, len(matriz_quadrados)):
+        for j in range(0, len(matriz_quadrados[i])):
+            verificacao_3 = dict(Counter(matriz_quadrados[i][j]))
+            for chave in verificacao_3:
+                if verificacao_3[chave] > 1:
+                    temp.append(False)
                     break
-                else:
-                    print(f"Instancia {i + 1}")
-                    print("NAO")
-                    print()
-                    break
+            if temp:
+                break
+        if not temp:
+            temp.append(True)
+            temp2.append(*temp)
+            temp = []
+        if temp:
+            temp2.append(*temp)
+            temp = []
+    flag3.append(temp2)
+    flag3_cord, cont4, cont5, j = [[]], 0, 0, 0
+    # Filtra as matrizes menores, os quadrados, que formam o jogo
+    for i in range(0, len(flag3)):
+        while j < len(flag3[i]):
+            if flag3[i][j]:
+                cont4 += 1
+                if cont4 == 3:
+                    flag3_cord[0].append(True)
+                    cont4 = 0
+            if not flag3[i][j]:
+                cont5 += 1
+                while cont5 < 3:
+                    cont5 += 1
+                    j += 1
+                flag3_cord[0].append(False)
+                cont5 = 0
+            j += 1
+    # Dá a resposta de cada jogo se a soluação está certa ou errada
+    for i in range(0, len(flag1)):
+        for j in range(0, len(flag1[i])):
+            if flag1[i][j] == True and flag2[i][j] == True and flag3_cord[i][j] == True:
+                print(f"Instancia {j + 1}")
+                print("SIM")
+                print()
+            else:
+                print(f"Instancia {j + 1}")
+                print(f"NAO")
+                print()
 
 
 if __name__ == '__main__':
