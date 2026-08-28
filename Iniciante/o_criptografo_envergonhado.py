@@ -19,16 +19,15 @@ def o_criptografo_envegonhado():
         k, lp = map(int, input().split(" "))
         if k == 0 and lp == 0:
             break
-        for i in range(2, 1000000 + 1):
-            if k % i == 0 and i >= lp:
-                print("GOOD")
-                break
-            elif k % i == 0 and i < lp:
+        flag = True
+        for i in range(2, lp):
+            if k % i == 0:
                 print(f"BAD {i}")
+                flag = False
                 break
+        if flag:
+            print(f"GOOD")
         cont += 1
-        if cont == 20:
-            break
 
 
 o_criptografo_envegonhado()
