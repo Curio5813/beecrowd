@@ -28,15 +28,24 @@ def it_miha():
     divisores quadrados perfeitos.
     :return:
     """
-    i, k, quads, livres = 2, 2, [1], []
-    for i in range(2, 100_000 + 1):
-        n = i ** 2
-        for k in range(n, 100_000, n):
-            if k not in quads:
-                quads.append(k)
-    quads.sort()
-    print(quads)
-    print(len(quads))
+    livres = [1, 2, 3, 5, 6, 7, 10, 11, 13, 14]
+    quadrado_perfeito, num = [], 15
+    for i in range(2, 100):
+        for j in range(i, 100, i * i):
+            if j * j in quadrado_perfeito:
+                break
+            if j * j:
+                quadrado_perfeito.append(j * j)
+    for i in range(0, len(quadrado_perfeito)):
+        for j in range(4, quadrado_perfeito[-1]):
+            if j % quadrado_perfeito[i] == 0 and j not in quadrado_perfeito:
+                quadrado_perfeito.append(j)
+    for i in range(1, 1000):
+        if i not in quadrado_perfeito and i not in livres:
+            livres.append(i)
+    quadrado_perfeito.sort()
+    print(quadrado_perfeito)
+    print(livres[371-1])
 
 
 it_miha()
