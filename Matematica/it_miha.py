@@ -1,3 +1,6 @@
+from math import sqrt
+
+
 def it_miha():
     """
     No Egito antigo as construções das pirâmides são cercadas de muitos mistérios. Muitos
@@ -30,7 +33,7 @@ def it_miha():
     """
     livres = [1]
     n, cont = 2, 0
-    for i in range(2, 50_000):
+    for i in range(2, 1_000_000):
         num = i
         while i >= 1 and n <= i:
             if i % n == 0:
@@ -40,7 +43,7 @@ def it_miha():
                     break
             if i % n != 0:
                 n += 1
-                if n > i:
+                if n > sqrt(i):
                     break
                 cont = 0
         if cont < 2:
