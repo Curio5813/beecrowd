@@ -33,7 +33,7 @@ def it_miha():
     """
     livres = [1]
     n, cont = 2, 0
-    for i in range(2, 1_000):
+    for i in range(2, 2_000_000):
         num = i
         while i >= 1 and n <= i:
             if i % n == 0:
@@ -43,6 +43,8 @@ def it_miha():
                     break
             if i % n != 0:
                 n += 1
+                if n > 141422:
+                    break
                 if n > sqrt(i):
                     break
                 cont = 0
