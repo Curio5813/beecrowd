@@ -70,69 +70,71 @@ def joao_ainda_nao_consegue_somar():
             for k in range(len(tabela[j])):
                 print(f"{tabela[j][k]:>5}", end=' ')
             print()
-        flag, soma, temp2, temp3, a = False, [], 0, 0, 1
+        soma, temp2, temp3 = [], 0, 0
         tabela2 = deepcopy(tabela)
         for j in range(1, len(tabela[0])):
             for k in range(1, len(tabela[j])):
                 temp2, temp3 = tabela[j][0], tabela[0][j]
-                # print(temp2, temp3)
                 if temp2 + temp3 == tabela[j][k]:
                     tabela2[j][0] = temp2
+                    print(temp2, temp3, 'OK')
                     break
                 while temp2 < 10000:
                     # print(temp2, temp3)
                     if tabela[j][k] > 0:
                         temp2 += 1
                         if temp2 + temp3 == tabela[j][k]:
-                            flag = True
+                            print(temp2, temp3, 'OK')
                             break
                     if tabela[j][k] < 0:
                         temp2 -= 1
                         if temp2 < -10000:
                             break
                         if temp2 + temp3 == tabela[j][k]:
-                            flag = True
+                            print(temp2, temp3, 'OK')
                             break
-                soma.append(flag)
                 tabela2[j][0] = temp2
                 break
-            a += 1
+        flag, a, cont = False, 2, 0
+        for j in range(1, len(tabela)):
             for k in range(a, len(tabela[j])):
                 temp2, temp3 = tabela2[j][0], tabela2[0][j]
                 # print(temp2, temp3)
-                if k == 1:
-                    continue
-                if temp2 + temp3 == tabela[j][k]:
-                    tabela2[0][j] = temp3
-                    break
                 while temp3 < 10000 and k >= 1:
-                    # print(temp2, temp3)
+                    print(temp2, temp3)
                     if tabela[j][k] > temp2 + temp3:
                         temp3 += 1
+                        if temp3 >= 10000 and tabela[j][k] != temp2 + temp3:
+                            soma.append(flag)
+                            break
                         if temp2 + temp3 == tabela[j][k]:
-                            flag = True
+                            print(temp2, temp3, 'OK')
                             break
                     if tabela[j][k] < temp2 + temp3:
                         temp3 -= 1
-                        if temp3 < -10000:
+                        if temp3 <= -10000 and tabela[j][k] != temp2 + temp3:
+                            soma.append(flag)
                             break
                         if temp2 + temp3 == tabela[j][k]:
-                            flag = True
+                            print(temp2, temp3, 'OK')
                             break
-                soma.append(flag)
-                tabela2[0][j + 1] = temp3
-                break
-        if len(soma) == len(tabela2):
+                a += 1
+                cont += 1
+                if cont < linha - 1:
+                    tabela2[0][j + 1] = temp3
+                else:
+                    cont = 0
+        if not False in soma:
             print(f"{caso}. YES")
             caso += 1
-        if len(soma) != len(tabela2):
+        if False in soma:
             print(f"{caso}. NO")
             caso += 1
         for j in range(len(tabela2)):
             for k in range(len(tabela2[j])):
                 print(f"{tabela2[j][k]:>5}", end=' ')
             print()
-        # print(soma)
+        print(soma)
         print()
 
 
