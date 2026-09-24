@@ -94,52 +94,61 @@ def joao_ainda_nao_consegue_somar():
                             break
                 tabela2[j][0] = temp2
                 break
-        cont, achados, flag, soma = 0, [0], False, []
+        cont, achados, soma, idx, idx2 = 0, [], [], 0, 0
         for j in range(1, len(tabela)):
-            a, cont, idx = 1, 0, 0
+            a, flag, cont2 = 1, False, 0
             for k in range(a, len(tabela[j])):
                 temp2, temp3 = tabela2[j][0], tabela2[0][j]
                 # print(temp2, temp3)
-                while temp3 < 10000 and k >= 1:
-                    print(temp2, temp3)
-                    if tabela[j][k] == temp2 + temp3:
-                        print(temp2, temp3, 'OK')
-                        soma.append(True)
-                        break
-                    if tabela[j][k] < temp2 + temp3:
-                        temp3 -= 1
-                        print(temp2, temp3, 'False')
-                        if temp3 + temp2 <= tabela[j][k] and temp3 != achados[idx]:
-                            soma.append(False)
-                            break
-                        if temp2 + temp3 == tabela[j][k]:
-                            print(temp2, temp3, 'OK')
-                            soma.append(True)
-                            break
-                    if tabela[j][k] > temp2 + temp3:
-                        temp3 += 1
-                        if temp3 + temp2 >= tabela[j][k] and temp3 != achados[idx]:
-                            print(temp2, temp3, 'False')
-                            soma.append(False)
-                            break
-                        if temp2 + temp3 == tabela[j][k]:
-                            print(temp2, temp3, 'OK')
-                            soma.append(True)
-                            break
-                a += 1
-                cont += 1
-                if cont <= linha + 1 and len(achados) < linha - 1:
+                if tabela[j][k] == temp2 + temp3:
+                    soma.append(True)
                     achados.append(temp3)
-                    idx += 1
-                    if idx > len(tabela) - 2:
-                        idx = 0
+                    print(temp2, temp3, 'OK', achados[idx2], idx2)
+                if tabela[j][k] != temp2 + temp3:
+                    while temp3 < 10000 and k >= 1:
+                        if tabela[j][k] < temp2 + temp3:
+                            temp3 -= 1
+                            if temp2 + temp3 == tabela[j][k]:
+                                if temp3 == achados[idx2]:
+                                    soma.append(True)
+                                    achados.append(temp3)
+                                    flag = True
+                                    print(temp2, temp3, 'OK', achados[idx2], idx2)
+                                    break
+                                else:
+                                    break
+                            if temp3 + temp2 < tabela[j][k] and temp3 != achados[idx2]:
+                                break
+                        if tabela[j][k] > temp2 + temp3:
+                            temp3 += 1
+                            if temp2 + temp3 == tabela[j][k]:
+                                if temp3 == achados[idx2]:
+                                    soma.append(True)
+                                    achados.append(temp3)
+                                    flag = True
+                                    print(temp2, temp3, 'OK', achados[idx2], idx2)
+                                    break
+                                else:
+                                    break
+                            if temp3 + temp2 > tabela[j][k] and temp3 != achados[idx2]:
+                                break
+                        print(temp2, temp3, idx2)
+                        print(achados)
+
+                a += 1
+                idx2 += 1
+                if idx2 > len(tabela) - 1:
+                    break
+            if flag == False:
+                soma.append(False)
         if not False in soma:
             print(f"{caso}. YES")
             caso += 1
         if False in soma:
             print(f"{caso}. NO")
             caso += 1
-        idx, idx2 = 0, 2
+        idx, idx2 = 0, 1
+        print(achados)
         for j in range(0, len(tabela)):
             tabela2[0][idx2] = achados[idx]
             idx += 1
