@@ -165,11 +165,11 @@ def joao_ainda_nao_consegue_somar():
                 break
         # Caso não seja uma matriz soma.
         if not False in soma:
-            print(f"{caso}. YES")
+            print(f"{caso} YES")
             caso += 1
         # Caso seja uma matriz soma.
         if False in soma:
-            print(f"{caso}. NO")
+            print(f"{caso} NO")
             caso += 1
         idx, idx2 = 0, 1
         # print(achados)
