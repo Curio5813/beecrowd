@@ -46,6 +46,7 @@ def joao_ainda_nao_consegue_somar():
     for i in range(n):
         linha = int(input())
         linhas, tabela, temp1 = [], [], []
+        # Construindo a matriz para calcular as somas.
         for j in range(linha + 1):
             if j == linha + 1:
                 while len(temp1) < linha:
@@ -66,11 +67,13 @@ def joao_ainda_nao_consegue_somar():
                 linhas.extend(list(map(int, input().split())))
                 tabela.append(linhas)
                 linhas = []
+        # Mostrando a matriz básica consturída para montar a matriz soma
         for j in range(len(tabela)):
             for k in range(len(tabela[j])):
                 print(f"{tabela[j][k]:>5}", end=' ')
             print()
-        tabela2 = deepcopy(tabela)
+        tabela2 = deepcopy(tabela) # Fazendo deepcopy para verificação das somas.
+        # Acando os primeiros fatores que iram ser somados.
         for j in range(1, len(tabela[0])):
             for k in range(1, len(tabela[j])):
                 temp2, temp3 = tabela[j][0], tabela[0][j]
@@ -95,6 +98,9 @@ def joao_ainda_nao_consegue_somar():
                 tabela2[j][0] = temp2
                 break
         achados, soma, idx, idx2 = [], [], 0, 0
+        # Achando os segundos fatores e verificando validade da matriz soma.
+        # Como a ordem dos fatores a serem somados, um vez válido para um resultado, deve valer
+        # Para o resto da matriz.
         for j in range(1, len(tabela)):
             a = 1
             for k in range(a, len(tabela[j])):
@@ -157,20 +163,24 @@ def joao_ainda_nao_consegue_somar():
                             break
             if False in soma:
                 break
+        # Caso não seja uma matriz soma.
         if not False in soma:
             print(f"{caso}. YES")
             caso += 1
+        # Caso seja uma matriz soma.
         if False in soma:
             print(f"{caso}. NO")
             caso += 1
         idx, idx2 = 0, 1
         # print(achados)
+        # Arranjando os fatores para ser exibida na matriz completa.
         for j in range(0, len(tabela)):
             tabela2[0][idx2] = achados[idx]
             idx += 1
             idx2 += 1
             if idx2 > linha:
                 break
+        # Exibindo a matriz.
         for j in range(len(tabela2)):
             for k in range(len(tabela2[j])):
                 print(f"{tabela2[j][k]:>5}", end=' ')
