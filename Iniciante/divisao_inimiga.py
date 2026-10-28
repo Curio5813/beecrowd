@@ -39,16 +39,17 @@ def divisao_inimiga():
            if i not in nao_podem and i != k:
                podem.append(k)
                podem.append(i)
-           podem.sort()
-           if podem not in grupos and not any(k in g or i in g for g in grupos) and podem != []:
-               grupos.append(podem)
                break
+       podem.sort()
+       if podem not in grupos:
+            grupos.append(podem)
        podem = []
        nao_podem = []
+    print(grupos)
     print(len(grupos))
-    grupos.sort()
     for i in range(0, len(grupos)):
         print(*grupos[i])
+
 
 
 divisao_inimiga()
