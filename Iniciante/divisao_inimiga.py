@@ -41,8 +41,8 @@ def divisao_inimiga():
                podem.append(i)
                break
        podem.sort()
-       if podem not in grupos:
-            grupos.append(podem)
+       if podem not in grupos and not any():
+           grupos.append(podem)
        podem = []
        nao_podem = []
     print(grupos)
