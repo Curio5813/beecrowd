@@ -43,7 +43,7 @@ def preparando_a_producao():
             trocas = 0
             for i in range(n):
                 trocou = False
-                for j in range(0, n - i - 1):
+                for j in range(n):
                     if j >= len(pecas) - 1:
                         break
                     if pecas[j] > pecas[j + 1]:
