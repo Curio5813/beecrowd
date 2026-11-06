@@ -1,6 +1,3 @@
-from copy import deepcopy
-
-
 def preparando_a_producao():
     """
     Uma montadora de carros, permite que os usuários criem seus próprios
@@ -44,19 +41,19 @@ def preparando_a_producao():
             tempo = list(map(int, input().split()))
             total_tempo = 0
             trocas = 0
-            while len(pecas) > trocas:
-                for i in range(n):
-                    for j in range(0, n - i - 1):
-                        if j >= len(pecas) - 1:
-                            break
-                        if pecas[j] > pecas[j + 1]:
-                            pecas[j], pecas[j + 1] = pecas[j + 1], pecas[j]
-                            tempo[j], tempo[j + 1] = tempo[j + 1], tempo[j]
-                            total_tempo += tempo[j] + tempo[j + 1]
-                            trocas += 1
-                            # print(tempo[j], tempo[j + 1], total_tempo)
-                        else:
-                            trocas += 1
+            for i in range(n):
+                trocou = False
+                for j in range(0, n - i - 1):
+                    if j >= len(pecas) - 1:
+                        break
+                    if pecas[j] > pecas[j + 1]:
+                        pecas[j], pecas[j + 1] = pecas[j + 1], pecas[j]
+                        tempo[j], tempo[j + 1] = tempo[j + 1], tempo[j]
+                        total_tempo += tempo[j] + tempo[j + 1]
+                        trocou = True
+                        # print(tempo[j], tempo[j + 1], total_tempo)
+                if not trocou:
+                    break
             print(total_tempo)
         except EOFError:
             break
