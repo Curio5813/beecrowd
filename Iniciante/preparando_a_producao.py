@@ -57,7 +57,7 @@ def preparando_a_producao():
             print(total_tempo)
         except EOFError:
             break
-
+    
 
 preparando_a_producao()
 
