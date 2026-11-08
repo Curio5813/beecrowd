@@ -35,18 +35,30 @@ def ajude():
         julgamentos = int(input())
         if julgamentos == 0:
             break
-        questoes, temp, a, quesitos = [], [], 0, []
+        questoes, temp, a, b, quesitos, contados = [], [], 0, 0, [], []
         for i in range(julgamentos):
             questao = input().split()
             questoes.extend(questao)
         while a <= len(questoes)  - 1:
             tag = questoes[a]
-            while questoes[a] == tag:
-                if questoes[a] == tag:
+            while a <= len(questoes) - 1:
+                if questoes[a] == tag and questoes[a] not in contados:
                     temp.extend(questoes[a:a + 3])
                 a += 3
                 if a >= len(questoes) - 1:
+                    b += 3
+                    if b >= len(questoes) - 1:
+                        break
+                    if questoes[b] != tag:
+                        a = b
+                    else:
+                        while questoes[b] == tag:
+                            b += 3
+                            if b >= len(questoes) - 1:
+                                break
+                        a = b
                     break
+            contados.append(tag)
             quesitos.append(temp)
             temp = []
         pontos, cont1, cont2 = 0, 0, 0
