@@ -31,7 +31,6 @@ def ajude():
 
     :return:
     """
-    global resultado
     while True:
         julgamentos = int(input())
         if julgamentos == 0:
@@ -42,7 +41,6 @@ def ajude():
             questoes.extend(questao)
         while a <= len(questoes)  - 1:
             tag = questoes[a]
-            resultado = False
             while questoes[a] == tag:
                 if questoes[a] == tag:
                     temp.extend(questoes[a:a + 3])
