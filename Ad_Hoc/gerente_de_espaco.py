@@ -106,14 +106,17 @@ def gerente_de_espaco():
                 volume2 = ""
                 temp = []
                 for j in range(len(atividades)):
-                    print(tamanho1)
+                    # print(tamanho1)
                     if operacoes[1] in atividades[j] and atividades[j][3] in registros_capacidades[0]:
                         tamanho1 -= int(atividades[j][2])
                     elif operacoes[1] in atividades[j] and atividades[j][3] in registros_capacidades[1]:
                         tamanho1 -= int(atividades[j][2]) * 1000
                     elif operacoes[1] in atividades[j] and atividades[j][3] in registros_capacidades[2]:
                         tamanho1 -= int(atividades[j][2]) * 1000_000
+            print(atividades)
             if len(operacoes) == 2:
+                temp.append(operacoes[0])
+                temp.append(operacoes[1])
                 for j in range(len(atividades)):
                     # print(tamanho1)
                     if operacoes[1] in atividades[j] and atividades[j][3] in registros_capacidades[0]:
